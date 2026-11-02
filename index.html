@@ -177,7 +177,7 @@
   nav.tabs .tab-btn .ico { font-size: 1.2rem; line-height: 1; transition: transform 0.4s var(--ease); }
   nav.tabs .tab-btn:hover { color: var(--text); }
   nav.tabs .tab-btn:active { transform: scale(0.92); }
-  nav.tabs .tab-btn.active { color: var(--accent-ink); background: var(--accent); }
+  nav.tabs .tab-btn.active { color: var(--accent-ink); }
   nav.tabs .tab-btn.active .ico { transform: translateY(-1px) scale(1.12); }
 
   main { max-width: 1080px; margin: 0 auto; padding: 22px 16px 24px; }
@@ -243,10 +243,10 @@
   .btn-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 14px; }
 
   /* ---------- Dashboard ---------- */
-  .hero-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; }
+  .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .ring-card { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 14px 10px; border-radius: 16px; transition: background-color 0.4s; }
   .ring-card:hover { background: var(--surface-2); }
-  .ring { position: relative; width: 140px; height: 140px; margin-bottom: 10px; }
+  .ring { position: relative; width: clamp(84px, 25vw, 150px); height: clamp(84px, 25vw, 150px); margin-bottom: 10px; }
   .ring svg { width: 100%; height: 100%; transform: rotate(-90deg); overflow: visible; }
   .ring .track { stroke: var(--line); }
   .ring .fill {
@@ -258,9 +258,11 @@
   .ring .fill.night { stroke: var(--muted); }
   .ring .fill.checks { stroke: var(--text); }
   .ring .center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  .ring .num { font-size: 1.7rem; font-weight: 300; font-variant-numeric: tabular-nums; line-height: 1.1; letter-spacing: -0.5px; }
+  .ring .num { font-size: clamp(1.1rem, 5vw, 1.8rem); font-weight: 300; font-variant-numeric: tabular-nums; line-height: 1.1; letter-spacing: -0.5px; }
   .ring .of { font-size: 0.7rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; margin-top: 2px; }
-  .ring-label { font-weight: 600; text-transform: uppercase; font-size: 0.78rem; letter-spacing: 1px; }
+  .ring-label { font-weight: 600; text-transform: uppercase; font-size: clamp(0.62rem, 2.6vw, 0.78rem); letter-spacing: 1px; }
+  .ring-card { padding: 10px 4px !important; }
+  .ring-status { font-size: clamp(0.7rem, 3vw, 0.85rem) !important; }
   .ring-status { font-size: 0.85rem; margin-top: 3px; color: var(--muted); }
   .ring-status.good { color: var(--text); font-weight: 600; }
 
@@ -492,6 +494,89 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
   }
+
+  /* ---------- v4 enhancements ---------- */
+  .ico svg, .chip-btn svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .ico { filter: none !important; display: grid; place-items: center; }
+  .chip-btn.icon svg { width: 18px; height: 18px; }
+  [data-theme="dark"] .i-sun { display: none; }
+  [data-theme="light"] .i-moon { display: none; }
+  .chip-btn.icon svg { transition: transform 0.6s var(--ease); }
+  .chip-btn.icon:hover svg { transform: rotate(40deg); }
+
+  nav.tabs { position: fixed; }
+  nav.tabs .tab-btn { position: relative; z-index: 1; overflow: hidden; }
+  nav.tabs .tab-btn.active { background: transparent; }
+  .tab-indicator {
+    position: absolute; left: 0; top: 0; z-index: 0;
+    background: var(--accent); border-radius: 14px; opacity: 0;
+    transition: transform 0.5s var(--ease), width 0.5s var(--ease), opacity 0.3s;
+    box-shadow: 0 8px 22px color-mix(in srgb, var(--text) 25%, transparent);
+  }
+  nav.tabs .lbl { white-space: nowrap; }
+
+  .segmented {
+    position: relative; display: grid; grid-template-columns: repeat(3, 1fr);
+    background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px;
+    padding: 4px; margin: 0 0 18px;
+  }
+  .seg-btn {
+    position: relative; z-index: 1; background: none; border: 0; cursor: pointer;
+    font: inherit; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase;
+    color: var(--muted); padding: 10px 6px; border-radius: 999px; overflow: hidden;
+    transition: color 0.4s var(--ease);
+  }
+  .seg-btn.active { color: var(--accent-ink); }
+  .seg-indicator {
+    position: absolute; left: 0; top: 0; z-index: 0; border-radius: 999px; background: var(--accent); opacity: 0;
+    transition: transform 0.5s var(--ease), width 0.5s var(--ease), opacity 0.3s;
+  }
+  .sub-panel { animation: panelIn 0.5s var(--ease) both; }
+  .sub-intro { color: var(--muted); margin: 0 2px 14px; font-size: 0.92rem; }
+
+  /* Tap ripple */
+  .btn, .tab-btn, .seg-btn, .quick, .chip-btn { position: relative; overflow: hidden; }
+  .ripple {
+    position: absolute; border-radius: 50%; pointer-events: none; z-index: 2;
+    background: color-mix(in srgb, currentColor 22%, transparent);
+    transform: scale(0); animation: ripple 0.65s var(--ease) forwards;
+  }
+  @keyframes ripple { to { transform: scale(1); opacity: 0; } }
+
+  /* Scroll reveal */
+  .sr { opacity: 0; transform: translateY(18px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease), border-color 0.4s, background-color 0.4s; }
+  .sr.in { opacity: 1; transform: none; }
+
+  /* Header parallax */
+  header.app-header .header-row { transform: translateY(var(--py, 0)); opacity: var(--po, 1); transition: opacity 0.1s linear; }
+
+  /* Ring glow pulse when a requirement is met */
+  .ring-status.good { animation: glowText 2.4s ease-in-out infinite; }
+  @keyframes glowText { 0%,100% { text-shadow: none; } 50% { text-shadow: 0 0 12px color-mix(in srgb, var(--text) 45%, transparent); } }
+
+  /* Page title underline draw */
+  .page-title { position: relative; display: inline-block; }
+  .page-title::after {
+    content: ""; position: absolute; left: 2px; bottom: -4px; height: 1px; width: 100%;
+    background: var(--text); transform-origin: left; animation: drawLine 0.9s var(--ease) 0.15s both;
+  }
+  .page-sub { margin-top: 12px; }
+  @keyframes drawLine { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  @media (min-width: 820px) {
+    nav.tabs { position: sticky; }
+    .tab-indicator { border-radius: 999px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sr { opacity: 1; transform: none; }
+  }
+
+  /* Fixes: round checkboxes and compact quick actions on phones */
+  ol.checklist input[type="checkbox"] { min-height: 0 !important; padding: 0 !important; width: 26px !important; height: 26px !important; flex: 0 0 26px; }
+  .quick-actions { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .quick { padding: 12px 10px; text-align: center; }
+  .quick .q-title { font-size: 0.82rem; }
+  .quick .q-sub { font-size: 0.7rem; }
 </style>
 </head>
 <body>
@@ -507,20 +592,19 @@
     </div>
     <div class="header-actions">
       <span class="parent-badge">✓ Parent mode</span>
-      <button type="button" class="chip-btn icon" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
+      <button type="button" class="chip-btn icon" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></button>
       <button type="button" class="chip-btn" id="parent-toggle">Parent sign-off</button>
     </div>
   </div>
 </header>
 
 <nav class="tabs" aria-label="Sections" role="tablist">
-  <button type="button" class="tab-btn" role="tab" data-tab="dashboard"><span class="ico">🏠</span><span>Home</span></button>
-  <button type="button" class="tab-btn" role="tab" data-tab="checklist"><span class="ico">✅</span><span>Checklist</span></button>
-  <button type="button" class="tab-btn" role="tab" data-tab="log"><span class="ico">🗓️</span><span>Log</span></button>
-  <button type="button" class="tab-btn" role="tab" data-tab="rules"><span class="ico">📘</span><span>Rules</span></button>
-  <button type="button" class="tab-btn" role="tab" data-tab="provisional"><span class="ico">🪪</span><span>Provisional</span></button>
-  <button type="button" class="tab-btn" role="tab" data-tab="resources"><span class="ico">🔗</span><span>Resources</span></button>
-  <button type="button" class="tab-btn" role="tab" data-tab="hardship"><span class="ico">📄</span><span>Hardship</span></button>
+  <span class="tab-indicator" aria-hidden="true"></span>
+  <button type="button" class="tab-btn" role="tab" data-tab="dashboard"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></span><span class="lbl">Home</span></button>
+  <button type="button" class="tab-btn" role="tab" data-tab="checklist"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="m8 12.5 2.7 2.7L16.5 9"/></svg></span><span class="lbl">Checklist</span></button>
+  <button type="button" class="tab-btn" role="tab" data-tab="log"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span><span class="lbl">Log</span></button>
+  <button type="button" class="tab-btn" role="tab" data-tab="rules"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="lbl">Rules</span></button>
+  <button type="button" class="tab-btn" role="tab" data-tab="resources"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span><span class="lbl">Links</span></button>
 </nav>
 
 <main>
@@ -660,24 +744,31 @@
     </div>
   </section>
 
-  <!-- ============ RULES ============ -->
+  <!-- ============ RULES (logging / provisional / hardship) ============ -->
   <section class="tab-panel" id="tab-rules" role="tabpanel" hidden>
-    <h2 class="page-title">Logging rules</h2>
-    <p class="page-sub">Review before every practice session.</p>
-    <ul class="rule-list">
+    <h2 class="page-title">Rules</h2>
+    <p class="page-sub">Logging requirements, provisional license limits, and hardship information.</p>
+
+    <div class="segmented" role="tablist" aria-label="Rule categories">
+      <span class="seg-indicator" aria-hidden="true"></span>
+      <button type="button" class="seg-btn" data-sub="logging">Logging</button>
+      <button type="button" class="seg-btn" data-sub="provisional">Provisional</button>
+      <button type="button" class="seg-btn" data-sub="hardship">Hardship</button>
+    </div>
+
+    <div class="sub-panel" id="sub-logging">
+      <p class="sub-intro">Review before every practice session.</p>
+      <ul class="rule-list">
       <li><span class="r-ico">⏱️</span><div><strong>2-hour daily cap.</strong> Driving is recorded for no more than 2 hours per day. Any time beyond that is not counted.</div></li>
       <li><span class="r-ico">🌙</span><div><strong>10 night hours.</strong> 10 hours of the required total must be completed at night.</div></li>
       <li><span class="r-ico">🧑‍✈️</span><div><strong>Qualified supervisor.</strong> Must be 21 or older, hold a valid driver's license, and sit in the front passenger seat during every session.</div></li>
       <li><span class="r-ico">✍️</span><div><strong>Parent sign-off.</strong> Each session is reviewed and approved by a parent before it counts.</div></li>
     </ul>
-  </section>
+    </div>
 
-  <!-- ============ PROVISIONAL ============ -->
-  <section class="tab-panel" id="tab-provisional" role="tabpanel" hidden>
-    <h2 class="page-title">Provisional license</h2>
-    <p class="page-sub">These apply once the Provisional License is issued.</p>
-
-    <div class="alert bad"><div class="a-ico">🌙</div><div><strong>Curfew: no driving midnight to 5:00 AM.</strong>Violations can have serious consequences.</div></div>
+    <div class="sub-panel" id="sub-provisional" hidden>
+      <p class="sub-intro">These apply once the Provisional License is issued.</p>
+      <div class="alert bad"><div class="a-ico">🌙</div><div><strong>Curfew: no driving midnight to 5:00 AM.</strong>Violations can have serious consequences.</div></div>
     <div class="alert"><div class="a-ico">👥</div><div><strong>One passenger max.</strong>No more than ONE passenger under 21 who is NOT a family member.</div></div>
     <div class="alert"><div class="a-ico">📵</div><div><strong>Zero tolerance for wireless devices.</strong>No phone use of any kind, including hands-free and voice features. Put the phone away before the car moves.</div></div>
 
@@ -701,11 +792,18 @@
         </ul>
       </div>
     </div>
+    </div>
+
+    <div class="sub-panel" id="sub-hardship" hidden>
+      <p class="sub-intro">Reference only. Confirm current eligibility and forms directly with the Texas Department of Public Safety (DPS).</p>
+      <div class="alert info"><div class="a-ico">📄</div><div><strong>Documentation required</strong>Eligibility requires documented proof of unusual economic hardship or a serious family illness.</div></div>
+    <div class="alert"><div class="a-ico">🚫</div><div><strong>Not a qualifying reason</strong>Mere convenience, or a parent's work schedule, does not qualify.</div></div>
+    </div>
   </section>
 
   <!-- ============ RESOURCES ============ -->
   <section class="tab-panel" id="tab-resources" role="tabpanel" hidden>
-    <h2 class="page-title">Resources</h2>
+    <h2 class="page-title">Links &amp; resources</h2>
     <p class="page-sub">Trusted sources for teen drivers and the parents who support them.</p>
 
     <div class="link-grid">
@@ -737,18 +835,10 @@
     </div>
   </section>
 
-  <!-- ============ HARDSHIP ============ -->
-  <section class="tab-panel" id="tab-hardship" role="tabpanel" hidden>
-    <h2 class="page-title">Hardship license</h2>
-    <p class="page-sub">Reference only. Confirm current eligibility and forms directly with the Texas Department of Public Safety (DPS).</p>
-    <div class="alert info"><div class="a-ico">📄</div><div><strong>Documentation required</strong>Eligibility requires documented proof of unusual economic hardship or a serious family illness.</div></div>
-    <div class="alert"><div class="a-ico">🚫</div><div><strong>Not a qualifying reason</strong>Mere convenience, or a parent's work schedule, does not qualify.</div></div>
-  </section>
-
 </main>
 
 <footer class="app-footer">
-  Data is stored only in this browser. Export a CSV backup from the Log tab from time to time.
+  Owl Driver · Version 5 · Data is stored only in this browser. Export a CSV backup from the Log tab from time to time.
 </footer>
 
 <!-- PIN dialog: sets the parent PIN and unlocks parent mode -->
@@ -797,7 +887,8 @@
   var MAX_ATTEMPTS = 5;
   var LOCKOUT_MS = 60 * 1000;
   var RING_C = 2 * Math.PI * 52;
-  var TABS = ["dashboard", "checklist", "log", "rules", "provisional", "resources", "hardship"];
+  var TABS = ["dashboard", "checklist", "log", "rules", "resources"];
+  var SUB_ALIASES = { provisional: "provisional", hardship: "hardship" };
 
   var CHECKLIST = [
     { label: "Enroll in Aceable Parent-Taught course", note: "" },
@@ -878,29 +969,72 @@
   }
 
   // ---------- Tabs ----------
+  function moveIndicator(container, indicatorSel, activeEl) {
+    var ind = container.querySelector(indicatorSel);
+    if (!ind || !activeEl) return;
+    var cr = container.getBoundingClientRect();
+    var ar = activeEl.getBoundingClientRect();
+    ind.style.width = ar.width + "px";
+    ind.style.height = ar.height + "px";
+    ind.style.transform = "translate(" + (ar.left - cr.left) + "px," + (ar.top - cr.top) + "px)";
+    ind.style.opacity = "1";
+  }
+
+  function showSub(name) {
+    var subs = ["logging", "provisional", "hardship"];
+    if (subs.indexOf(name) < 0) name = "logging";
+    subs.forEach(function (n) {
+      var el = $("sub-" + n);
+      var on = n === name;
+      el.hidden = !on;
+      if (on) { el.style.animation = "none"; void el.offsetWidth; el.style.animation = ""; }
+    });
+    var active = null;
+    document.querySelectorAll(".seg-btn").forEach(function (b) {
+      var on = b.dataset.sub === name;
+      b.classList.toggle("active", on);
+      b.setAttribute("aria-selected", on ? "true" : "false");
+      if (on) active = b;
+    });
+    requestAnimationFrame(function () { moveIndicator(document.querySelector(".segmented"), ".seg-indicator", active); });
+  }
+
   function showTab(name) {
+    var sub = null;
+    if (SUB_ALIASES[name]) { sub = SUB_ALIASES[name]; name = "rules"; }
     if (TABS.indexOf(name) < 0) name = "dashboard";
     document.querySelectorAll(".tab-panel").forEach(function (p) {
       p.hidden = p.id !== "tab-" + name;
     });
+    var active = null;
     document.querySelectorAll(".tab-btn").forEach(function (b) {
       var on = b.dataset.tab === name;
       b.classList.toggle("active", on);
       b.setAttribute("aria-selected", on ? "true" : "false");
+      if (on) active = b;
     });
+    requestAnimationFrame(function () { moveIndicator(document.querySelector("nav.tabs"), ".tab-indicator", active); });
     window.scrollTo({ top: 0, behavior: "smooth" });
     var panel = $("tab-" + name);
     panel.style.animation = "none";
     void panel.offsetWidth;
     panel.style.animation = "";
-    // Restart the staggered reveal for the children of the visible panel
     Array.prototype.forEach.call(panel.children, function (c) {
       c.style.animation = "none";
       void c.offsetWidth;
       c.style.animation = "";
     });
+    if (name === "rules") showSub(sub || (document.querySelector(".seg-btn.active") || {}).dataset && document.querySelector(".seg-btn.active").dataset.sub);
     if (name === "dashboard") setTimeout(renderDashboard, 60);
   }
+  document.querySelectorAll(".seg-btn").forEach(function (b) {
+    b.addEventListener("click", function () { showSub(b.dataset.sub); });
+  });
+  window.addEventListener("resize", function () {
+    moveIndicator(document.querySelector("nav.tabs"), ".tab-indicator", document.querySelector(".tab-btn.active"));
+    moveIndicator(document.querySelector(".segmented"), ".seg-indicator", document.querySelector(".seg-btn.active"));
+  });
+
   document.querySelectorAll(".tab-btn").forEach(function (b) {
     b.addEventListener("click", function () { location.hash = b.dataset.tab; });
   });
@@ -1580,6 +1714,43 @@
     updatePreview();
   }
 
+  // ---------- Motion: tap ripple, scroll reveal, header parallax ----------
+  document.addEventListener("pointerdown", function (ev) {
+    var t = ev.target.closest(".btn, .tab-btn, .seg-btn, .quick, .chip-btn");
+    if (!t) return;
+    var r = t.getBoundingClientRect();
+    var size = Math.max(r.width, r.height) * 1.6;
+    var dot = document.createElement("span");
+    dot.className = "ripple";
+    dot.style.width = dot.style.height = size + "px";
+    dot.style.left = (ev.clientX - r.left - size / 2) + "px";
+    dot.style.top = (ev.clientY - r.top - size / 2) + "px";
+    t.appendChild(dot);
+    setTimeout(function () { dot.remove(); }, 650);
+  }, { passive: true });
+
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12 });
+    var observeAll = function () {
+      document.querySelectorAll(".rule-list li, a.resource, .entry, ol.checklist li").forEach(function (el) {
+        if (!el.classList.contains("in") && !el.dataset.obs) { el.dataset.obs = "1"; el.classList.add("sr"); io.observe(el); }
+      });
+    };
+    new MutationObserver(observeAll).observe(document.querySelector("main"), { childList: true, subtree: true });
+    observeAll();
+  }
+
+  var headerEl = document.querySelector("header.app-header");
+  window.addEventListener("scroll", function () {
+    var y = Math.min(window.scrollY, 200);
+    headerEl.style.setProperty("--py", (y * 0.35) + "px");
+    headerEl.style.setProperty("--po", String(1 - y / 320));
+  }, { passive: true });
+
   // ---------- Init ----------
   initTheme();
   $("f-date").value = todayISO();
@@ -1588,9 +1759,19 @@
   renderAll();
   showTab(location.hash.slice(1) || "dashboard");
 
+  // Service worker: check for a new version on every open and reload once when it arrives.
   if ("serviceWorker" in navigator) {
+    var hadController = !!navigator.serviceWorker.controller;
+    var reloaded = false;
+    navigator.serviceWorker.addEventListener("controllerchange", function () {
+      if (!hadController || reloaded) return;
+      reloaded = true;
+      window.location.reload();
+    });
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register("sw.js").catch(function () {});
+      navigator.serviceWorker.register("sw.js", { updateViaCache: "none" })
+        .then(function (reg) { reg.update(); })
+        .catch(function () {});
     });
   }
 })();

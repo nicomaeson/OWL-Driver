@@ -1,6 +1,6 @@
 // Service worker: makes the app load offline after the first visit.
-// Bump CACHE_NAME whenever index.html changes so phones pick up the new version.
-const CACHE_NAME = "owl-driver-v3";
+// Bump CACHE_NAME whenever the app changes so phones drop the old copy.
+const CACHE_NAME = "owl-driver-v5";
 const ASSETS = [
   "./",
   "./index.html",
@@ -12,7 +12,9 @@ const ASSETS = [
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)).then(() => self.skipWaiting())
+    caches.open(CACHE_NAME)
+      .then((cache) => cache.addAll(ASSETS.map((u) => new Request(u, { cache: "reload" }))))
+      .then(() => self.skipWaiting())
   );
 });
 
@@ -29,12 +31,16 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return; // leave external links alone
 
-  // Network first so updates arrive; fall back to cache when offline.
+  // Always go to the network first and skip the browser's HTTP cache,
+  // so a new version shows up right away. Fall back to the cache offline.
+  const fresh = new Request(url.href, { cache: "no-store", credentials: "same-origin" });
   event.respondWith(
-    fetch(event.request)
+    fetch(fresh)
       .then((response) => {
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+        if (response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+        }
         return response;
       })
       .catch(() => caches.match(event.request).then((cached) => cached || caches.match("./index.html")))
