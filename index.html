@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aceable Driver Education Guide &amp; Driving Log</title>
+<meta name="description" content="Checklist, supervised practice log, and reference guide for the Texas Aceable Parent-Taught driver education course.">
+<meta name="theme-color" content="#0a0f1e" id="theme-meta">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Driving Log">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<style>
+  :root {
+    --bg: #f4f6fb;
+    --surface: #ffffff;
+    --surface-2: #eef2f9;
+    --text: #0c1220;
+    --muted: #4a5568;
+    --border: #1e2a3d;
+    --line: #d5dce8;
+    --accent: #0b5cd6;
+    --accent-ink: #ffffff;
+    --good: #0f7a3a;
+    --good-bg: #e4f6ea;
+    --warn: #8a5300;
+    --warn-bg: #fff4df;
+    --bad: #b42318;
+    --bad-bg: #fde8e6;
+    --night: #5b3bb5;
+    --focus: #ffb000;
+    --shadow: 0 6px 18px rgba(12, 18, 32, 0.08);
+    --radius: 14px;
+  }
+  [data-theme="dark"] {
+    --bg: #0a0f1e;
+    --surface: #121a2e;
+    --surface-2: #1a2439;
+    --text: #eef2fb;
+    --muted: #aab4c8;
+    --border: #3b4a6b;
+    --line: #2a3650;
+    --accent: #5b9dff;
+    --accent-ink: #06142e;
+    --good: #3ddc84;
+    --good-bg: #10301f;
+    --warn: #ffb454;
+    --warn-bg: #33240c;
+    --bad: #ff7a70;
+    --bad-bg: #3a1714;
+    --night: #a58bff;
+    --focus: #ffd166;
+    --shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16.5px;
+    line-height: 1.5;
+    color: var(--text);
+    background:
+      radial-gradient(1200px 500px at 10% -10%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 60%),
+      radial-gradient(900px 400px at 110% 0%, color-mix(in srgb, var(--night) 12%, transparent), transparent 60%),
+      var(--bg);
+    background-attachment: fixed;
+    transition: background-color 0.3s, color 0.3s;
+    min-height: 100vh;
+  }
+
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+  /* ---------- Header ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: color-mix(in srgb, var(--surface) 85%, transparent);
+    border-bottom: 1px solid var(--line);
+    padding: 12px 16px;
+  }
+  .header-row { max-width: 980px; margin: 0 auto; display: flex; align-items: center; gap: 12px; justify-content: space-between; flex-wrap: wrap; }
+  header h1 { margin: 0; font-size: 1.1rem; letter-spacing: 0.2px; }
+  .header-actions { display: flex; gap: 8px; align-items: center; }
+  nav.sections { max-width: 980px; margin: 10px auto 0; display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: thin; }
+  nav.sections a {
+    flex: 0 0 auto;
+    color: var(--text);
+    text-decoration: none;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: transform 0.15s, border-color 0.15s;
+  }
+  nav.sections a:hover { transform: translateY(-1px); border-color: var(--accent); }
+
+  main { max-width: 980px; margin: 0 auto; padding: 18px 14px 40px; }
+
+  /* ---------- Cards ---------- */
+  section.card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px;
+    margin-bottom: 22px;
+    animation: rise 0.45s ease both;
+  }
+  section.card:nth-of-type(2) { animation-delay: 0.05s; }
+  section.card:nth-of-type(3) { animation-delay: 0.1s; }
+  section.card:nth-of-type(4) { animation-delay: 0.15s; }
+  section.card:nth-of-type(5) { animation-delay: 0.2s; }
+  section.card:nth-of-type(6) { animation-delay: 0.25s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  section.card h2 { margin: 0 0 4px; font-size: 1.2rem; }
+  .intro { margin: 0 0 14px; color: var(--muted); }
+  h3 { font-size: 1rem; margin: 20px 0 8px; }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    font: inherit;
+    font-weight: 650;
+    min-height: 44px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    background: var(--accent);
+    color: var(--accent-ink);
+    cursor: pointer;
+    transition: transform 0.12s, box-shadow 0.2s, filter 0.2s, background-color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .btn:hover { filter: brightness(1.06); box-shadow: 0 4px 14px color-mix(in srgb, var(--accent) 35%, transparent); }
+  .btn:active { transform: scale(0.97); }
+  .btn.ghost { background: var(--surface-2); color: var(--text); border-color: var(--line); }
+  .btn.ghost:hover { box-shadow: none; border-color: var(--accent); }
+  .btn.danger { background: var(--bad); color: #fff; }
+  .btn.good { background: var(--good); color: #fff; }
+  .btn.small { min-height: 36px; padding: 6px 10px; font-size: 0.88rem; }
+  .btn[disabled] { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+  .icon-btn { font-size: 1.1rem; min-width: 44px; padding: 0; }
+  .theme-toggle[aria-pressed="true"] .theme-icon::before { content: "\263E"; }
+  .theme-toggle[aria-pressed="false"] .theme-icon::before { content: "\2600"; }
+
+  .parent-only[hidden] { display: none !important; }
+  body.parent-on .parent-badge { display: inline-flex; }
+  .parent-badge { display: none; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 700; color: var(--good); background: var(--good-bg); padding: 4px 10px; border-radius: 999px; }
+
+  /* ---------- Progress ---------- */
+  .progress-block { margin: 10px 0 16px; }
+  .progress-label { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 6px; font-size: 0.95rem; }
+  .bar { height: 14px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+  .bar-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--good), color-mix(in srgb, var(--good) 70%, #fff));
+    transition: width 0.6s cubic-bezier(.2,.8,.2,1);
+  }
+  .bar-fill.night { background: linear-gradient(90deg, var(--night), color-mix(in srgb, var(--night) 60%, #fff)); }
+  .bar-fill.over { background: var(--bad); }
+
+  /* ---------- Checklist ---------- */
+  ol.checklist { list-style: none; padding: 0; margin: 0; }
+  ol.checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    background: var(--surface);
+    transition: background-color 0.25s, border-color 0.25s, transform 0.2s;
+  }
+  ol.checklist li:hover { transform: translateX(2px); border-color: var(--accent); }
+  ol.checklist li.done { background: var(--good-bg); border-color: var(--good); }
+  ol.checklist input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 26px; height: 26px; flex-shrink: 0; margin-top: 1px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.15s;
+  }
+  ol.checklist input[type="checkbox"]:checked { background: var(--good); border-color: var(--good); animation: pop 0.25s ease; }
+  ol.checklist input[type="checkbox"]:checked::after {
+    content: "";
+    width: 7px; height: 13px;
+    border: solid #fff; border-width: 0 3px 3px 0;
+    transform: rotate(45deg) translate(-1px, -1px);
+  }
+  ol.checklist input[type="checkbox"]:active { transform: scale(0.9); }
+  @keyframes pop { 0% { transform: scale(0.8); } 60% { transform: scale(1.15); } 100% { transform: scale(1); } }
+  ol.checklist label { cursor: pointer; flex: 1; font-weight: 600; }
+  ol.checklist li.done label { color: var(--muted); text-decoration: line-through; text-decoration-thickness: 2px; }
+  .step-num { font-weight: 800; color: var(--accent); margin-right: 2px; }
+  .step-note { display: block; font-weight: 400; color: var(--muted); font-size: 0.9rem; }
+
+  /* ---------- Forms ---------- */
+  .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 12px; }
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field label { font-weight: 700; font-size: 0.88rem; color: var(--muted); }
+  input, select, textarea {
+    font: inherit;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    min-height: 44px;
+    background: var(--surface-2);
+    color: var(--text);
+    width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  input:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent); outline: none; }
+  .field-error { color: var(--bad); font-size: 0.85rem; font-weight: 600; min-height: 1.1em; }
+  .form-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .muted { color: var(--muted); font-size: 0.9rem; }
+
+  .preview { margin: 6px 0 12px; padding: 10px 12px; border-radius: 10px; font-weight: 600; font-size: 0.92rem; background: var(--surface-2); border: 1px solid var(--line); min-height: 2.6em; }
+  .preview.good { background: var(--good-bg); color: var(--good); border-color: transparent; }
+  .preview.warn { background: var(--warn-bg); color: var(--warn); border-color: transparent; }
+
+  /* ---------- Stats ---------- */
+  .totals { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 16px 0; }
+  .stat {
+    background: linear-gradient(160deg, var(--surface-2), var(--surface));
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px;
+    transition: transform 0.2s;
+  }
+  .stat:hover { transform: translateY(-2px); }
+  .stat .label { font-size: 0.85rem; color: var(--muted); font-weight: 600; }
+  .stat .big { font-size: 1.7rem; font-weight: 800; font-variant-numeric: tabular-nums; margin: 2px 0 8px; }
+  .stat .sub { font-size: 0.88rem; color: var(--muted); margin-top: 6px; }
+  .status { margin-top: 6px; font-weight: 700; font-size: 0.9rem; }
+  .status.good { color: var(--good); }
+  .status.warn { color: var(--warn); }
+
+  /* ---------- Banners ---------- */
+  .banner { border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-weight: 600; border: 1px solid transparent; }
+  .banner.warn { background: var(--warn-bg); color: var(--warn); border-color: color-mix(in srgb, var(--warn) 40%, transparent); }
+  .banner.bad { background: var(--bad-bg); color: var(--bad); border-color: color-mix(in srgb, var(--bad) 40%, transparent); }
+  .banner.good { background: var(--good-bg); color: var(--good); border-color: color-mix(in srgb, var(--good) 40%, transparent); }
+  .banner[hidden] { display: none; }
+
+  /* ---------- Table ---------- */
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+  table { width: 100%; border-collapse: collapse; min-width: 760px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  th { background: var(--surface-2); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.4px; color: var(--muted); }
+  tbody tr { transition: background-color 0.2s; }
+  tbody tr:hover { background: var(--surface-2); }
+  tr.night-row td:first-child { box-shadow: inset 4px 0 0 var(--night); }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .empty-row td { text-align: center; color: var(--muted); padding: 24px; }
+  .chip { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 999px; font-size: 0.8rem; font-weight: 700; border: 1px solid transparent; white-space: nowrap; }
+  .chip.day { background: var(--warn-bg); color: var(--warn); }
+  .chip.night { background: var(--night); color: #fff; }
+  .chip.pending { background: var(--warn-bg); color: var(--warn); }
+  .chip.approved { background: var(--good-bg); color: var(--good); }
+  .chip.locked { background: var(--surface-2); color: var(--muted); border-color: var(--line); }
+  .row-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+  .approver { display: block; font-size: 0.78rem; color: var(--muted); font-weight: 500; }
+
+  /* ---------- Rules / reference ---------- */
+  ul.rules { padding-left: 22px; margin: 0; }
+  ul.rules li { margin-bottom: 10px; }
+  .callout { border-left: 5px solid var(--bad); background: var(--bad-bg); padding: 12px 14px; border-radius: 10px; margin-bottom: 12px; }
+  .callout strong { display: block; margin-bottom: 2px; color: var(--bad); }
+  a.resource {
+    display: block;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    color: var(--accent);
+    font-weight: 700;
+    text-decoration: none;
+    background: var(--surface-2);
+    transition: transform 0.15s, border-color 0.15s;
+  }
+  a.resource:hover { transform: translateX(3px); border-color: var(--accent); }
+  a.resource span { display: block; font-weight: 400; color: var(--muted); font-size: 0.9rem; }
+
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 4px 16px 36px; }
+
+  /* ---------- Dialog ---------- */
+  dialog {
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: var(--shadow);
+    padding: 22px;
+    width: min(420px, calc(100vw - 32px));
+  }
+  dialog::backdrop { background: rgba(5, 8, 18, 0.55); backdrop-filter: blur(3px); }
+  dialog h2 { margin: 0 0 6px; font-size: 1.15rem; }
+  dialog .form-actions { justify-content: flex-end; margin-top: 14px; }
+  .pin-input { letter-spacing: 0.4em; font-size: 1.3rem; text-align: center; }
+  .shake { animation: shake 0.4s; }
+  @keyframes shake { 20%,60% { transform: translateX(-6px); } 40%,80% { transform: translateX(6px); } }
+
+  /* ---------- Toasts ---------- */
+  #toasts { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 50; display: flex; flex-direction: column; gap: 8px; width: min(440px, calc(100vw - 24px)); pointer-events: none; }
+  .toast {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--accent);
+    box-shadow: var(--shadow);
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.93rem;
+    animation: toastIn 0.3s ease both;
+    pointer-events: auto;
+  }
+  .toast.good { border-left-color: var(--good); }
+  .toast.warn { border-left-color: var(--warn); }
+  .toast.bad { border-left-color: var(--bad); }
+  .toast.out { animation: toastOut 0.3s ease both; }
+  @keyframes toastIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  @keyframes toastOut { to { opacity: 0; transform: translateY(12px); } }
+
+  @media (max-width: 560px) {
+    body { font-size: 16px; }
+    main { padding: 12px 10px 36px; }
+    section.card { padding: 14px; }
+    .btn.full-m { width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-row">
+    <h1>Aceable Driver Education Guide &amp; Driving Log</h1>
+    <div class="header-actions">
+      <span class="parent-badge" aria-live="polite">Parent mode on</span>
+      <button type="button" class="btn ghost icon-btn theme-toggle" id="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode" title="Toggle dark mode"><span class="theme-icon"></span></button>
+      <button type="button" class="btn ghost small" id="parent-toggle">Parent sign-off</button>
+    </div>
+  </div>
+  <nav class="sections" aria-label="Sections">
+    <a href="#checklist">Checklist</a>
+    <a href="#log">Practice Log</a>
+    <a href="#rules">Rules</a>
+    <a href="#provisional">Provisional</a>
+    <a href="#resources">Resources</a>
+    <a href="#hardship">Hardship</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============ 1. CHECKLIST ============ -->
+  <section id="checklist" class="card" aria-labelledby="checklist-title">
+    <h2 id="checklist-title">1. Step-by-Step Checklist</h2>
+    <p class="intro">Check off each milestone as it is completed. Saved automatically on this device.</p>
+
+    <div class="progress-block">
+      <div class="progress-label">
+        <span id="checklist-count">0 of 9 complete</span>
+        <span id="checklist-pct">0%</span>
+      </div>
+      <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="checklist-bar">
+        <div class="bar-fill" id="checklist-fill"></div>
+      </div>
+    </div>
+
+    <ol class="checklist" id="checklist-list"></ol>
+
+    <div class="form-actions" style="margin-top:10px;">
+      <button type="button" class="btn ghost small" id="reset-checklist">Reset checklist</button>
+    </div>
+  </section>
+
+  <!-- ============ 2. LOG ============ -->
+  <section id="log" class="card" aria-labelledby="log-title">
+    <h2 id="log-title">2. Driving Scheduler &amp; Practice Log (44 Hours Total)</h2>
+    <p class="intro">Entries start as <strong>Pending</strong>. They count toward the 44 hours only after a parent approves them. Driving is capped at <strong>2 hours per day</strong>.</p>
+
+    <div class="totals" aria-live="polite">
+      <div class="stat">
+        <div class="label">Approved hours</div>
+        <div class="big" id="total-hours">0.0 / 44</div>
+        <div class="bar"><div class="bar-fill" id="total-fill"></div></div>
+        <div class="status" id="total-status"></div>
+      </div>
+      <div class="stat">
+        <div class="label">Approved night hours</div>
+        <div class="big" id="night-hours">0.0 / 10</div>
+        <div class="bar"><div class="bar-fill night" id="night-fill"></div></div>
+        <div class="status" id="night-status"></div>
+      </div>
+      <div class="stat">
+        <div class="label">Awaiting sign-off</div>
+        <div class="big" id="pending-hours">0.0</div>
+        <div class="sub" id="pending-count">0 sessions pending</div>
+        <div class="sub" id="session-count">0 sessions total</div>
+      </div>
+    </div>
+
+    <div class="banner warn" id="cap-banner" hidden></div>
+
+    <h3>Add a session</h3>
+    <form id="log-form" novalidate>
+      <div class="form-grid">
+        <div class="field">
+          <label for="f-date">Date</label>
+          <input type="date" id="f-date" required>
+          <div class="field-error" id="e-date"></div>
+        </div>
+        <div class="field">
+          <label for="f-supervisor">Supervisor name</label>
+          <input type="text" id="f-supervisor" maxlength="60" placeholder="e.g. Mom, Dad" autocomplete="off" required>
+          <div class="field-error" id="e-supervisor"></div>
+        </div>
+        <div class="field">
+          <label for="f-period">Day / Night</label>
+          <select id="f-period">
+            <option value="Day">Day</option>
+            <option value="Night">Night</option>
+          </select>
+          <div class="field-error"></div>
+        </div>
+        <div class="field">
+          <label for="f-duration">Duration (hours)</label>
+          <input type="number" id="f-duration" min="0.5" max="4" step="0.5" inputmode="decimal" placeholder="0.5 – 4" required>
+          <div class="field-error" id="e-duration"></div>
+        </div>
+        <div class="field" style="grid-column: 1 / -1;">
+          <label for="f-skills">Skills practiced</label>
+          <input type="text" id="f-skills" maxlength="200" placeholder="e.g. Parallel parking, highway merging" autocomplete="off" required>
+          <div class="field-error" id="e-skills"></div>
+        </div>
+      </div>
+      <div class="preview" id="preview" aria-live="polite"></div>
+      <div class="form-actions">
+        <button type="submit" class="btn">Submit for sign-off</button>
+        <span class="muted" id="form-msg" role="status"></span>
+      </div>
+    </form>
+
+    <h3>Logged sessions</h3>
+    <div class="table-wrap">
+      <table aria-describedby="log-title">
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Supervisor</th>
+            <th scope="col">Day / Night</th>
+            <th scope="col" class="num">Logged</th>
+            <th scope="col" class="num">Counted</th>
+            <th scope="col">Status</th>
+            <th scope="col">Skills</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="log-body"></tbody>
+      </table>
+    </div>
+
+    <div class="form-actions" style="margin-top:12px;">
+      <button type="button" class="btn ghost small parent-only" id="approve-all" hidden>Approve all pending</button>
+      <button type="button" class="btn ghost small" id="export-csv">Export CSV</button>
+      <button type="button" class="btn danger small parent-only" id="clear-log" hidden>Clear entire log</button>
+    </div>
+  </section>
+
+  <!-- ============ 3. LOGGING RULES ============ -->
+  <section id="rules" class="card" aria-labelledby="rules-title">
+    <h2 id="rules-title">3. Requirements &amp; Rules for Logging</h2>
+    <p class="intro">Review before every practice session.</p>
+    <ul class="rules">
+      <li>Driving time is capped at <strong>2 hours per day</strong>. Any time beyond 2 hours in a day is not recorded.</li>
+      <li><strong>10 hours</strong> of the required total must be completed at night.</li>
+      <li>The supervisor must be <strong>21 years of age or older</strong>, hold a <strong>valid driver's license</strong>, and sit in the <strong>front passenger seat</strong> during every session.</li>
+    </ul>
+  </section>
+
+  <!-- ============ 4. PROVISIONAL LICENSE ============ -->
+  <section id="provisional" class="card" aria-labelledby="prov-title">
+    <h2 id="prov-title">4. Provisional License: Must-Dos, Do's &amp; Don'ts</h2>
+    <p class="intro">Restrictions that apply once the Provisional License is issued.</p>
+
+    <div class="callout">
+      <strong>CURFEW: NO DRIVING between MIDNIGHT and 5:00 AM.</strong>
+      Violations can result in serious consequences.
+    </div>
+    <div class="callout">
+      <strong>PASSENGERS: Maximum of ONE passenger under 21 who is NOT a family member.</strong>
+      Plan rides accordingly.
+    </div>
+    <div class="callout">
+      <strong>ZERO TOLERANCE FOR WIRELESS DEVICES.</strong>
+      No phone use of any kind while driving, including hands-free and voice-activated features. Put the phone away before the car moves.
+    </div>
+
+    <h3>Must-Dos</h3>
+    <ul class="rules">
+      <li>Always wear a seat belt, and make sure every passenger does too.</li>
+      <li>Keep the Provisional License with you whenever you drive.</li>
+      <li>Obey all posted speed limits and traffic signals.</li>
+      <li>Maintain a safe following distance and signal every turn and lane change.</li>
+    </ul>
+
+    <h3>Do's and Don'ts</h3>
+    <ul class="rules">
+      <li><strong>Do</strong> plan routes ahead of time and set GPS before the car is in motion.</li>
+      <li><strong>Do</strong> pull over in a safe location if you need to adjust something or respond to a message.</li>
+      <li><strong>Don't</strong> drive while drowsy, upset, or impaired by alcohol, drugs, or medication.</li>
+      <li><strong>Don't</strong> let distractions such as music, food, or other passengers take your attention from the road.</li>
+    </ul>
+  </section>
+
+  <!-- ============ 5. RESOURCES ============ -->
+  <section id="resources" class="card" aria-labelledby="resources-title">
+    <h2 id="resources-title">5. Educational References &amp; Responsibilities</h2>
+    <p class="intro">Trusted resources for teen drivers and the parents who support them.</p>
+
+    <a class="resource" href="https://www.impactteendrivers.org/" target="_blank" rel="noopener noreferrer">
+      Impact Teen Drivers
+      <span>Teen driver safety programs and research on the most common teen driving risks.</span>
+    </a>
+    <a class="resource" href="https://www.nhtsa.gov/risky-driving/distracted-driving" target="_blank" rel="noopener noreferrer">
+      NHTSA Distracted Driving
+      <span>National Highway Traffic Safety Administration facts and guidance on distraction behind the wheel.</span>
+    </a>
+    <a class="resource" href="https://madd.org/" target="_blank" rel="noopener noreferrer">
+      MADD Teen &amp; Young Adult Resources
+      <span>Mothers Against Drunk Driving materials for teens, young adults, and families.</span>
+    </a>
+    <a class="resource" href="https://www.txdot.gov/" target="_blank" rel="noopener noreferrer">
+      TxDOT Impaired Driving Laws
+      <span>Texas Department of Transportation information on impaired driving laws and penalties.</span>
+    </a>
+
+    <h3>Parent / Supervisor Responsibilities</h3>
+    <ul class="rules">
+      <li>Model safe driving at all times. Teens learn most from what they see.</li>
+      <li>Review each pending entry against what actually happened before approving it.</li>
+      <li>Discuss the curfew, passenger, and device rules before the teen drives alone.</li>
+    </ul>
+  </section>
+
+  <!-- ============ 6. HARDSHIP ============ -->
+  <section id="hardship" class="card" aria-labelledby="hardship-title">
+    <h2 id="hardship-title">6. Hardship License Information (For Reference Only)</h2>
+    <p class="intro">Informational only. Confirm current eligibility and forms directly with the Texas Department of Public Safety (DPS).</p>
+    <ul class="rules">
+      <li>Eligibility requires <strong>documented proof</strong> of unusual economic hardship or a serious family illness.</li>
+      <li>Mere convenience, or a parent's work schedule, does <strong>not</strong> qualify.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  Data is stored only in this browser. Clearing browser data erases progress, so export a CSV backup from time to time.
+</footer>
+
+<!-- PIN dialog: used to set the parent PIN and to enter parent mode -->
+<dialog id="pin-dialog" aria-labelledby="pin-title">
+  <form id="pin-form" method="dialog" novalidate>
+    <h2 id="pin-title">Parent sign-off</h2>
+    <p class="muted" id="pin-help"></p>
+
+    <div class="field" id="pin-field">
+      <label for="pin-input" id="pin-label">PIN (4–6 digits)</label>
+      <input type="password" id="pin-input" class="pin-input" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="off">
+    </div>
+    <div class="field" id="pin2-field" hidden style="margin-top:10px;">
+      <label for="pin2-input">Confirm PIN</label>
+      <input type="password" id="pin2-input" class="pin-input" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="off">
+    </div>
+    <div class="field" id="name-field" hidden style="margin-top:10px;">
+      <label for="approver-input">Your name (recorded with each approval)</label>
+      <input type="text" id="approver-input" maxlength="40" autocomplete="off" placeholder="e.g. Nicolas or Mom">
+    </div>
+
+    <div class="field-error" id="pin-error" role="alert" style="margin-top:8px;"></div>
+
+    <div class="form-actions">
+      <button type="button" class="btn ghost" id="pin-cancel">Cancel</button>
+      <button type="submit" class="btn" id="pin-submit">Continue</button>
+    </div>
+  </form>
+</dialog>
+
+<div id="toasts" aria-live="polite"></div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---------- Constants ----------
+  var KEY = "aceableDriverGuide.v2";
+  var LEGACY_KEY = "aceableDriverGuide.v1";
+  var THEME_KEY = "aceableDriverGuide.theme";
+  var TOTAL_REQUIRED = 44;
+  var NIGHT_REQUIRED = 10;
+  var DAILY_CAP = 2;            // Hours of driving recorded per day
+  var MAX_SESSION = 4;
+  var PARENT_IDLE_MS = 15 * 60 * 1000;
+  var MAX_ATTEMPTS = 5;
+  var LOCKOUT_MS = 60 * 1000;
+
+  var CHECKLIST = [
+    { label: "Enroll in Aceable Parent-Taught course", note: "" },
+    { label: "Complete the first 6 hours online", note: "" },
+    { label: "Take the in-app permit exam", note: "" },
+    { label: "Get Learner License at DPS", note: "" },
+    { label: "Complete remaining 26 hours online", note: "" },
+    { label: "Complete 14 hours in-car", note: "7 observing, 7 driving" },
+    { label: "Complete 30 hours additional practice", note: "Includes 10 at night" },
+    { label: "Hold permit for 6 months", note: "" },
+    { label: "Pass DPS test for Provisional License", note: "" }
+  ];
+
+  // ---------- State ----------
+  var state = { checklist: [], entries: [], pin: null };
+  var parentMode = false;
+  var parentTimer = null;
+  var approverName = "";
+  var failedAttempts = 0;
+  var lockoutUntil = 0;
+  var pinCallback = null;
+  var pinMode = null;
+
+  function $(id) { return document.getElementById(id); }
+  function defaultChecklist() { return CHECKLIST.map(function () { return false; }); }
+  function fmt(n) { return (Math.round(n * 10) / 10).toFixed(1); }
+  function makeId() { return "e" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8); }
+  function sumCounted(date, exceptId) {
+    var s = 0;
+    state.entries.forEach(function (e) { if (e.date === date && e.id !== exceptId) s += e.counted; });
+    return s;
+  }
+  function formatDate(iso) {
+    var p = iso.split("-");
+    return new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2])).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+  }
+  function todayISO() {
+    var d = new Date();
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  }
+
+  // ---------- Toasts ----------
+  function toast(msg, type) {
+    var el = document.createElement("div");
+    el.className = "toast " + (type || "");
+    el.textContent = msg;
+    $("toasts").appendChild(el);
+    setTimeout(function () {
+      el.classList.add("out");
+      setTimeout(function () { el.remove(); }, 300);
+    }, 4200);
+  }
+
+  // ---------- Storage ----------
+  function validEntry(e) {
+    return e && typeof e === "object" &&
+      typeof e.id === "string" &&
+      /^\d{4}-\d{2}-\d{2}$/.test(e.date) &&
+      typeof e.supervisor === "string" &&
+      (e.period === "Day" || e.period === "Night") &&
+      typeof e.duration === "number" && isFinite(e.duration) && e.duration > 0 &&
+      typeof e.skills === "string";
+  }
+
+  function sanitize(e) {
+    var duration = Math.round(e.duration * 2) / 2;
+    var counted = (typeof e.counted === "number" && isFinite(e.counted)) ? e.counted : Math.min(duration, DAILY_CAP);
+    return {
+      id: e.id,
+      date: e.date,
+      supervisor: String(e.supervisor).slice(0, 60),
+      period: e.period,
+      duration: duration,
+      counted: counted,
+      skills: String(e.skills).slice(0, 200),
+      status: e.status === "approved" ? "approved" : "pending",
+      approvedBy: typeof e.approvedBy === "string" ? e.approvedBy.slice(0, 40) : null,
+      approvedAt: typeof e.approvedAt === "string" ? e.approvedAt : null,
+      createdAt: typeof e.createdAt === "number" ? e.createdAt : Date.now()
+    };
+  }
+
+  function mergeChecklist(arr) {
+    var out = defaultChecklist();
+    if (Array.isArray(arr)) for (var i = 0; i < out.length; i++) out[i] = arr[i] === true;
+    return out;
+  }
+
+  function loadState() {
+    var base = { checklist: defaultChecklist(), entries: [], pin: null };
+    var raw = null;
+    try { raw = localStorage.getItem(KEY); }
+    catch (e) { toast("Browser storage is blocked, so nothing will be saved.", "bad"); return base; }
+
+    if (!raw) {
+      // Migrate from the first version: old entries come in as Pending, capped at 2 hours per day.
+      try {
+        var old = localStorage.getItem(LEGACY_KEY);
+        if (old) {
+          var od = JSON.parse(old);
+          base.checklist = mergeChecklist(od.checklist);
+          var running = {};
+          (Array.isArray(od.log) ? od.log : []).forEach(function (e) {
+            if (!validEntry(e)) return;
+            var counted = Math.min(e.duration, Math.max(0, DAILY_CAP - (running[e.date] || 0)));
+            running[e.date] = (running[e.date] || 0) + counted;
+            base.entries.push(sanitize({ id: e.id, date: e.date, supervisor: e.supervisor, period: e.period, duration: e.duration, counted: counted, skills: e.skills, status: "pending" }));
+          });
+          toast("Imported your earlier entries as Pending for sign-off.", "good");
+        }
+      } catch (err) { /* ignore a bad legacy blob */ }
+      return base;
+    }
+
+    try {
+      var d = JSON.parse(raw);
+      base.checklist = mergeChecklist(d.checklist);
+      if (Array.isArray(d.entries)) base.entries = d.entries.filter(validEntry).map(sanitize);
+      if (d.pin && typeof d.pin.salt === "string" && typeof d.pin.hash === "string") base.pin = d.pin;
+    } catch (e) {
+      try { localStorage.setItem(KEY + ".corrupt-" + Date.now(), raw); } catch (_) {}
+      toast("Saved data was unreadable and was backed up. Starting fresh.", "warn");
+    }
+    return base;
+  }
+
+  function save() {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(state));
+      return true;
+    } catch (e) {
+      toast("Could not save. Storage may be full or disabled.", "bad");
+      return false;
+    }
+  }
+
+  // ---------- PIN hashing (PBKDF2, salted) ----------
+  function bytesToHex(buf) {
+    return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ("0" + b.toString(16)).slice(-2); }).join("");
+  }
+  function hexToBytes(hex) {
+    var out = new Uint8Array(hex.length / 2);
+    for (var i = 0; i < out.length; i++) out[i] = parseInt(hex.substr(i * 2, 2), 16);
+    return out;
+  }
+  function newSalt() {
+    var s = new Uint8Array(16);
+    crypto.getRandomValues(s);
+    return bytesToHex(s);
+  }
+  function hashPin(pin, saltHex) {
+    return crypto.subtle.importKey("raw", new TextEncoder().encode(pin), "PBKDF2", false, ["deriveBits"])
+      .then(function (key) {
+        return crypto.subtle.deriveBits({ name: "PBKDF2", salt: hexToBytes(saltHex), iterations: 200000, hash: "SHA-256" }, key, 256);
+      })
+      .then(bytesToHex);
+  }
+
+  // ---------- Theme ----------
+  function applyTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    $("theme-meta").setAttribute("content", theme === "dark" ? "#0a0f1e" : "#f4f6fb");
+    $("theme-toggle").setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+  }
+  function initTheme() {
+    var saved = null;
+    try { saved = localStorage.getItem(THEME_KEY); } catch (e) {}
+    var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    applyTheme(saved || (prefersDark ? "dark" : "light"));
+  }
+  $("theme-toggle").addEventListener("click", function () {
+    var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    applyTheme(next);
+    try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+  });
+
+  // ---------- Parent mode ----------
+  function setParentMode(on) {
+    parentMode = on;
+    document.body.classList.toggle("parent-on", on);
+    $("parent-toggle").textContent = on ? "Lock parent mode" : "Parent sign-off";
+    document.querySelectorAll(".parent-only").forEach(function (el) { el.hidden = !on; });
+    clearTimeout(parentTimer);
+    if (on) resetParentTimer();
+    renderAll();
+  }
+  function resetParentTimer() {
+    clearTimeout(parentTimer);
+    parentTimer = setTimeout(function () {
+      if (parentMode) { setParentMode(false); toast("Parent mode locked after inactivity.", "warn"); }
+    }, PARENT_IDLE_MS);
+  }
+  ["click", "keydown", "touchstart"].forEach(function (ev) {
+    document.addEventListener(ev, function () { if (parentMode) resetParentTimer(); }, { passive: true });
+  });
+
+  function openPinDialog(mode, onSuccess) {
+    pinMode = mode;
+    pinCallback = onSuccess;
+    var dlg = $("pin-dialog");
+    $("pin-error").textContent = "";
+    $("pin-input").value = "";
+    $("pin2-input").value = "";
+    $("approver-input").value = approverName || "";
+
+    if (mode === "set") {
+      $("pin-title").textContent = state.pin ? "Change parent PIN" : "Set a parent PIN";
+      $("pin-help").textContent = "Choose a 4–6 digit PIN. Your son should not know it.";
+      $("pin-label").textContent = "New PIN";
+      $("pin2-field").hidden = false;
+      $("name-field").hidden = true;
+      $("pin-submit").textContent = "Save PIN";
+    } else {
+      $("pin-title").textContent = "Parent sign-off";
+      $("pin-help").textContent = "Enter the parent PIN and your name. Your name is recorded with each approval.";
+      $("pin-label").textContent = "Parent PIN";
+      $("pin2-field").hidden = true;
+      $("name-field").hidden = false;
+      $("pin-submit").textContent = "Unlock";
+    }
+    dlg.showModal();
+    setTimeout(function () { $("pin-input").focus(); }, 50);
+  }
+
+  $("pin-cancel").addEventListener("click", function () { $("pin-dialog").close(); });
+
+  $("pin-form").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var pin = $("pin-input").value.trim();
+    var errEl = $("pin-error");
+    var dlg = $("pin-dialog");
+    if (!/^\d{4,6}$/.test(pin)) { errEl.textContent = "Use 4 to 6 digits."; shakeDialog(); return; }
+
+    if (pinMode === "set") {
+      if ($("pin2-input").value.trim() !== pin) { errEl.textContent = "The PINs do not match."; shakeDialog(); return; }
+      var salt = newSalt();
+      hashPin(pin, salt).then(function (hash) {
+        state.pin = { salt: salt, hash: hash };
+        save();
+        dlg.close();
+        toast("Parent PIN saved on this device.", "good");
+        if (!parentMode) setParentMode(true);
+        if (pinCallback) pinCallback();
+      }).catch(function () { errEl.textContent = "Could not save the PIN in this browser."; });
+      return;
+    }
+
+    // mode === "enter"
+    var name = $("approver-input").value.trim();
+    if (name.length < 2) { errEl.textContent = "Enter your name."; shakeDialog(); return; }
+    if (Date.now() < lockoutUntil) {
+      var secs = Math.ceil((lockoutUntil - Date.now()) / 1000);
+      errEl.textContent = "Too many tries. Wait " + secs + " seconds.";
+      shakeDialog();
+      return;
+    }
+    hashPin(pin, state.pin.salt).then(function (hash) {
+      if (hash === state.pin.hash) {
+        failedAttempts = 0;
+        approverName = name;
+        dlg.close();
+        setParentMode(true);
+        if (pinCallback) pinCallback();
+      } else {
+        failedAttempts++;
+        if (failedAttempts >= MAX_ATTEMPTS) {
+          lockoutUntil = Date.now() + LOCKOUT_MS;
+          failedAttempts = 0;
+          errEl.textContent = "Too many wrong tries. Wait 60 seconds.";
+        } else {
+          errEl.textContent = "Wrong PIN.";
+        }
+        shakeDialog();
+      }
+    });
+  });
+
+  function shakeDialog() {
+    var form = $("pin-form");
+    form.classList.remove("shake");
+    void form.offsetWidth;
+    form.classList.add("shake");
+  }
+
+  $("parent-toggle").addEventListener("click", function () {
+    if (parentMode) {
+      setParentMode(false);
+      toast("Parent mode locked.", "good");
+      return;
+    }
+    if (!state.pin) {
+      openPinDialog("set", function () { toast("Parent mode is on. Entries can now be approved.", "good"); });
+    } else {
+      openPinDialog("enter", function () { toast("Welcome, " + approverName + ". Parent mode is on.", "good"); });
+    }
+  });
+
+  // ---------- Checklist ----------
+  function renderChecklist() {
+    var list = $("checklist-list");
+    list.innerHTML = "";
+    var done = 0;
+    CHECKLIST.forEach(function (item, i) {
+      var checked = !!state.checklist[i];
+      if (checked) done++;
+      var li = document.createElement("li");
+      if (checked) li.className = "done";
+
+      var cb = document.createElement("input");
+      cb.type = "checkbox";
+      cb.id = "step-" + i;
+      cb.checked = checked;
+      cb.addEventListener("change", function () {
+        state.checklist[i] = cb.checked;
+        save();
+        renderChecklist();
+        if (state.checklist.every(Boolean)) toast("Every checklist step is done. Nice work!", "good");
+      });
+
+      var label = document.createElement("label");
+      label.htmlFor = "step-" + i;
+      var num = document.createElement("span");
+      num.className = "step-num";
+      num.textContent = (i + 1) + ".";
+      label.appendChild(num);
+      label.appendChild(document.createTextNode(" " + item.label));
+      if (item.note) {
+        var note = document.createElement("span");
+        note.className = "step-note";
+        note.textContent = item.note;
+        label.appendChild(note);
+      }
+      li.appendChild(cb);
+      li.appendChild(label);
+      list.appendChild(li);
+    });
+
+    var pct = Math.round((done / CHECKLIST.length) * 100);
+    $("checklist-count").textContent = done + " of " + CHECKLIST.length + " complete";
+    $("checklist-pct").textContent = pct + "%";
+    $("checklist-fill").style.width = pct + "%";
+    $("checklist-bar").setAttribute("aria-valuenow", String(pct));
+  }
+
+  $("reset-checklist").addEventListener("click", function () {
+    if (!confirm("Reset all checklist items to unchecked?")) return;
+    state.checklist = defaultChecklist();
+    save();
+    renderChecklist();
+  });
+
+  // ---------- Totals & cap warnings ----------
+  function renderTotals() {
+    var approved = 0, nightApproved = 0, pending = 0, pendingCount = 0;
+    state.entries.forEach(function (e) {
+      if (e.status === "approved") {
+        approved += e.counted;
+        if (e.period === "Night") nightApproved += e.counted;
+      } else {
+        pending += e.counted;
+        pendingCount++;
+      }
+    });
+
+    $("total-hours").textContent = fmt(approved) + " / " + TOTAL_REQUIRED;
+    $("total-fill").style.width = Math.min(100, (approved / TOTAL_REQUIRED) * 100) + "%";
+    $("total-fill").className = "bar-fill" + (approved > TOTAL_REQUIRED ? " over" : "");
+    setStatus("total-status", approved >= TOTAL_REQUIRED ? "Total requirement met" : fmt(TOTAL_REQUIRED - approved) + " hours remaining", approved >= TOTAL_REQUIRED);
+
+    $("night-hours").textContent = fmt(nightApproved) + " / " + NIGHT_REQUIRED;
+    $("night-fill").style.width = Math.min(100, (nightApproved / NIGHT_REQUIRED) * 100) + "%";
+    setStatus("night-status", nightApproved >= NIGHT_REQUIRED ? "Night requirement met" : fmt(NIGHT_REQUIRED - nightApproved) + " night hours remaining", nightApproved >= NIGHT_REQUIRED);
+
+    $("pending-hours").textContent = fmt(pending);
+    $("pending-count").textContent = pendingCount + (pendingCount === 1 ? " session" : " sessions") + " pending";
+    $("session-count").textContent = state.entries.length + " sessions total";
+
+    // Cap banner: days where logged time was more than 2 hours
+    var byDay = {};
+    state.entries.forEach(function (e) { byDay[e.date] = (byDay[e.date] || 0) + e.duration; });
+    var over = Object.keys(byDay).filter(function (d) { return byDay[d] > DAILY_CAP; }).sort();
+    var banner = $("cap-banner");
+    if (over.length) {
+      banner.hidden = false;
+      banner.textContent = "Only " + DAILY_CAP + " hours will be recorded per day. Extra time is not counted on: " +
+        over.map(formatDate).join(", ") + ".";
+    } else {
+      banner.hidden = true;
+      banner.textContent = "";
+    }
+  }
+
+  function setStatus(id, text, good) {
+    var el = $(id);
+    el.textContent = text;
+    el.className = "status " + (good ? "good" : "warn");
+  }
+
+  // ---------- Log table ----------
+  function sortedEntries() {
+    return state.entries.slice().sort(function (a, b) {
+      if (a.date !== b.date) return a.date < b.date ? -1 : 1;
+      return a.createdAt - b.createdAt;
+    });
+  }
+
+  function cell(text, cls) {
+    var td = document.createElement("td");
+    td.textContent = text;
+    if (cls) td.className = cls;
+    return td;
+  }
+
+  function actionBtn(label, cls, onClick, aria) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "btn small " + cls;
+    b.textContent = label;
+    if (aria) b.setAttribute("aria-label", aria);
+    b.addEventListener("click", onClick);
+    return b;
+  }
+
+  function renderLog() {
+    var body = $("log-body");
+    body.innerHTML = "";
+
+    if (!state.entries.length) {
+      var tr = document.createElement("tr");
+      tr.className = "empty-row";
+      var td = document.createElement("td");
+      td.colSpan = 8;
+      td.textContent = "No sessions yet. Add one above and a parent can approve it.";
+      tr.appendChild(td);
+      body.appendChild(tr);
+      return;
+    }
+
+    sortedEntries().forEach(function (e) {
+      var tr = document.createElement("tr");
+      if (e.period === "Night") tr.className = "night-row";
+
+      tr.appendChild(cell(formatDate(e.date)));
+      tr.appendChild(cell(e.supervisor));
+
+      var pc = document.createElement("td");
+      var period = document.createElement("span");
+      period.className = "chip " + (e.period === "Night" ? "night" : "day");
+      period.textContent = e.period;
+      pc.appendChild(period);
+      tr.appendChild(pc);
+
+      tr.appendChild(cell(fmt(e.duration), "num"));
+
+      var cc = cell(fmt(e.counted), "num");
+      if (e.counted < e.duration) {
+        cc.title = "Only " + fmt(e.counted) + " of " + fmt(e.duration) + " hours counted (2-hour daily cap)";
+        cc.style.color = "var(--warn)";
+        cc.style.fontWeight = "700";
+      }
+      tr.appendChild(cc);
+
+      var sc = document.createElement("td");
+      var chip = document.createElement("span");
+      chip.className = "chip " + (e.status === "approved" ? "approved" : "pending");
+      chip.textContent = e.status === "approved" ? "Approved" : "Pending";
+      sc.appendChild(chip);
+      if (e.status === "approved" && e.approvedBy) {
+        var who = document.createElement("span");
+        who.className = "approver";
+        who.textContent = "by " + e.approvedBy + " · " + new Date(e.approvedAt).toLocaleDateString(undefined, { month: "short", day: "numeric" });
+        sc.appendChild(who);
+      }
+      tr.appendChild(sc);
+
+      tr.appendChild(cell(e.skills));
+
+      var ac = document.createElement("td");
+      var wrap = document.createElement("div");
+      wrap.className = "row-actions";
+      if (e.status === "pending") {
+        if (parentMode) {
+          wrap.appendChild(actionBtn("Approve", "good", function () { approveEntry(e.id); }, "Approve session on " + formatDate(e.date)));
+        }
+        wrap.appendChild(actionBtn("Delete", "danger", function () { deleteEntry(e.id); }, "Delete session on " + formatDate(e.date)));
+      } else if (parentMode) {
+        wrap.appendChild(actionBtn("Unapprove", "ghost", function () { unapproveEntry(e.id); }, "Unapprove session on " + formatDate(e.date)));
+        wrap.appendChild(actionBtn("Delete", "danger", function () { deleteEntry(e.id); }, "Delete approved session on " + formatDate(e.date)));
+      } else {
+        var lock = document.createElement("span");
+        lock.className = "chip locked";
+        lock.textContent = "Locked";
+        wrap.appendChild(lock);
+      }
+      ac.appendChild(wrap);
+      tr.appendChild(ac);
+
+      body.appendChild(tr);
+    });
+  }
+
+  function approveEntry(id) {
+    var e = state.entries.find(function (x) { return x.id === id; });
+    if (!e || !parentMode) return;
+    e.status = "approved";
+    e.approvedBy = approverName;
+    e.approvedAt = new Date().toISOString();
+    save();
+    renderAll();
+    toast("Approved " + fmt(e.counted) + " hours by " + approverName + ".", "good");
+  }
+
+  function unapproveEntry(id) {
+    var e = state.entries.find(function (x) { return x.id === id; });
+    if (!e || !parentMode) return;
+    if (!confirm("Move this session back to Pending? It will stop counting toward the totals.")) return;
+    e.status = "pending";
+    e.approvedBy = null;
+    e.approvedAt = null;
+    save();
+    renderAll();
+    toast("Session moved back to Pending.", "warn");
+  }
+
+  function deleteEntry(id) {
+    var e = state.entries.find(function (x) { return x.id === id; });
+    if (!e) return;
+    if (e.status === "approved" && !parentMode) {
+      toast("Approved sessions are locked. A parent can unapprove them.", "bad");
+      return;
+    }
+    if (!confirm("Delete this session?")) return;
+    state.entries = state.entries.filter(function (x) { return x.id !== id; });
+    save();
+    renderAll();
+    toast("Session deleted.", "warn");
+  }
+
+  $("approve-all").addEventListener("click", function () {
+    if (!parentMode) return;
+    var pending = state.entries.filter(function (e) { return e.status === "pending"; });
+    if (!pending.length) { toast("Nothing is waiting for sign-off.", "warn"); return; }
+    if (!confirm("Approve all " + pending.length + " pending session(s) as " + approverName + "?")) return;
+    var now = new Date().toISOString();
+    pending.forEach(function (e) { e.status = "approved"; e.approvedBy = approverName; e.approvedAt = now; });
+    save();
+    renderAll();
+    toast("Approved " + pending.length + " session(s).", "good");
+  });
+
+  $("clear-log").addEventListener("click", function () {
+    if (!parentMode) return;
+    if (!state.entries.length) return;
+    if (!confirm("Delete ALL logged sessions? This cannot be undone.")) return;
+    state.entries = [];
+    save();
+    renderAll();
+    toast("Log cleared.", "warn");
+  });
+
+  // ---------- Export ----------
+  function csvCell(v) {
+    var s = String(v == null ? "" : v);
+    return '"' + s.replace(/"/g, '""') + '"';
+  }
+  $("export-csv").addEventListener("click", function () {
+    var rows = [["Date", "Supervisor", "Day/Night", "Logged hours", "Counted hours", "Status", "Approved by", "Approved at", "Skills"]];
+    sortedEntries().forEach(function (e) {
+      rows.push([e.date, e.supervisor, e.period, fmt(e.duration), fmt(e.counted), e.status, e.approvedBy || "", e.approvedAt || "", e.skills]);
+    });
+    var csv = rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n");
+    var blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "driving-log-" + todayISO() + ".csv";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    toast("CSV backup downloaded.", "good");
+  });
+
+  // ---------- Entry form ----------
+  function setError(id, msg) { $(id).textContent = msg || ""; }
+
+  function updatePreview() {
+    var date = $("f-date").value;
+    var dur = parseFloat($("f-duration").value);
+    var el = $("preview");
+    if (!date || !(dur > 0)) {
+      el.textContent = "Enter a date and duration to see how much will count.";
+      el.className = "preview";
+      return;
+    }
+    var used = sumCounted(date);
+    var counted = Math.min(dur, Math.max(0, DAILY_CAP - used));
+    if (counted < dur) {
+      el.className = "preview warn";
+      el.textContent = "Only " + fmt(counted) + " hours will be recorded. Extra time is not counted.";
+    } else {
+      el.className = "preview good";
+      el.textContent = fmt(dur) + " hours will count once a parent approves.";
+    }
+  }
+
+  function validateForm() {
+    var ok = true;
+    var date = $("f-date").value;
+    var sup = $("f-supervisor").value.trim();
+    var dur = parseFloat($("f-duration").value);
+    var skills = $("f-skills").value.trim();
+    ["e-date", "e-supervisor", "e-duration", "e-skills"].forEach(function (id) { setError(id, ""); });
+
+    if (!date) { setError("e-date", "Choose a date."); ok = false; }
+    if (!sup) { setError("e-supervisor", "Enter the supervisor's name."); ok = false; }
+    if (!skills) { setError("e-skills", "Describe the skills practiced."); ok = false; }
+    if (isNaN(dur) || dur <= 0) {
+      setError("e-duration", "Enter a duration.");
+      ok = false;
+    } else if (dur < 0.5 || dur > MAX_SESSION || Math.round(dur * 2) !== dur * 2) {
+      setError("e-duration", "Use 0.5 to 4 hours in half-hour steps.");
+      ok = false;
+    }
+    if (!ok) return null;
+    return { date: date, supervisor: sup, period: $("f-period").value, duration: dur, skills: skills };
+  }
+
+  ["f-date", "f-duration", "f-period"].forEach(function (id) { $(id).addEventListener("input", updatePreview); });
+  ["f-date", "f-duration", "f-period"].forEach(function (id) { $(id).addEventListener("change", updatePreview); });
+
+  $("log-form").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var v = validateForm();
+    if (!v) { $("form-msg").textContent = "Please fix the highlighted fields."; return; }
+
+    var used = sumCounted(v.date);
+    var counted = Math.min(v.duration, Math.max(0, DAILY_CAP - used));
+    var entry = {
+      id: makeId(),
+      date: v.date,
+      supervisor: v.supervisor,
+      period: v.period,
+      duration: v.duration,
+      counted: counted,
+      skills: v.skills,
+      status: "pending",
+      approvedBy: null,
+      approvedAt: null,
+      createdAt: Date.now()
+    };
+    state.entries.push(entry);
+    if (!save()) { state.entries.pop(); return; }
+
+    $("form-msg").textContent = "Submitted. Waiting for parent sign-off.";
+    if (counted < v.duration) {
+      toast("Only " + fmt(counted) + " hours will be recorded. Extra time is not counted.", "warn");
+    } else {
+      toast("Session submitted for parent sign-off.", "good");
+    }
+
+    $("f-supervisor").value = "";
+    $("f-duration").value = "";
+    $("f-skills").value = "";
+    renderAll();
+    updatePreview();
+    $("f-supervisor").focus();
+  });
+
+  // ---------- Render all ----------
+  function renderAll() {
+    renderChecklist();
+    renderLog();
+    renderTotals();
+    updatePreview();
+  }
+
+  // ---------- Init ----------
+  initTheme();
+  $("f-date").value = todayISO();
+  state = loadState();
+  document.querySelectorAll(".parent-only").forEach(function (el) { el.hidden = true; });
+  renderAll();
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("sw.js").catch(function () {});
+    });
+  }
+})();
+</script>
+</body>
+</html>
