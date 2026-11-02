@@ -1,354 +1,494 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aceable Driver Education Guide &amp; Driving Log</title>
-<meta name="description" content="Checklist, supervised practice log, and reference guide for the Texas Aceable Parent-Taught driver education course.">
-<meta name="theme-color" content="#0a0f1e" id="theme-meta">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Owl Driver</title>
+<meta name="description" content="Owl Driver: checklist, supervised practice log, and reference guide for the Texas Aceable parent-taught driver education course.">
+<meta name="theme-color" content="#000000" id="theme-meta">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Driving Log">
+<meta name="apple-mobile-web-app-title" content="Owl Driver">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <style>
   :root {
-    --bg: #f4f6fb;
+    --bg: #fafafa;
     --surface: #ffffff;
-    --surface-2: #eef2f9;
-    --text: #0c1220;
-    --muted: #4a5568;
-    --border: #1e2a3d;
-    --line: #d5dce8;
-    --accent: #0b5cd6;
+    --surface-2: #f2f2f2;
+    --text: #0a0a0a;
+    --muted: #6b6b6b;
+    --border: #0a0a0a;
+    --line: #e2e2e2;
+    --accent: #0a0a0a;
     --accent-ink: #ffffff;
-    --good: #0f7a3a;
-    --good-bg: #e4f6ea;
-    --warn: #8a5300;
-    --warn-bg: #fff4df;
-    --bad: #b42318;
-    --bad-bg: #fde8e6;
-    --night: #5b3bb5;
-    --focus: #ffb000;
-    --shadow: 0 6px 18px rgba(12, 18, 32, 0.08);
-    --radius: 14px;
+    --good: #0a0a0a;
+    --good-bg: #efefef;
+    --warn: #4a4a4a;
+    --warn-bg: #f0f0f0;
+    --bad: #000000;
+    --bad-bg: #e6e6e6;
+    --night: #3a3a3a;
+    --night-bg: #ececec;
+    --focus: #0a0a0a;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 12px 30px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 2px 4px rgba(0, 0, 0, 0.05), 0 24px 50px rgba(0, 0, 0, 0.12);
+    --radius: 20px;
+    --hero: linear-gradient(120deg, #000 0%, #1f1f1f 45%, #000 100%);
+    --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   [data-theme="dark"] {
-    --bg: #0a0f1e;
-    --surface: #121a2e;
-    --surface-2: #1a2439;
-    --text: #eef2fb;
-    --muted: #aab4c8;
-    --border: #3b4a6b;
-    --line: #2a3650;
-    --accent: #5b9dff;
-    --accent-ink: #06142e;
-    --good: #3ddc84;
-    --good-bg: #10301f;
-    --warn: #ffb454;
-    --warn-bg: #33240c;
-    --bad: #ff7a70;
-    --bad-bg: #3a1714;
-    --night: #a58bff;
-    --focus: #ffd166;
-    --shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+    --bg: #000000;
+    --surface: #0a0a0a;
+    --surface-2: #131313;
+    --text: #f7f7f7;
+    --muted: #9b9b9b;
+    --border: #f7f7f7;
+    --line: #262626;
+    --accent: #f7f7f7;
+    --accent-ink: #000000;
+    --good: #f7f7f7;
+    --good-bg: #161616;
+    --warn: #bdbdbd;
+    --warn-bg: #101010;
+    --bad: #ffffff;
+    --bad-bg: #1a1a1a;
+    --night: #d4d4d4;
+    --night-bg: #181818;
+    --focus: #ffffff;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.6), 0 14px 40px rgba(0, 0, 0, 0.7);
+    --shadow-lg: 0 2px 6px rgba(0, 0, 0, 0.7), 0 28px 60px rgba(0, 0, 0, 0.85);
+    --hero: linear-gradient(120deg, #0b0b0b 0%, #2c2c2c 45%, #0b0b0b 100%);
   }
 
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 16.5px;
-    line-height: 1.5;
+    font-family: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    letter-spacing: 0.1px;
     color: var(--text);
-    background:
-      radial-gradient(1200px 500px at 10% -10%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 60%),
-      radial-gradient(900px 400px at 110% 0%, color-mix(in srgb, var(--night) 12%, transparent), transparent 60%),
-      var(--bg);
-    background-attachment: fixed;
-    transition: background-color 0.3s, color 0.3s;
+    background: var(--bg);
     min-height: 100vh;
+    padding-bottom: 104px;
+    transition: background-color 0.5s var(--ease), color 0.5s var(--ease);
+    -webkit-font-smoothing: antialiased;
   }
+  body::before {
+    content: "";
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(900px 500px at 15% -10%, color-mix(in srgb, var(--text) 7%, transparent), transparent 70%),
+                radial-gradient(700px 500px at 110% 110%, color-mix(in srgb, var(--text) 6%, transparent), transparent 70%);
+    animation: drift 18s ease-in-out infinite alternate;
+  }
+  @keyframes drift { from { transform: translate3d(0,0,0) scale(1); } to { transform: translate3d(-2%, 3%, 0) scale(1.05); } }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+  [hidden] { display: none !important; }
 
-  :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  /* Monochrome emoji icons */
+  .ico, .g-ico, .q-ico, .r-ico, .a-ico, .emoji, .big-ico, .brand-logo, .r-ico {
+    filter: grayscale(1) contrast(1.05);
+  }
 
   /* ---------- Header ---------- */
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    background: color-mix(in srgb, var(--surface) 85%, transparent);
-    border-bottom: 1px solid var(--line);
-    padding: 12px 16px;
+  header.app-header {
+    background: var(--hero);
+    background-size: 240% 240%;
+    animation: sheen 14s ease-in-out infinite alternate;
+    color: #fff;
+    padding: 20px 18px 24px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
   }
-  .header-row { max-width: 980px; margin: 0 auto; display: flex; align-items: center; gap: 12px; justify-content: space-between; flex-wrap: wrap; }
-  header h1 { margin: 0; font-size: 1.1rem; letter-spacing: 0.2px; }
+  @keyframes sheen { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+  header.app-header::before {
+    content: "";
+    position: absolute; inset: -40%;
+    background: conic-gradient(from 0deg, transparent 0 300deg, rgba(255,255,255,0.10) 330deg, transparent 360deg);
+    animation: spin 16s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  header.app-header::after {
+    content: "";
+    position: absolute;
+    right: -70px; top: -70px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 0 0 40px rgba(255,255,255,0.02), 0 0 0 80px rgba(255,255,255,0.015);
+    pointer-events: none;
+  }
+  .header-row { max-width: 1080px; margin: 0 auto; display: flex; align-items: center; gap: 12px; justify-content: space-between; position: relative; z-index: 1; }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand-logo {
+    width: 52px; height: 52px; border-radius: 16px;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    display: grid; place-items: center; font-size: 26px;
+    animation: float 5s ease-in-out infinite;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+  .brand h1 { margin: 0; font-size: 1.25rem; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; }
+  .brand p { margin: 2px 0 0; font-size: 0.78rem; opacity: 0.7; letter-spacing: 0.4px; }
   .header-actions { display: flex; gap: 8px; align-items: center; }
-  nav.sections { max-width: 980px; margin: 10px auto 0; display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: thin; }
-  nav.sections a {
-    flex: 0 0 auto;
-    color: var(--text);
-    text-decoration: none;
-    background: var(--surface-2);
-    border: 1px solid var(--line);
-    padding: 6px 12px;
-    border-radius: 999px;
-    font-weight: 600;
-    font-size: 0.85rem;
-    transition: transform 0.15s, border-color 0.15s;
+  .chip-btn {
+    font: inherit; font-weight: 600; font-size: 0.82rem; letter-spacing: 0.3px;
+    min-height: 40px; padding: 8px 16px; border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.06); color: #fff; cursor: pointer;
+    transition: background-color 0.3s var(--ease), color 0.3s var(--ease), transform 0.2s var(--ease), border-color 0.3s;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
   }
-  nav.sections a:hover { transform: translateY(-1px); border-color: var(--accent); }
+  .chip-btn:hover { background: #fff; color: #000; border-color: #fff; }
+  .chip-btn:active { transform: scale(0.94); }
+  .chip-btn.icon { width: 40px; padding: 0; font-size: 1rem; }
+  .parent-badge {
+    display: none; align-items: center; gap: 6px;
+    background: #fff; color: #000; font-weight: 700; font-size: 0.74rem; letter-spacing: 0.4px; text-transform: uppercase;
+    padding: 6px 12px; border-radius: 999px;
+    animation: pulseSoft 2.4s ease-in-out infinite;
+  }
+  @keyframes pulseSoft { 0%,100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.5); } 50% { box-shadow: 0 0 0 7px rgba(255,255,255,0); } }
+  body.parent-on .parent-badge { display: inline-flex; }
 
-  main { max-width: 980px; margin: 0 auto; padding: 18px 14px 40px; }
+  /* ---------- Tabs ---------- */
+  nav.tabs {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(18px) saturate(120%); -webkit-backdrop-filter: blur(18px) saturate(120%);
+    border-top: 1px solid var(--line);
+    display: flex; justify-content: space-around; gap: 4px;
+    padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
+  }
+  nav.tabs .tab-btn {
+    flex: 1; min-width: 0;
+    background: none; border: 0; color: var(--muted);
+    font: inherit; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.3px; text-transform: uppercase;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    padding: 7px 2px; border-radius: 14px; cursor: pointer;
+    transition: color 0.35s var(--ease), background-color 0.35s var(--ease), transform 0.2s var(--ease);
+  }
+  nav.tabs .tab-btn .ico { font-size: 1.2rem; line-height: 1; transition: transform 0.4s var(--ease); }
+  nav.tabs .tab-btn:hover { color: var(--text); }
+  nav.tabs .tab-btn:active { transform: scale(0.92); }
+  nav.tabs .tab-btn.active { color: var(--accent-ink); background: var(--accent); }
+  nav.tabs .tab-btn.active .ico { transform: translateY(-1px) scale(1.12); }
+
+  main { max-width: 1080px; margin: 0 auto; padding: 22px 16px 24px; }
+  .tab-panel { animation: panelIn 0.55s var(--ease) both; }
+  @keyframes panelIn { from { opacity: 0; transform: translateX(14px); filter: blur(3px); } to { opacity: 1; transform: none; filter: none; } }
+  .tab-panel > * { animation: reveal 0.7s var(--ease) both; }
+  .tab-panel > *:nth-child(2) { animation-delay: 0.06s; }
+  .tab-panel > *:nth-child(3) { animation-delay: 0.12s; }
+  .tab-panel > *:nth-child(4) { animation-delay: 0.18s; }
+  .tab-panel > *:nth-child(5) { animation-delay: 0.24s; }
+  .tab-panel > *:nth-child(6) { animation-delay: 0.30s; }
+  @keyframes reveal { from { opacity: 0; transform: translateY(20px); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
+
+  .page-title { margin: 6px 2px 6px; font-size: 1.6rem; font-weight: 300; letter-spacing: 0.5px; text-transform: uppercase; }
+  .page-sub { margin: 0 2px 20px; color: var(--muted); font-size: 0.95rem; }
 
   /* ---------- Cards ---------- */
-  section.card {
+  .card {
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    padding: 18px;
-    margin-bottom: 22px;
-    animation: rise 0.45s ease both;
+    padding: 22px;
+    margin-bottom: 18px;
+    position: relative;
+    transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease), border-color 0.5s var(--ease);
   }
-  section.card:nth-of-type(2) { animation-delay: 0.05s; }
-  section.card:nth-of-type(3) { animation-delay: 0.1s; }
-  section.card:nth-of-type(4) { animation-delay: 0.15s; }
-  section.card:nth-of-type(5) { animation-delay: 0.2s; }
-  section.card:nth-of-type(6) { animation-delay: 0.25s; }
-  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-
-  section.card h2 { margin: 0 0 4px; font-size: 1.2rem; }
-  .intro { margin: 0 0 14px; color: var(--muted); }
-  h3 { font-size: 1rem; margin: 20px 0 8px; }
+  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: color-mix(in srgb, var(--text) 35%, var(--line)); }
+  .card h2 { margin: 0 0 4px; font-size: 1.05rem; font-weight: 600; letter-spacing: 0.3px; text-transform: uppercase; }
+  .card .intro { margin: 0 0 14px; color: var(--muted); font-size: 0.94rem; }
+  .card h3 { font-size: 0.8rem; margin: 20px 0 8px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 600; }
+  .grid-2 { display: grid; grid-template-columns: 1fr; gap: 18px; }
+  @media (min-width: 760px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
 
   /* ---------- Buttons ---------- */
   .btn {
-    font: inherit;
-    font-weight: 650;
-    min-height: 44px;
-    padding: 10px 16px;
-    border-radius: 10px;
-    border: 1px solid transparent;
-    background: var(--accent);
-    color: var(--accent-ink);
+    font: inherit; font-weight: 600; letter-spacing: 0.3px;
+    min-height: 44px; padding: 10px 18px; border-radius: 999px;
+    border: 1px solid var(--text);
+    background: var(--text); color: var(--bg);
     cursor: pointer;
-    transition: transform 0.12s, box-shadow 0.2s, filter 0.2s, background-color 0.2s;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    transition: transform 0.2s var(--ease), box-shadow 0.4s var(--ease), background-color 0.3s, color 0.3s, border-color 0.3s;
     white-space: nowrap;
+    position: relative; overflow: hidden;
   }
-  .btn:hover { filter: brightness(1.06); box-shadow: 0 4px 14px color-mix(in srgb, var(--accent) 35%, transparent); }
-  .btn:active { transform: scale(0.97); }
-  .btn.ghost { background: var(--surface-2); color: var(--text); border-color: var(--line); }
-  .btn.ghost:hover { box-shadow: none; border-color: var(--accent); }
-  .btn.danger { background: var(--bad); color: #fff; }
-  .btn.good { background: var(--good); color: #fff; }
-  .btn.small { min-height: 36px; padding: 6px 10px; font-size: 0.88rem; }
-  .btn[disabled] { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
-  .icon-btn { font-size: 1.1rem; min-width: 44px; padding: 0; }
-  .theme-toggle[aria-pressed="true"] .theme-icon::before { content: "\263E"; }
-  .theme-toggle[aria-pressed="false"] .theme-icon::before { content: "\2600"; }
+  .btn::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(110deg, transparent 30%, color-mix(in srgb, var(--bg) 35%, transparent) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform 0.8s var(--ease);
+  }
+  .btn:hover::after { transform: translateX(120%); }
+  .btn:hover { box-shadow: 0 10px 28px color-mix(in srgb, var(--text) 25%, transparent); }
+  .btn:active { transform: scale(0.96); }
+  .btn.ghost { background: transparent; color: var(--text); border-color: var(--line); }
+  .btn.ghost:hover { border-color: var(--text); box-shadow: none; }
+  .btn.danger { background: transparent; color: var(--text); border: 1px dashed var(--text); }
+  .btn.danger:hover { background: var(--text); color: var(--bg); border-style: solid; }
+  .btn.good { background: var(--text); color: var(--bg); }
+  .btn.small { min-height: 36px; padding: 6px 14px; font-size: 0.82rem; }
+  .btn[disabled] { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 14px; }
 
-  .parent-only[hidden] { display: none !important; }
-  body.parent-on .parent-badge { display: inline-flex; }
-  .parent-badge { display: none; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 700; color: var(--good); background: var(--good-bg); padding: 4px 10px; border-radius: 999px; }
+  /* ---------- Dashboard ---------- */
+  .hero-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; }
+  .ring-card { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 14px 10px; border-radius: 16px; transition: background-color 0.4s; }
+  .ring-card:hover { background: var(--surface-2); }
+  .ring { position: relative; width: 140px; height: 140px; margin-bottom: 10px; }
+  .ring svg { width: 100%; height: 100%; transform: rotate(-90deg); overflow: visible; }
+  .ring .track { stroke: var(--line); }
+  .ring .fill {
+    stroke: var(--text);
+    transition: stroke-dasharray 1.4s var(--ease);
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 6px color-mix(in srgb, var(--text) 25%, transparent));
+  }
+  .ring .fill.night { stroke: var(--muted); }
+  .ring .fill.checks { stroke: var(--text); }
+  .ring .center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .ring .num { font-size: 1.7rem; font-weight: 300; font-variant-numeric: tabular-nums; line-height: 1.1; letter-spacing: -0.5px; }
+  .ring .of { font-size: 0.7rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; margin-top: 2px; }
+  .ring-label { font-weight: 600; text-transform: uppercase; font-size: 0.78rem; letter-spacing: 1px; }
+  .ring-status { font-size: 0.85rem; margin-top: 3px; color: var(--muted); }
+  .ring-status.good { color: var(--text); font-weight: 600; }
 
-  /* ---------- Progress ---------- */
-  .progress-block { margin: 10px 0 16px; }
-  .progress-label { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 6px; font-size: 0.95rem; }
-  .bar { height: 14px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
-  .bar-fill {
-    height: 100%;
-    width: 0%;
-    border-radius: 999px;
-    background: linear-gradient(90deg, var(--good), color-mix(in srgb, var(--good) 70%, #fff));
-    transition: width 0.6s cubic-bezier(.2,.8,.2,1);
-  }
-  .bar-fill.night { background: linear-gradient(90deg, var(--night), color-mix(in srgb, var(--night) 60%, #fff)); }
-  .bar-fill.over { background: var(--bad); }
-
-  /* ---------- Checklist ---------- */
-  ol.checklist { list-style: none; padding: 0; margin: 0; }
-  ol.checklist li {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 12px 14px;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    margin-bottom: 10px;
-    background: var(--surface);
-    transition: background-color 0.25s, border-color 0.25s, transform 0.2s;
-  }
-  ol.checklist li:hover { transform: translateX(2px); border-color: var(--accent); }
-  ol.checklist li.done { background: var(--good-bg); border-color: var(--good); }
-  ol.checklist input[type="checkbox"] {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 26px; height: 26px; flex-shrink: 0; margin-top: 1px;
-    border: 2px solid var(--border);
-    border-radius: 8px;
-    background: var(--surface);
-    cursor: pointer;
-    display: grid;
-    place-content: center;
-    transition: background-color 0.2s, border-color 0.2s, transform 0.15s;
-  }
-  ol.checklist input[type="checkbox"]:checked { background: var(--good); border-color: var(--good); animation: pop 0.25s ease; }
-  ol.checklist input[type="checkbox"]:checked::after {
-    content: "";
-    width: 7px; height: 13px;
-    border: solid #fff; border-width: 0 3px 3px 0;
-    transform: rotate(45deg) translate(-1px, -1px);
-  }
-  ol.checklist input[type="checkbox"]:active { transform: scale(0.9); }
-  @keyframes pop { 0% { transform: scale(0.8); } 60% { transform: scale(1.15); } 100% { transform: scale(1); } }
-  ol.checklist label { cursor: pointer; flex: 1; font-weight: 600; }
-  ol.checklist li.done label { color: var(--muted); text-decoration: line-through; text-decoration-thickness: 2px; }
-  .step-num { font-weight: 800; color: var(--accent); margin-right: 2px; }
-  .step-note { display: block; font-weight: 400; color: var(--muted); font-size: 0.9rem; }
-
-  /* ---------- Forms ---------- */
-  .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 12px; }
-  .field { display: flex; flex-direction: column; gap: 5px; }
-  .field label { font-weight: 700; font-size: 0.88rem; color: var(--muted); }
-  input, select, textarea {
-    font: inherit;
-    padding: 10px 12px;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    min-height: 44px;
+  .next-up {
+    display: flex; align-items: center; gap: 16px;
     background: var(--surface-2);
-    color: var(--text);
-    width: 100%;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  input:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent); outline: none; }
-  .field-error { color: var(--bad); font-size: 0.85rem; font-weight: 600; min-height: 1.1em; }
-  .form-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-  .muted { color: var(--muted); font-size: 0.9rem; }
-
-  .preview { margin: 6px 0 12px; padding: 10px 12px; border-radius: 10px; font-weight: 600; font-size: 0.92rem; background: var(--surface-2); border: 1px solid var(--line); min-height: 2.6em; }
-  .preview.good { background: var(--good-bg); color: var(--good); border-color: transparent; }
-  .preview.warn { background: var(--warn-bg); color: var(--warn); border-color: transparent; }
-
-  /* ---------- Stats ---------- */
-  .totals { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 16px 0; }
-  .stat {
-    background: linear-gradient(160deg, var(--surface-2), var(--surface));
     border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 14px;
-    transition: transform 0.2s;
+    border-radius: 18px; padding: 16px 18px; margin-top: 16px;
+    position: relative; overflow: hidden;
   }
-  .stat:hover { transform: translateY(-2px); }
-  .stat .label { font-size: 0.85rem; color: var(--muted); font-weight: 600; }
-  .stat .big { font-size: 1.7rem; font-weight: 800; font-variant-numeric: tabular-nums; margin: 2px 0 8px; }
-  .stat .sub { font-size: 0.88rem; color: var(--muted); margin-top: 6px; }
-  .status { margin-top: 6px; font-weight: 700; font-size: 0.9rem; }
-  .status.good { color: var(--good); }
-  .status.warn { color: var(--warn); }
+  .next-up::after {
+    content: ""; position: absolute; top: 0; bottom: 0; left: -40%; width: 40%;
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--text) 12%, transparent), transparent);
+    animation: sweep 3.6s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes sweep { 0% { left: -40%; } 60%,100% { left: 120%; } }
+  .next-up .emoji { font-size: 1.8rem; }
+  .next-up .label { font-size: 0.7rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; }
+  .next-up .title { font-weight: 600; font-size: 1.02rem; }
+  .next-up.done { border-color: var(--text); }
+
+  .quick-actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-top: 16px; }
+  .quick {
+    background: transparent; border: 1px solid var(--line); border-radius: 18px;
+    padding: 16px; text-align: left; font: inherit; color: var(--text); cursor: pointer;
+    transition: transform 0.4s var(--ease), border-color 0.4s, background-color 0.4s, color 0.4s;
+  }
+  .quick:hover { transform: translateY(-4px); border-color: var(--text); background: var(--text); color: var(--bg); }
+  .quick:hover .q-sub { color: color-mix(in srgb, var(--bg) 70%, transparent); }
+  .quick:hover .q-ico { transform: scale(1.15) rotate(-6deg); }
+  .quick .q-ico { font-size: 1.5rem; transition: transform 0.5s var(--ease); display: inline-block; }
+  .quick .q-title { font-weight: 600; margin-top: 6px; }
+  .quick .q-sub { font-size: 0.8rem; color: var(--muted); transition: color 0.4s; }
 
   /* ---------- Banners ---------- */
-  .banner { border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-weight: 600; border: 1px solid transparent; }
-  .banner.warn { background: var(--warn-bg); color: var(--warn); border-color: color-mix(in srgb, var(--warn) 40%, transparent); }
-  .banner.bad { background: var(--bad-bg); color: var(--bad); border-color: color-mix(in srgb, var(--bad) 40%, transparent); }
-  .banner.good { background: var(--good-bg); color: var(--good); border-color: color-mix(in srgb, var(--good) 40%, transparent); }
-  .banner[hidden] { display: none; }
+  .banner {
+    border-radius: 16px; padding: 14px 16px; margin: 14px 0; font-weight: 500; font-size: 0.93rem;
+    border: 1px solid var(--text); background: var(--warn-bg); color: var(--text);
+    animation: reveal 0.6s var(--ease) both;
+  }
+  .banner.warn { border-style: dashed; }
+  .banner.good { background: var(--good-bg); }
+  .banner.bad { background: var(--bad-bg); }
 
-  /* ---------- Table ---------- */
-  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
-  table { width: 100%; border-collapse: collapse; min-width: 760px; }
-  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: middle; }
-  th { background: var(--surface-2); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.4px; color: var(--muted); }
-  tbody tr { transition: background-color 0.2s; }
-  tbody tr:hover { background: var(--surface-2); }
-  tr.night-row td:first-child { box-shadow: inset 4px 0 0 var(--night); }
-  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .empty-row td { text-align: center; color: var(--muted); padding: 24px; }
-  .chip { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 999px; font-size: 0.8rem; font-weight: 700; border: 1px solid transparent; white-space: nowrap; }
-  .chip.day { background: var(--warn-bg); color: var(--warn); }
-  .chip.night { background: var(--night); color: #fff; }
-  .chip.pending { background: var(--warn-bg); color: var(--warn); }
-  .chip.approved { background: var(--good-bg); color: var(--good); }
-  .chip.locked { background: var(--surface-2); color: var(--muted); border-color: var(--line); }
-  .row-actions { display: flex; gap: 6px; flex-wrap: wrap; }
-  .approver { display: block; font-size: 0.78rem; color: var(--muted); font-weight: 500; }
+  /* ---------- Checklist ---------- */
+  .group-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+  .group-title { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.8px; }
+  .group-title .g-ico { width: 40px; height: 40px; border-radius: 14px; display: grid; place-items: center; font-size: 1.2rem; background: var(--surface-2); border: 1px solid var(--line); }
+  .group-count { font-size: 0.8rem; font-weight: 600; color: var(--muted); letter-spacing: 0.5px; }
+  .mini-bar { height: 4px; background: var(--line); border-radius: 999px; overflow: hidden; margin: 8px 0 16px; }
+  .mini-bar > div { height: 100%; width: 0; border-radius: 999px; background: var(--text); transition: width 0.9s var(--ease); }
+
+  ol.checklist { list-style: none; padding: 0; margin: 0; }
+  ol.checklist li {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 14px 16px; border: 1px solid var(--line); border-radius: 16px;
+    margin-bottom: 10px; background: var(--surface);
+    transition: background-color 0.4s, border-color 0.4s, transform 0.4s var(--ease);
+  }
+  ol.checklist li:hover { transform: translateX(4px); border-color: var(--text); }
+  ol.checklist li.done { background: var(--surface-2); }
+  ol.checklist li.done label { color: var(--muted); }
+  ol.checklist input[type="checkbox"] {
+    appearance: none; -webkit-appearance: none;
+    width: 24px; height: 24px; flex-shrink: 0; margin-top: 1px;
+    border: 1.5px solid var(--text); border-radius: 50%; background: transparent;
+    cursor: pointer; display: grid; place-content: center;
+    transition: background-color 0.35s var(--ease), transform 0.25s var(--ease);
+  }
+  ol.checklist input[type="checkbox"]:checked { background: var(--text); animation: pop 0.45s var(--ease); }
+  ol.checklist input[type="checkbox"]:checked::after {
+    content: ""; width: 6px; height: 11px;
+    border: solid var(--bg); border-width: 0 2px 2px 0;
+    transform: rotate(45deg) translate(-1px, -1px);
+  }
+  ol.checklist input[type="checkbox"]:active { transform: scale(0.85); }
+  @keyframes pop { 0% { transform: scale(0.7); } 60% { transform: scale(1.18); } 100% { transform: scale(1); } }
+  ol.checklist label { cursor: pointer; flex: 1; font-weight: 500; }
+  ol.checklist li.done label { text-decoration: line-through; text-decoration-thickness: 1px; }
+  .step-num { display: inline-block; min-width: 1.8em; font-weight: 300; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .step-note { display: block; font-weight: 400; color: var(--muted); font-size: 0.86rem; margin-top: 2px; }
+
+  /* ---------- Forms ---------- */
+  .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin-bottom: 12px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field label { font-weight: 600; font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.9px; }
+  input, select, textarea {
+    font: inherit; padding: 12px 14px; min-height: 48px;
+    border: 1px solid var(--line); border-radius: 14px;
+    background: var(--surface-2); color: var(--text); width: 100%;
+    transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+  }
+  input:focus, select:focus { border-color: var(--text); box-shadow: 0 0 0 4px color-mix(in srgb, var(--text) 12%, transparent); outline: none; background: var(--surface); }
+  .field-error { color: var(--text); font-size: 0.82rem; font-weight: 600; min-height: 1.1em; }
+  .field-error:not(:empty)::before { content: "— "; }
+  .muted { color: var(--muted); font-size: 0.88rem; }
+  .preview {
+    margin: 8px 0 14px; padding: 12px 14px; border-radius: 14px; font-weight: 500; font-size: 0.9rem;
+    background: var(--surface-2); border: 1px dashed var(--line); min-height: 2.8em;
+    transition: border-color 0.4s, background-color 0.4s;
+  }
+  .preview.good { border-style: solid; border-color: var(--text); }
+  .preview.warn { border-style: solid; border-color: var(--text); background: var(--warn-bg); font-weight: 700; }
+
+  /* ---------- Log entries ---------- */
+  .entry-list { display: grid; gap: 12px; }
+  .entry {
+    display: grid; grid-template-columns: 1fr auto; gap: 10px 14px;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 18px; padding: 16px 18px;
+    transition: transform 0.45s var(--ease), border-color 0.4s, box-shadow 0.45s var(--ease);
+    animation: reveal 0.6s var(--ease) both;
+    position: relative; overflow: hidden;
+  }
+  .entry::before {
+    content: ""; position: absolute; left: 0; top: 14px; bottom: 14px; width: 3px; border-radius: 3px;
+    background: var(--muted);
+  }
+  .entry.night::before { background: repeating-linear-gradient(180deg, var(--text) 0 4px, transparent 4px 7px); }
+  .entry.approved::before { background: var(--text); }
+  .entry:hover { transform: translateY(-3px); border-color: var(--text); box-shadow: var(--shadow); }
+  .entry .e-date { font-weight: 600; letter-spacing: 0.2px; }
+  .entry .e-meta { font-size: 0.85rem; color: var(--muted); }
+  .entry .e-hours { text-align: right; font-variant-numeric: tabular-nums; }
+  .entry .e-hours .big { font-size: 1.5rem; font-weight: 300; line-height: 1.1; letter-spacing: -0.5px; }
+  .entry .e-hours .sub { font-size: 0.7rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; }
+  .entry .e-hours .capped { text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 4px; }
+  .entry .e-skills { grid-column: 1 / -1; font-size: 0.94rem; }
+  .entry .e-foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 10px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 4px; padding: 4px 11px; border-radius: 999px;
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; white-space: nowrap;
+    border: 1px solid var(--text);
+  }
+  .chip.day { background: transparent; color: var(--text); }
+  .chip.night { background: var(--text); color: var(--bg); }
+  .chip.pending { background: transparent; color: var(--text); border-style: dashed; }
+  .chip.approved { background: var(--text); color: var(--bg); }
+  .chip.locked { background: transparent; color: var(--muted); border-color: var(--line); }
+  .approver { font-size: 0.78rem; color: var(--muted); }
+  .row-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .empty { text-align: center; color: var(--muted); padding: 34px 14px; border: 1px dashed var(--line); border-radius: 18px; }
+  .empty .big-ico { font-size: 2.2rem; display: block; margin-bottom: 8px; }
 
   /* ---------- Rules / reference ---------- */
-  ul.rules { padding-left: 22px; margin: 0; }
-  ul.rules li { margin-bottom: 10px; }
-  .callout { border-left: 5px solid var(--bad); background: var(--bad-bg); padding: 12px 14px; border-radius: 10px; margin-bottom: 12px; }
-  .callout strong { display: block; margin-bottom: 2px; color: var(--bad); }
-  a.resource {
-    display: block;
-    padding: 12px 14px;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    margin-bottom: 10px;
-    color: var(--accent);
-    font-weight: 700;
-    text-decoration: none;
-    background: var(--surface-2);
-    transition: transform 0.15s, border-color 0.15s;
+  .rule-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .rule-list li {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: var(--surface); border-radius: 16px; padding: 14px 16px; border: 1px solid var(--line);
+    transition: transform 0.4s var(--ease), border-color 0.4s;
   }
-  a.resource:hover { transform: translateX(3px); border-color: var(--accent); }
-  a.resource span { display: block; font-weight: 400; color: var(--muted); font-size: 0.9rem; }
+  .rule-list li:hover { transform: translateX(4px); border-color: var(--text); }
+  .rule-list .r-ico { font-size: 1.35rem; line-height: 1.3; }
+  .alert {
+    border-radius: 18px; padding: 16px 18px; margin-bottom: 14px; display: flex; gap: 14px; align-items: flex-start;
+    border: 1px solid var(--text); background: var(--surface);
+    transition: transform 0.4s var(--ease);
+    animation: reveal 0.6s var(--ease) both;
+  }
+  .alert:hover { transform: translateX(4px); }
+  .alert .a-ico { font-size: 1.5rem; }
+  .alert strong { display: block; font-size: 0.98rem; margin-bottom: 2px; font-weight: 600; }
+  .alert.bad { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .alert.bad strong { color: var(--bg); }
+  .alert.info { background: var(--surface-2); border-style: dashed; }
+  .link-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  a.resource {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 18px; border: 1px solid var(--line); border-radius: 20px;
+    background: var(--surface); color: var(--text); text-decoration: none;
+    transition: transform 0.5s var(--ease), border-color 0.4s, box-shadow 0.5s var(--ease), background-color 0.4s, color 0.4s;
+  }
+  a.resource:hover { transform: translateY(-4px); border-color: var(--text); box-shadow: var(--shadow-lg); }
+  a.resource:hover .r-ico { transform: scale(1.12) rotate(-4deg); }
+  a.resource .r-ico { font-size: 1.6rem; transition: transform 0.5s var(--ease); display: inline-block; }
+  a.resource .r-title { font-weight: 600; letter-spacing: 0.2px; }
+  a.resource .r-desc { font-size: 0.88rem; color: var(--muted); }
 
-  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 4px 16px 36px; }
+  footer.app-footer { text-align: center; color: var(--muted); font-size: 0.74rem; letter-spacing: 0.6px; text-transform: uppercase; padding: 8px 16px 20px; }
 
   /* ---------- Dialog ---------- */
   dialog {
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    background: var(--surface);
-    color: var(--text);
-    box-shadow: var(--shadow);
-    padding: 22px;
+    border: 1px solid var(--line); border-radius: 24px;
+    background: var(--surface); color: var(--text);
+    box-shadow: var(--shadow-lg); padding: 26px;
     width: min(420px, calc(100vw - 32px));
   }
-  dialog::backdrop { background: rgba(5, 8, 18, 0.55); backdrop-filter: blur(3px); }
-  dialog h2 { margin: 0 0 6px; font-size: 1.15rem; }
-  dialog .form-actions { justify-content: flex-end; margin-top: 14px; }
-  .pin-input { letter-spacing: 0.4em; font-size: 1.3rem; text-align: center; }
-  .shake { animation: shake 0.4s; }
-  @keyframes shake { 20%,60% { transform: translateX(-6px); } 40%,80% { transform: translateX(6px); } }
+  dialog[open] { animation: dialogIn 0.5s var(--ease) both; }
+  @keyframes dialogIn { from { opacity: 0; transform: translateY(16px) scale(0.97); } to { opacity: 1; transform: none; } }
+  dialog::backdrop { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(6px); animation: fadeBg 0.4s ease both; }
+  @keyframes fadeBg { from { opacity: 0; } to { opacity: 1; } }
+  dialog h2 { margin: 0 0 6px; font-size: 1rem; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; }
+  dialog .btn-row { justify-content: flex-end; }
+  .pin-input { letter-spacing: 0.5em; font-size: 1.4rem; text-align: center; }
+  .shake { animation: shake 0.45s var(--ease); }
+  @keyframes shake { 20%,60% { transform: translateX(-7px); } 40%,80% { transform: translateX(7px); } }
 
   /* ---------- Toasts ---------- */
-  #toasts { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 50; display: flex; flex-direction: column; gap: 8px; width: min(440px, calc(100vw - 24px)); pointer-events: none; }
+  #toasts { position: fixed; left: 50%; bottom: 100px; transform: translateX(-50%); z-index: 50; display: flex; flex-direction: column; gap: 8px; width: min(440px, calc(100vw - 28px)); pointer-events: none; align-items: center; }
   .toast {
-    background: var(--surface);
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-left: 5px solid var(--accent);
-    box-shadow: var(--shadow);
-    padding: 12px 14px;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 0.93rem;
-    animation: toastIn 0.3s ease both;
-    pointer-events: auto;
+    background: var(--text); color: var(--bg);
+    padding: 12px 20px; border-radius: 999px;
+    font-weight: 500; font-size: 0.9rem; letter-spacing: 0.2px;
+    box-shadow: var(--shadow-lg);
+    animation: toastIn 0.5s var(--ease) both; pointer-events: auto;
   }
-  .toast.good { border-left-color: var(--good); }
-  .toast.warn { border-left-color: var(--warn); }
-  .toast.bad { border-left-color: var(--bad); }
-  .toast.out { animation: toastOut 0.3s ease both; }
-  @keyframes toastIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-  @keyframes toastOut { to { opacity: 0; transform: translateY(12px); } }
+  .toast.warn { background: var(--surface); color: var(--text); border: 1px solid var(--text); }
+  .toast.bad { background: var(--surface); color: var(--text); border: 1px dashed var(--text); }
+  .toast.out { animation: toastOut 0.35s ease both; }
+  @keyframes toastIn { from { opacity: 0; transform: translateY(18px) scale(0.95); } to { opacity: 1; transform: none; } }
+  @keyframes toastOut { to { opacity: 0; transform: translateY(10px) scale(0.97); } }
 
-  @media (max-width: 560px) {
-    body { font-size: 16px; }
-    main { padding: 12px 10px 36px; }
-    section.card { padding: 14px; }
-    .btn.full-m { width: 100%; }
+  @media (min-width: 820px) {
+    body { padding-bottom: 0; }
+    header.app-header { padding: 26px 24px 30px; }
+    nav.tabs {
+      position: sticky; top: 0; bottom: auto;
+      justify-content: center; gap: 6px;
+      border-top: 0; border-bottom: 1px solid var(--line);
+      padding: 10px 14px;
+    }
+    nav.tabs .tab-btn { flex: 0 0 auto; flex-direction: row; font-size: 0.76rem; padding: 9px 16px; gap: 8px; border-radius: 999px; }
+    nav.tabs .tab-btn .ico { font-size: 1rem; }
+    #toasts { bottom: 24px; }
+    main { padding: 30px 24px 40px; }
   }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
   }
@@ -356,256 +496,283 @@
 </head>
 <body>
 
-<header>
+<header class="app-header">
   <div class="header-row">
-    <h1>Aceable Driver Education Guide &amp; Driving Log</h1>
+    <div class="brand">
+      <div class="brand-logo" aria-hidden="true">🦉</div>
+      <div>
+        <h1>Owl Driver</h1>
+        <p>Texas Aceable parent-taught course</p>
+      </div>
+    </div>
     <div class="header-actions">
-      <span class="parent-badge" aria-live="polite">Parent mode on</span>
-      <button type="button" class="btn ghost icon-btn theme-toggle" id="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode" title="Toggle dark mode"><span class="theme-icon"></span></button>
-      <button type="button" class="btn ghost small" id="parent-toggle">Parent sign-off</button>
+      <span class="parent-badge">✓ Parent mode</span>
+      <button type="button" class="chip-btn icon" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
+      <button type="button" class="chip-btn" id="parent-toggle">Parent sign-off</button>
     </div>
   </div>
-  <nav class="sections" aria-label="Sections">
-    <a href="#checklist">Checklist</a>
-    <a href="#log">Practice Log</a>
-    <a href="#rules">Rules</a>
-    <a href="#provisional">Provisional</a>
-    <a href="#resources">Resources</a>
-    <a href="#hardship">Hardship</a>
-  </nav>
 </header>
+
+<nav class="tabs" aria-label="Sections" role="tablist">
+  <button type="button" class="tab-btn" role="tab" data-tab="dashboard"><span class="ico">🏠</span><span>Home</span></button>
+  <button type="button" class="tab-btn" role="tab" data-tab="checklist"><span class="ico">✅</span><span>Checklist</span></button>
+  <button type="button" class="tab-btn" role="tab" data-tab="log"><span class="ico">🗓️</span><span>Log</span></button>
+  <button type="button" class="tab-btn" role="tab" data-tab="rules"><span class="ico">📘</span><span>Rules</span></button>
+  <button type="button" class="tab-btn" role="tab" data-tab="provisional"><span class="ico">🪪</span><span>Provisional</span></button>
+  <button type="button" class="tab-btn" role="tab" data-tab="resources"><span class="ico">🔗</span><span>Resources</span></button>
+  <button type="button" class="tab-btn" role="tab" data-tab="hardship"><span class="ico">📄</span><span>Hardship</span></button>
+</nav>
 
 <main>
 
-  <!-- ============ 1. CHECKLIST ============ -->
-  <section id="checklist" class="card" aria-labelledby="checklist-title">
-    <h2 id="checklist-title">1. Step-by-Step Checklist</h2>
-    <p class="intro">Check off each milestone as it is completed. Saved automatically on this device.</p>
+  <!-- ============ HOME ============ -->
+  <section class="tab-panel" id="tab-dashboard" role="tabpanel">
+    <h2 class="page-title">Your progress</h2>
+    <p class="page-sub">Approved hours count toward the requirements. Pending entries wait for a parent.</p>
 
-    <div class="progress-block">
-      <div class="progress-label">
-        <span id="checklist-count">0 of 9 complete</span>
-        <span id="checklist-pct">0%</span>
+    <div class="card">
+      <div class="hero-stats">
+        <div class="ring-card">
+          <div class="ring">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="track" cx="60" cy="60" r="52" fill="none" stroke-width="6"></circle>
+              <circle class="fill" id="ring-hours" cx="60" cy="60" r="52" fill="none" stroke-width="6" stroke-dasharray="0 999"></circle>
+            </svg>
+            <div class="center"><div class="num" id="ring-hours-num">0</div><div class="of">of 44 hrs</div></div>
+          </div>
+          <div class="ring-label">Driving hours</div>
+          <div class="ring-status" id="hours-status"></div>
+        </div>
+
+        <div class="ring-card">
+          <div class="ring">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="track" cx="60" cy="60" r="52" fill="none" stroke-width="6"></circle>
+              <circle class="fill night" id="ring-night" cx="60" cy="60" r="52" fill="none" stroke-width="6" stroke-dasharray="0 999"></circle>
+            </svg>
+            <div class="center"><div class="num" id="ring-night-num">0</div><div class="of">of 10 hrs</div></div>
+          </div>
+          <div class="ring-label">Night hours</div>
+          <div class="ring-status" id="night-status"></div>
+        </div>
+
+        <div class="ring-card">
+          <div class="ring">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="track" cx="60" cy="60" r="52" fill="none" stroke-width="6"></circle>
+              <circle class="fill checks" id="ring-checks" cx="60" cy="60" r="52" fill="none" stroke-width="6" stroke-dasharray="0 999"></circle>
+            </svg>
+            <div class="center"><div class="num" id="ring-checks-num">0</div><div class="of">of 9 steps</div></div>
+          </div>
+          <div class="ring-label">Checklist</div>
+          <div class="ring-status" id="checks-status"></div>
+        </div>
       </div>
-      <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="checklist-bar">
-        <div class="bar-fill" id="checklist-fill"></div>
+
+      <div class="next-up" id="next-up"></div>
+
+      <div class="quick-actions">
+        <button type="button" class="quick" data-go="log"><div class="q-ico">➕</div><div class="q-title">Log a drive</div><div class="q-sub">Submit for sign-off</div></button>
+        <button type="button" class="quick" data-go="checklist"><div class="q-ico">✅</div><div class="q-title">Update checklist</div><div class="q-sub">Check off milestones</div></button>
+        <button type="button" class="quick" data-go="rules"><div class="q-ico">📘</div><div class="q-title">Review rules</div><div class="q-sub">Before every drive</div></button>
       </div>
     </div>
 
-    <ol class="checklist" id="checklist-list"></ol>
+    <div class="card">
+      <h2>Waiting for sign-off</h2>
+      <p class="intro" id="home-pending-text"></p>
+      <div class="btn-row"><button type="button" class="btn small" data-go="log">Open the log</button></div>
+    </div>
 
-    <div class="form-actions" style="margin-top:10px;">
+    <div class="banner warn" id="home-cap" hidden></div>
+  </section>
+
+  <!-- ============ CHECKLIST ============ -->
+  <section class="tab-panel" id="tab-checklist" role="tabpanel" hidden>
+    <h2 class="page-title">Checklist</h2>
+    <p class="page-sub">Check off each milestone as it's completed. Saved on this device.</p>
+    <div id="checklist-groups"></div>
+    <div class="btn-row">
       <button type="button" class="btn ghost small" id="reset-checklist">Reset checklist</button>
     </div>
   </section>
 
-  <!-- ============ 2. LOG ============ -->
-  <section id="log" class="card" aria-labelledby="log-title">
-    <h2 id="log-title">2. Driving Scheduler &amp; Practice Log (44 Hours Total)</h2>
-    <p class="intro">Entries start as <strong>Pending</strong>. They count toward the 44 hours only after a parent approves them. Driving is capped at <strong>2 hours per day</strong>.</p>
-
-    <div class="totals" aria-live="polite">
-      <div class="stat">
-        <div class="label">Approved hours</div>
-        <div class="big" id="total-hours">0.0 / 44</div>
-        <div class="bar"><div class="bar-fill" id="total-fill"></div></div>
-        <div class="status" id="total-status"></div>
-      </div>
-      <div class="stat">
-        <div class="label">Approved night hours</div>
-        <div class="big" id="night-hours">0.0 / 10</div>
-        <div class="bar"><div class="bar-fill night" id="night-fill"></div></div>
-        <div class="status" id="night-status"></div>
-      </div>
-      <div class="stat">
-        <div class="label">Awaiting sign-off</div>
-        <div class="big" id="pending-hours">0.0</div>
-        <div class="sub" id="pending-count">0 sessions pending</div>
-        <div class="sub" id="session-count">0 sessions total</div>
-      </div>
-    </div>
+  <!-- ============ LOG ============ -->
+  <section class="tab-panel" id="tab-log" role="tabpanel" hidden>
+    <h2 class="page-title">Practice log</h2>
+    <p class="page-sub">Entries start as <strong>Pending</strong>. They count toward the 44 hours only after a parent approves. Driving is capped at <strong>2 hours per day</strong>.</p>
 
     <div class="banner warn" id="cap-banner" hidden></div>
 
-    <h3>Add a session</h3>
-    <form id="log-form" novalidate>
-      <div class="form-grid">
-        <div class="field">
-          <label for="f-date">Date</label>
-          <input type="date" id="f-date" required>
-          <div class="field-error" id="e-date"></div>
+    <div class="card">
+      <h2>New session</h2>
+      <p class="intro">Fill this in right after the drive.</p>
+      <form id="log-form" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="f-date">Date</label>
+            <input type="date" id="f-date" required>
+            <div class="field-error" id="e-date"></div>
+          </div>
+          <div class="field">
+            <label for="f-supervisor">Supervisor name</label>
+            <input type="text" id="f-supervisor" maxlength="60" placeholder="e.g. Mom, Dad" autocomplete="off" required>
+            <div class="field-error" id="e-supervisor"></div>
+          </div>
+          <div class="field">
+            <label for="f-period">Day / Night</label>
+            <select id="f-period">
+              <option value="Day">Day</option>
+              <option value="Night">Night</option>
+            </select>
+            <div class="field-error"></div>
+          </div>
+          <div class="field">
+            <label for="f-duration">Duration (hours)</label>
+            <input type="number" id="f-duration" min="0.5" max="4" step="0.5" inputmode="decimal" placeholder="0.5 – 4" required>
+            <div class="field-error" id="e-duration"></div>
+          </div>
+          <div class="field" style="grid-column: 1 / -1;">
+            <label for="f-skills">Skills practiced</label>
+            <input type="text" id="f-skills" maxlength="200" placeholder="e.g. Parallel parking, highway merging" autocomplete="off" required>
+            <div class="field-error" id="e-skills"></div>
+          </div>
         </div>
-        <div class="field">
-          <label for="f-supervisor">Supervisor name</label>
-          <input type="text" id="f-supervisor" maxlength="60" placeholder="e.g. Mom, Dad" autocomplete="off" required>
-          <div class="field-error" id="e-supervisor"></div>
+        <div class="preview" id="preview" aria-live="polite"></div>
+        <div class="btn-row">
+          <button type="submit" class="btn">Submit for sign-off</button>
+          <span class="muted" id="form-msg" role="status"></span>
         </div>
-        <div class="field">
-          <label for="f-period">Day / Night</label>
-          <select id="f-period">
-            <option value="Day">Day</option>
-            <option value="Night">Night</option>
-          </select>
-          <div class="field-error"></div>
-        </div>
-        <div class="field">
-          <label for="f-duration">Duration (hours)</label>
-          <input type="number" id="f-duration" min="0.5" max="4" step="0.5" inputmode="decimal" placeholder="0.5 – 4" required>
-          <div class="field-error" id="e-duration"></div>
-        </div>
-        <div class="field" style="grid-column: 1 / -1;">
-          <label for="f-skills">Skills practiced</label>
-          <input type="text" id="f-skills" maxlength="200" placeholder="e.g. Parallel parking, highway merging" autocomplete="off" required>
-          <div class="field-error" id="e-skills"></div>
-        </div>
+      </form>
+    </div>
+
+    <div class="card">
+      <div class="group-head">
+        <div class="group-title"><span class="g-ico">📋</span> Sessions</div>
+        <span class="group-count" id="session-count">0 total</span>
       </div>
-      <div class="preview" id="preview" aria-live="polite"></div>
-      <div class="form-actions">
-        <button type="submit" class="btn">Submit for sign-off</button>
-        <span class="muted" id="form-msg" role="status"></span>
+      <div class="entry-list" id="entry-list"></div>
+      <div class="btn-row">
+        <button type="button" class="btn ghost small parent-only" id="approve-all" hidden>Approve all pending</button>
+        <button type="button" class="btn ghost small" id="export-csv">Export CSV backup</button>
+        <button type="button" class="btn danger small parent-only" id="clear-log" hidden>Clear entire log</button>
       </div>
-    </form>
-
-    <h3>Logged sessions</h3>
-    <div class="table-wrap">
-      <table aria-describedby="log-title">
-        <thead>
-          <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Supervisor</th>
-            <th scope="col">Day / Night</th>
-            <th scope="col" class="num">Logged</th>
-            <th scope="col" class="num">Counted</th>
-            <th scope="col">Status</th>
-            <th scope="col">Skills</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody id="log-body"></tbody>
-      </table>
-    </div>
-
-    <div class="form-actions" style="margin-top:12px;">
-      <button type="button" class="btn ghost small parent-only" id="approve-all" hidden>Approve all pending</button>
-      <button type="button" class="btn ghost small" id="export-csv">Export CSV</button>
-      <button type="button" class="btn danger small parent-only" id="clear-log" hidden>Clear entire log</button>
     </div>
   </section>
 
-  <!-- ============ 3. LOGGING RULES ============ -->
-  <section id="rules" class="card" aria-labelledby="rules-title">
-    <h2 id="rules-title">3. Requirements &amp; Rules for Logging</h2>
-    <p class="intro">Review before every practice session.</p>
-    <ul class="rules">
-      <li>Driving time is capped at <strong>2 hours per day</strong>. Any time beyond 2 hours in a day is not recorded.</li>
-      <li><strong>10 hours</strong> of the required total must be completed at night.</li>
-      <li>The supervisor must be <strong>21 years of age or older</strong>, hold a <strong>valid driver's license</strong>, and sit in the <strong>front passenger seat</strong> during every session.</li>
+  <!-- ============ RULES ============ -->
+  <section class="tab-panel" id="tab-rules" role="tabpanel" hidden>
+    <h2 class="page-title">Logging rules</h2>
+    <p class="page-sub">Review before every practice session.</p>
+    <ul class="rule-list">
+      <li><span class="r-ico">⏱️</span><div><strong>2-hour daily cap.</strong> Driving is recorded for no more than 2 hours per day. Any time beyond that is not counted.</div></li>
+      <li><span class="r-ico">🌙</span><div><strong>10 night hours.</strong> 10 hours of the required total must be completed at night.</div></li>
+      <li><span class="r-ico">🧑‍✈️</span><div><strong>Qualified supervisor.</strong> Must be 21 or older, hold a valid driver's license, and sit in the front passenger seat during every session.</div></li>
+      <li><span class="r-ico">✍️</span><div><strong>Parent sign-off.</strong> Each session is reviewed and approved by a parent before it counts.</div></li>
     </ul>
   </section>
 
-  <!-- ============ 4. PROVISIONAL LICENSE ============ -->
-  <section id="provisional" class="card" aria-labelledby="prov-title">
-    <h2 id="prov-title">4. Provisional License: Must-Dos, Do's &amp; Don'ts</h2>
-    <p class="intro">Restrictions that apply once the Provisional License is issued.</p>
+  <!-- ============ PROVISIONAL ============ -->
+  <section class="tab-panel" id="tab-provisional" role="tabpanel" hidden>
+    <h2 class="page-title">Provisional license</h2>
+    <p class="page-sub">These apply once the Provisional License is issued.</p>
 
-    <div class="callout">
-      <strong>CURFEW: NO DRIVING between MIDNIGHT and 5:00 AM.</strong>
-      Violations can result in serious consequences.
-    </div>
-    <div class="callout">
-      <strong>PASSENGERS: Maximum of ONE passenger under 21 who is NOT a family member.</strong>
-      Plan rides accordingly.
-    </div>
-    <div class="callout">
-      <strong>ZERO TOLERANCE FOR WIRELESS DEVICES.</strong>
-      No phone use of any kind while driving, including hands-free and voice-activated features. Put the phone away before the car moves.
-    </div>
+    <div class="alert bad"><div class="a-ico">🌙</div><div><strong>Curfew: no driving midnight to 5:00 AM.</strong>Violations can have serious consequences.</div></div>
+    <div class="alert"><div class="a-ico">👥</div><div><strong>One passenger max.</strong>No more than ONE passenger under 21 who is NOT a family member.</div></div>
+    <div class="alert"><div class="a-ico">📵</div><div><strong>Zero tolerance for wireless devices.</strong>No phone use of any kind, including hands-free and voice features. Put the phone away before the car moves.</div></div>
 
-    <h3>Must-Dos</h3>
-    <ul class="rules">
-      <li>Always wear a seat belt, and make sure every passenger does too.</li>
-      <li>Keep the Provisional License with you whenever you drive.</li>
-      <li>Obey all posted speed limits and traffic signals.</li>
-      <li>Maintain a safe following distance and signal every turn and lane change.</li>
-    </ul>
-
-    <h3>Do's and Don'ts</h3>
-    <ul class="rules">
-      <li><strong>Do</strong> plan routes ahead of time and set GPS before the car is in motion.</li>
-      <li><strong>Do</strong> pull over in a safe location if you need to adjust something or respond to a message.</li>
-      <li><strong>Don't</strong> drive while drowsy, upset, or impaired by alcohol, drugs, or medication.</li>
-      <li><strong>Don't</strong> let distractions such as music, food, or other passengers take your attention from the road.</li>
-    </ul>
+    <div class="grid-2">
+      <div class="card">
+        <h2>Must-dos</h2>
+        <ul class="rule-list" style="margin-top:12px;">
+          <li><span class="r-ico">🔒</span><div>Wear a seat belt, and make sure every passenger does too.</div></li>
+          <li><span class="r-ico">🪪</span><div>Carry the Provisional License whenever you drive.</div></li>
+          <li><span class="r-ico">🚦</span><div>Obey posted speed limits and traffic signals.</div></li>
+          <li><span class="r-ico">↔️</span><div>Keep a safe following distance and signal every turn and lane change.</div></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Do's &amp; don'ts</h2>
+        <ul class="rule-list" style="margin-top:12px;">
+          <li><span class="r-ico">👍</span><div><strong>Do</strong> plan routes ahead and set GPS before moving.</div></li>
+          <li><span class="r-ico">🅿️</span><div><strong>Do</strong> pull over somewhere safe to adjust anything or reply to a message.</div></li>
+          <li><span class="r-ico">🚫</span><div><strong>Don't</strong> drive drowsy, upset, or impaired by alcohol, drugs, or medication.</div></li>
+          <li><span class="r-ico">🎧</span><div><strong>Don't</strong> let music, food, or passengers pull your attention from the road.</div></li>
+        </ul>
+      </div>
+    </div>
   </section>
 
-  <!-- ============ 5. RESOURCES ============ -->
-  <section id="resources" class="card" aria-labelledby="resources-title">
-    <h2 id="resources-title">5. Educational References &amp; Responsibilities</h2>
-    <p class="intro">Trusted resources for teen drivers and the parents who support them.</p>
+  <!-- ============ RESOURCES ============ -->
+  <section class="tab-panel" id="tab-resources" role="tabpanel" hidden>
+    <h2 class="page-title">Resources</h2>
+    <p class="page-sub">Trusted sources for teen drivers and the parents who support them.</p>
 
-    <a class="resource" href="https://www.impactteendrivers.org/" target="_blank" rel="noopener noreferrer">
-      Impact Teen Drivers
-      <span>Teen driver safety programs and research on the most common teen driving risks.</span>
-    </a>
-    <a class="resource" href="https://www.nhtsa.gov/risky-driving/distracted-driving" target="_blank" rel="noopener noreferrer">
-      NHTSA Distracted Driving
-      <span>National Highway Traffic Safety Administration facts and guidance on distraction behind the wheel.</span>
-    </a>
-    <a class="resource" href="https://madd.org/" target="_blank" rel="noopener noreferrer">
-      MADD Teen &amp; Young Adult Resources
-      <span>Mothers Against Drunk Driving materials for teens, young adults, and families.</span>
-    </a>
-    <a class="resource" href="https://www.txdot.gov/" target="_blank" rel="noopener noreferrer">
-      TxDOT Impaired Driving Laws
-      <span>Texas Department of Transportation information on impaired driving laws and penalties.</span>
-    </a>
+    <div class="link-grid">
+      <a class="resource" href="https://www.impactteendrivers.org/" target="_blank" rel="noopener noreferrer">
+        <span class="r-ico">🚙</span>
+        <span><span class="r-title">Impact Teen Drivers</span><br><span class="r-desc">Teen safety programs and research on common teen driving risks.</span></span>
+      </a>
+      <a class="resource" href="https://www.nhtsa.gov/risky-driving/distracted-driving" target="_blank" rel="noopener noreferrer">
+        <span class="r-ico">📵</span>
+        <span><span class="r-title">NHTSA Distracted Driving</span><br><span class="r-desc">Federal facts and guidance on distraction behind the wheel.</span></span>
+      </a>
+      <a class="resource" href="https://madd.org/" target="_blank" rel="noopener noreferrer">
+        <span class="r-ico">🎗️</span>
+        <span><span class="r-title">MADD Teen &amp; Young Adult</span><br><span class="r-desc">Mothers Against Drunk Driving materials for teens and families.</span></span>
+      </a>
+      <a class="resource" href="https://www.txdot.gov/" target="_blank" rel="noopener noreferrer">
+        <span class="r-ico">🛣️</span>
+        <span><span class="r-title">TxDOT Impaired Driving Laws</span><br><span class="r-desc">Texas laws and penalties for impaired driving.</span></span>
+      </a>
+    </div>
 
-    <h3>Parent / Supervisor Responsibilities</h3>
-    <ul class="rules">
-      <li>Model safe driving at all times. Teens learn most from what they see.</li>
-      <li>Review each pending entry against what actually happened before approving it.</li>
-      <li>Discuss the curfew, passenger, and device rules before the teen drives alone.</li>
-    </ul>
+    <div class="card" style="margin-top:18px;">
+      <h2>Parent responsibilities</h2>
+      <ul class="rule-list" style="margin-top:12px;">
+        <li><span class="r-ico">🎯</span><div>Model safe driving at all times. Teens learn most from what they see.</div></li>
+        <li><span class="r-ico">🔍</span><div>Compare each pending entry with what actually happened before approving it.</div></li>
+        <li><span class="r-ico">🗣️</span><div>Talk through the curfew, passenger, and device rules before the teen drives alone.</div></li>
+      </ul>
+    </div>
   </section>
 
-  <!-- ============ 6. HARDSHIP ============ -->
-  <section id="hardship" class="card" aria-labelledby="hardship-title">
-    <h2 id="hardship-title">6. Hardship License Information (For Reference Only)</h2>
-    <p class="intro">Informational only. Confirm current eligibility and forms directly with the Texas Department of Public Safety (DPS).</p>
-    <ul class="rules">
-      <li>Eligibility requires <strong>documented proof</strong> of unusual economic hardship or a serious family illness.</li>
-      <li>Mere convenience, or a parent's work schedule, does <strong>not</strong> qualify.</li>
-    </ul>
+  <!-- ============ HARDSHIP ============ -->
+  <section class="tab-panel" id="tab-hardship" role="tabpanel" hidden>
+    <h2 class="page-title">Hardship license</h2>
+    <p class="page-sub">Reference only. Confirm current eligibility and forms directly with the Texas Department of Public Safety (DPS).</p>
+    <div class="alert info"><div class="a-ico">📄</div><div><strong>Documentation required</strong>Eligibility requires documented proof of unusual economic hardship or a serious family illness.</div></div>
+    <div class="alert"><div class="a-ico">🚫</div><div><strong>Not a qualifying reason</strong>Mere convenience, or a parent's work schedule, does not qualify.</div></div>
   </section>
 
 </main>
 
-<footer>
-  Data is stored only in this browser. Clearing browser data erases progress, so export a CSV backup from time to time.
+<footer class="app-footer">
+  Data is stored only in this browser. Export a CSV backup from the Log tab from time to time.
 </footer>
 
-<!-- PIN dialog: used to set the parent PIN and to enter parent mode -->
+<!-- PIN dialog: sets the parent PIN and unlocks parent mode -->
 <dialog id="pin-dialog" aria-labelledby="pin-title">
   <form id="pin-form" method="dialog" novalidate>
     <h2 id="pin-title">Parent sign-off</h2>
     <p class="muted" id="pin-help"></p>
 
-    <div class="field" id="pin-field">
+    <div class="field" id="pin-field" style="margin-top:12px;">
       <label for="pin-input" id="pin-label">PIN (4–6 digits)</label>
       <input type="password" id="pin-input" class="pin-input" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="off">
     </div>
-    <div class="field" id="pin2-field" hidden style="margin-top:10px;">
+    <div class="field" id="pin2-field" hidden style="margin-top:12px;">
       <label for="pin2-input">Confirm PIN</label>
       <input type="password" id="pin2-input" class="pin-input" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="off">
     </div>
-    <div class="field" id="name-field" hidden style="margin-top:10px;">
+    <div class="field" id="name-field" hidden style="margin-top:12px;">
       <label for="approver-input">Your name (recorded with each approval)</label>
       <input type="text" id="approver-input" maxlength="40" autocomplete="off" placeholder="e.g. Nicolas or Mom">
     </div>
 
-    <div class="field-error" id="pin-error" role="alert" style="margin-top:8px;"></div>
+    <div class="field-error" id="pin-error" role="alert" style="margin-top:10px;"></div>
 
-    <div class="form-actions">
+    <div class="btn-row">
       <button type="button" class="btn ghost" id="pin-cancel">Cancel</button>
       <button type="submit" class="btn" id="pin-submit">Continue</button>
     </div>
@@ -624,11 +791,13 @@
   var THEME_KEY = "aceableDriverGuide.theme";
   var TOTAL_REQUIRED = 44;
   var NIGHT_REQUIRED = 10;
-  var DAILY_CAP = 2;            // Hours of driving recorded per day
+  var DAILY_CAP = 2;
   var MAX_SESSION = 4;
   var PARENT_IDLE_MS = 15 * 60 * 1000;
   var MAX_ATTEMPTS = 5;
   var LOCKOUT_MS = 60 * 1000;
+  var RING_C = 2 * Math.PI * 52;
+  var TABS = ["dashboard", "checklist", "log", "rules", "provisional", "resources", "hardship"];
 
   var CHECKLIST = [
     { label: "Enroll in Aceable Parent-Taught course", note: "" },
@@ -640,6 +809,11 @@
     { label: "Complete 30 hours additional practice", note: "Includes 10 at night" },
     { label: "Hold permit for 6 months", note: "" },
     { label: "Pass DPS test for Provisional License", note: "" }
+  ];
+  var GROUPS = [
+    { title: "Coursework", icon: "📚", items: [0, 1, 2, 3, 4] },
+    { title: "Behind the wheel", icon: "🚗", items: [5, 6] },
+    { title: "Licensing", icon: "🪪", items: [7, 8] }
   ];
 
   // ---------- State ----------
@@ -663,11 +837,32 @@
   }
   function formatDate(iso) {
     var p = iso.split("-");
-    return new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2])).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+    return new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2])).toLocaleDateString(undefined, { weekday: "short", year: "numeric", month: "short", day: "numeric" });
+  }
+  function shortDate(iso) {
+    var p = iso.split("-");
+    return new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2])).toLocaleDateString(undefined, { month: "short", day: "numeric" });
   }
   function todayISO() {
     var d = new Date();
     return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  }
+  function esc(s) { return String(s == null ? "" : s); }
+
+  // Smoothly count a number up to its new value
+  function countUp(el, to, decimals) {
+    var from = parseFloat(el.dataset.v || "0") || 0;
+    el.dataset.v = String(to);
+    var start = performance.now();
+    var dur = 1100;
+    function step(now) {
+      var p = Math.min(1, (now - start) / dur);
+      var eased = 1 - Math.pow(1 - p, 3);
+      var val = from + (to - from) * eased;
+      el.textContent = decimals ? val.toFixed(decimals) : String(Math.round(val));
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
   }
 
   // ---------- Toasts ----------
@@ -678,9 +873,41 @@
     $("toasts").appendChild(el);
     setTimeout(function () {
       el.classList.add("out");
-      setTimeout(function () { el.remove(); }, 300);
-    }, 4200);
+      setTimeout(function () { el.remove(); }, 350);
+    }, 4000);
   }
+
+  // ---------- Tabs ----------
+  function showTab(name) {
+    if (TABS.indexOf(name) < 0) name = "dashboard";
+    document.querySelectorAll(".tab-panel").forEach(function (p) {
+      p.hidden = p.id !== "tab-" + name;
+    });
+    document.querySelectorAll(".tab-btn").forEach(function (b) {
+      var on = b.dataset.tab === name;
+      b.classList.toggle("active", on);
+      b.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    var panel = $("tab-" + name);
+    panel.style.animation = "none";
+    void panel.offsetWidth;
+    panel.style.animation = "";
+    // Restart the staggered reveal for the children of the visible panel
+    Array.prototype.forEach.call(panel.children, function (c) {
+      c.style.animation = "none";
+      void c.offsetWidth;
+      c.style.animation = "";
+    });
+    if (name === "dashboard") setTimeout(renderDashboard, 60);
+  }
+  document.querySelectorAll(".tab-btn").forEach(function (b) {
+    b.addEventListener("click", function () { location.hash = b.dataset.tab; });
+  });
+  document.querySelectorAll("[data-go]").forEach(function (b) {
+    b.addEventListener("click", function () { location.hash = b.dataset.go; });
+  });
+  window.addEventListener("hashchange", function () { showTab(location.hash.slice(1)); });
 
   // ---------- Storage ----------
   function validEntry(e) {
@@ -724,7 +951,6 @@
     catch (e) { toast("Browser storage is blocked, so nothing will be saved.", "bad"); return base; }
 
     if (!raw) {
-      // Migrate from the first version: old entries come in as Pending, capped at 2 hours per day.
       try {
         var old = localStorage.getItem(LEGACY_KEY);
         if (old) {
@@ -737,7 +963,7 @@
             running[e.date] = (running[e.date] || 0) + counted;
             base.entries.push(sanitize({ id: e.id, date: e.date, supervisor: e.supervisor, period: e.period, duration: e.duration, counted: counted, skills: e.skills, status: "pending" }));
           });
-          toast("Imported your earlier entries as Pending for sign-off.", "good");
+          if (base.entries.length) toast("Imported your earlier entries as Pending for sign-off.", "good");
         }
       } catch (err) { /* ignore a bad legacy blob */ }
       return base;
@@ -790,8 +1016,7 @@
   // ---------- Theme ----------
   function applyTheme(theme) {
     document.documentElement.setAttribute("data-theme", theme);
-    $("theme-meta").setAttribute("content", theme === "dark" ? "#0a0f1e" : "#f4f6fb");
-    $("theme-toggle").setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+    $("theme-meta").setAttribute("content", theme === "dark" ? "#000000" : "#fafafa");
   }
   function initTheme() {
     var saved = null;
@@ -809,7 +1034,7 @@
   function setParentMode(on) {
     parentMode = on;
     document.body.classList.toggle("parent-on", on);
-    $("parent-toggle").textContent = on ? "Lock parent mode" : "Parent sign-off";
+    $("parent-toggle").textContent = on ? "Lock" : "Parent sign-off";
     document.querySelectorAll(".parent-only").forEach(function (el) { el.hidden = !on; });
     clearTimeout(parentTimer);
     if (on) resetParentTimer();
@@ -828,7 +1053,6 @@
   function openPinDialog(mode, onSuccess) {
     pinMode = mode;
     pinCallback = onSuccess;
-    var dlg = $("pin-dialog");
     $("pin-error").textContent = "";
     $("pin-input").value = "";
     $("pin2-input").value = "";
@@ -836,7 +1060,7 @@
 
     if (mode === "set") {
       $("pin-title").textContent = state.pin ? "Change parent PIN" : "Set a parent PIN";
-      $("pin-help").textContent = "Choose a 4–6 digit PIN. Your son should not know it.";
+      $("pin-help").textContent = "Choose a 4–6 digit PIN. Keep it away from your son.";
       $("pin-label").textContent = "New PIN";
       $("pin2-field").hidden = false;
       $("name-field").hidden = true;
@@ -849,8 +1073,8 @@
       $("name-field").hidden = false;
       $("pin-submit").textContent = "Unlock";
     }
-    dlg.showModal();
-    setTimeout(function () { $("pin-input").focus(); }, 50);
+    $("pin-dialog").showModal();
+    setTimeout(function () { $("pin-input").focus(); }, 60);
   }
 
   $("pin-cancel").addEventListener("click", function () { $("pin-dialog").close(); });
@@ -876,7 +1100,6 @@
       return;
     }
 
-    // mode === "enter"
     var name = $("approver-input").value.trim();
     if (name.length < 2) { errEl.textContent = "Enter your name."; shakeDialog(); return; }
     if (Date.now() < lockoutUntil) {
@@ -928,60 +1151,80 @@
 
   // ---------- Checklist ----------
   function renderChecklist() {
-    var list = $("checklist-list");
-    list.innerHTML = "";
-    var done = 0;
-    CHECKLIST.forEach(function (item, i) {
-      var checked = !!state.checklist[i];
-      if (checked) done++;
-      var li = document.createElement("li");
-      if (checked) li.className = "done";
+    var wrap = $("checklist-groups");
+    wrap.innerHTML = "";
 
-      var cb = document.createElement("input");
-      cb.type = "checkbox";
-      cb.id = "step-" + i;
-      cb.checked = checked;
-      cb.addEventListener("change", function () {
-        state.checklist[i] = cb.checked;
-        save();
-        renderChecklist();
-        if (state.checklist.every(Boolean)) toast("Every checklist step is done. Nice work!", "good");
+    GROUPS.forEach(function (g) {
+      var done = g.items.filter(function (i) { return state.checklist[i]; }).length;
+      var pct = Math.round((done / g.items.length) * 100);
+
+      var card = document.createElement("div");
+      card.className = "card";
+
+      var head = document.createElement("div");
+      head.className = "group-head";
+      head.innerHTML = '<div class="group-title"><span class="g-ico">' + g.icon + '</span> ' + esc(g.title) + '</div>' +
+        '<span class="group-count">' + done + ' / ' + g.items.length + '</span>';
+      card.appendChild(head);
+
+      var bar = document.createElement("div");
+      bar.className = "mini-bar";
+      var fill = document.createElement("div");
+      fill.style.width = pct + "%";
+      bar.appendChild(fill);
+      card.appendChild(bar);
+
+      var ol = document.createElement("ol");
+      ol.className = "checklist";
+      g.items.forEach(function (i) {
+        var item = CHECKLIST[i];
+        var checked = !!state.checklist[i];
+        var li = document.createElement("li");
+        if (checked) li.className = "done";
+
+        var cb = document.createElement("input");
+        cb.type = "checkbox";
+        cb.id = "step-" + i;
+        cb.checked = checked;
+        cb.addEventListener("change", function () {
+          state.checklist[i] = cb.checked;
+          save();
+          renderChecklist();
+          renderDashboard();
+          if (state.checklist.every(Boolean)) toast("Every checklist step is done.", "good");
+        });
+
+        var label = document.createElement("label");
+        label.htmlFor = "step-" + i;
+        var num = document.createElement("span");
+        num.className = "step-num";
+        num.textContent = String(i + 1).padStart(2, "0");
+        label.appendChild(num);
+        label.appendChild(document.createTextNode(" " + item.label));
+        if (item.note) {
+          var note = document.createElement("span");
+          note.className = "step-note";
+          note.textContent = item.note;
+          label.appendChild(note);
+        }
+        li.appendChild(cb);
+        li.appendChild(label);
+        ol.appendChild(li);
       });
-
-      var label = document.createElement("label");
-      label.htmlFor = "step-" + i;
-      var num = document.createElement("span");
-      num.className = "step-num";
-      num.textContent = (i + 1) + ".";
-      label.appendChild(num);
-      label.appendChild(document.createTextNode(" " + item.label));
-      if (item.note) {
-        var note = document.createElement("span");
-        note.className = "step-note";
-        note.textContent = item.note;
-        label.appendChild(note);
-      }
-      li.appendChild(cb);
-      li.appendChild(label);
-      list.appendChild(li);
+      card.appendChild(ol);
+      wrap.appendChild(card);
     });
-
-    var pct = Math.round((done / CHECKLIST.length) * 100);
-    $("checklist-count").textContent = done + " of " + CHECKLIST.length + " complete";
-    $("checklist-pct").textContent = pct + "%";
-    $("checklist-fill").style.width = pct + "%";
-    $("checklist-bar").setAttribute("aria-valuenow", String(pct));
   }
 
   $("reset-checklist").addEventListener("click", function () {
     if (!confirm("Reset all checklist items to unchecked?")) return;
     state.checklist = defaultChecklist();
     save();
-    renderChecklist();
+    renderAll();
   });
 
-  // ---------- Totals & cap warnings ----------
-  function renderTotals() {
+  // ---------- Totals ----------
+  function computeTotals() {
     var approved = 0, nightApproved = 0, pending = 0, pendingCount = 0;
     state.entries.forEach(function (e) {
       if (e.status === "approved") {
@@ -992,54 +1235,67 @@
         pendingCount++;
       }
     });
-
-    $("total-hours").textContent = fmt(approved) + " / " + TOTAL_REQUIRED;
-    $("total-fill").style.width = Math.min(100, (approved / TOTAL_REQUIRED) * 100) + "%";
-    $("total-fill").className = "bar-fill" + (approved > TOTAL_REQUIRED ? " over" : "");
-    setStatus("total-status", approved >= TOTAL_REQUIRED ? "Total requirement met" : fmt(TOTAL_REQUIRED - approved) + " hours remaining", approved >= TOTAL_REQUIRED);
-
-    $("night-hours").textContent = fmt(nightApproved) + " / " + NIGHT_REQUIRED;
-    $("night-fill").style.width = Math.min(100, (nightApproved / NIGHT_REQUIRED) * 100) + "%";
-    setStatus("night-status", nightApproved >= NIGHT_REQUIRED ? "Night requirement met" : fmt(NIGHT_REQUIRED - nightApproved) + " night hours remaining", nightApproved >= NIGHT_REQUIRED);
-
-    $("pending-hours").textContent = fmt(pending);
-    $("pending-count").textContent = pendingCount + (pendingCount === 1 ? " session" : " sessions") + " pending";
-    $("session-count").textContent = state.entries.length + " sessions total";
-
-    // Cap banner: days where logged time was more than 2 hours
     var byDay = {};
     state.entries.forEach(function (e) { byDay[e.date] = (byDay[e.date] || 0) + e.duration; });
     var over = Object.keys(byDay).filter(function (d) { return byDay[d] > DAILY_CAP; }).sort();
-    var banner = $("cap-banner");
-    if (over.length) {
-      banner.hidden = false;
-      banner.textContent = "Only " + DAILY_CAP + " hours will be recorded per day. Extra time is not counted on: " +
-        over.map(formatDate).join(", ") + ".";
+    return { approved: approved, nightApproved: nightApproved, pending: pending, pendingCount: pendingCount, over: over };
+  }
+
+  function setRing(id, pct) {
+    var c = $(id);
+    var p = Math.max(0, Math.min(100, pct));
+    c.style.strokeDasharray = (p / 100 * RING_C).toFixed(2) + " " + RING_C.toFixed(2);
+  }
+
+  function renderDashboard() {
+    var t = computeTotals();
+    var checksDone = state.checklist.filter(Boolean).length;
+    var total = CHECKLIST.length;
+
+    setRing("ring-hours", (t.approved / TOTAL_REQUIRED) * 100);
+    countUp($("ring-hours-num"), t.approved, 1);
+    $("hours-status").textContent = t.approved >= TOTAL_REQUIRED ? "Requirement met" : fmt(TOTAL_REQUIRED - t.approved) + " hrs to go";
+    $("hours-status").className = "ring-status" + (t.approved >= TOTAL_REQUIRED ? " good" : "");
+
+    setRing("ring-night", (t.nightApproved / NIGHT_REQUIRED) * 100);
+    countUp($("ring-night-num"), t.nightApproved, 1);
+    $("night-status").textContent = t.nightApproved >= NIGHT_REQUIRED ? "Requirement met" : fmt(NIGHT_REQUIRED - t.nightApproved) + " night hrs to go";
+    $("night-status").className = "ring-status" + (t.nightApproved >= NIGHT_REQUIRED ? " good" : "");
+
+    setRing("ring-checks", (checksDone / total) * 100);
+    countUp($("ring-checks-num"), checksDone, 0);
+    $("checks-status").textContent = checksDone === total ? "All steps complete" : (total - checksDone) + " steps left";
+    $("checks-status").className = "ring-status" + (checksDone === total ? " good" : "");
+
+    var nextIdx = state.checklist.indexOf(false);
+    var nextEl = $("next-up");
+    nextEl.classList.toggle("done", nextIdx < 0);
+    if (nextIdx < 0) {
+      nextEl.innerHTML = '<div class="emoji">🏆</div><div><div class="label">Checklist</div><div class="title">Every step is complete</div></div>';
     } else {
-      banner.hidden = true;
-      banner.textContent = "";
+      nextEl.innerHTML = '<div class="emoji">👉</div><div><div class="label">Next up</div><div class="title">' +
+        esc(CHECKLIST[nextIdx].label) + '</div></div>';
+    }
+
+    $("home-pending-text").textContent = t.pendingCount
+      ? t.pendingCount + (t.pendingCount === 1 ? " session" : " sessions") + " (" + fmt(t.pending) + " hrs) waiting for a parent to approve."
+      : "Nothing is waiting. Log a drive to get started.";
+
+    var homeCap = $("home-cap");
+    if (t.over.length) {
+      homeCap.hidden = false;
+      homeCap.textContent = "Only 2 hours are recorded per day. Extra time is not counted on: " + t.over.map(shortDate).join(", ") + ".";
+    } else {
+      homeCap.hidden = true;
     }
   }
 
-  function setStatus(id, text, good) {
-    var el = $(id);
-    el.textContent = text;
-    el.className = "status " + (good ? "good" : "warn");
-  }
-
-  // ---------- Log table ----------
+  // ---------- Log entries ----------
   function sortedEntries() {
     return state.entries.slice().sort(function (a, b) {
       if (a.date !== b.date) return a.date < b.date ? -1 : 1;
       return a.createdAt - b.createdAt;
     });
-  }
-
-  function cell(text, cls) {
-    var td = document.createElement("td");
-    td.textContent = text;
-    if (cls) td.className = cls;
-    return td;
   }
 
   function actionBtn(label, cls, onClick, aria) {
@@ -1053,80 +1309,85 @@
   }
 
   function renderLog() {
-    var body = $("log-body");
-    body.innerHTML = "";
+    var list = $("entry-list");
+    list.innerHTML = "";
+    $("session-count").textContent = state.entries.length + (state.entries.length === 1 ? " session" : " sessions");
 
     if (!state.entries.length) {
-      var tr = document.createElement("tr");
-      tr.className = "empty-row";
-      var td = document.createElement("td");
-      td.colSpan = 8;
-      td.textContent = "No sessions yet. Add one above and a parent can approve it.";
-      tr.appendChild(td);
-      body.appendChild(tr);
+      var empty = document.createElement("div");
+      empty.className = "empty";
+      empty.innerHTML = '<span class="big-ico">🛣️</span>No sessions yet. Log the first drive above.';
+      list.appendChild(empty);
       return;
     }
 
-    sortedEntries().forEach(function (e) {
-      var tr = document.createElement("tr");
-      if (e.period === "Night") tr.className = "night-row";
+    sortedEntries().forEach(function (e, idx) {
+      var card = document.createElement("div");
+      card.className = "entry" + (e.period === "Night" ? " night" : "") + (e.status === "approved" ? " approved" : "");
+      card.style.animationDelay = (idx * 0.05) + "s";
 
-      tr.appendChild(cell(formatDate(e.date)));
-      tr.appendChild(cell(e.supervisor));
+      var left = document.createElement("div");
+      left.innerHTML =
+        '<div class="e-date">' + esc(formatDate(e.date)) + '</div>' +
+        '<div class="e-meta">' + esc(e.supervisor) + '</div>';
 
-      var pc = document.createElement("td");
-      var period = document.createElement("span");
-      period.className = "chip " + (e.period === "Night" ? "night" : "day");
-      period.textContent = e.period;
-      pc.appendChild(period);
-      tr.appendChild(pc);
+      var right = document.createElement("div");
+      right.className = "e-hours";
+      var capped = e.counted < e.duration;
+      right.innerHTML =
+        '<div class="big' + (capped ? ' capped' : '') + '">' + fmt(e.counted) + '</div>' +
+        '<div class="sub">' + (capped ? 'of ' + fmt(e.duration) + ' logged' : 'hours counted') + '</div>';
 
-      tr.appendChild(cell(fmt(e.duration), "num"));
+      var skills = document.createElement("div");
+      skills.className = "e-skills";
+      skills.textContent = e.skills;
 
-      var cc = cell(fmt(e.counted), "num");
-      if (e.counted < e.duration) {
-        cc.title = "Only " + fmt(e.counted) + " of " + fmt(e.duration) + " hours counted (2-hour daily cap)";
-        cc.style.color = "var(--warn)";
-        cc.style.fontWeight = "700";
-      }
-      tr.appendChild(cc);
+      var foot = document.createElement("div");
+      foot.className = "e-foot";
 
-      var sc = document.createElement("td");
-      var chip = document.createElement("span");
-      chip.className = "chip " + (e.status === "approved" ? "approved" : "pending");
-      chip.textContent = e.status === "approved" ? "Approved" : "Pending";
-      sc.appendChild(chip);
+      var tags = document.createElement("div");
+      tags.style.display = "flex";
+      tags.style.gap = "8px";
+      tags.style.flexWrap = "wrap";
+      tags.style.alignItems = "center";
+      var per = document.createElement("span");
+      per.className = "chip " + (e.period === "Night" ? "night" : "day");
+      per.textContent = e.period === "Night" ? "🌙 Night" : "☀️ Day";
+      var st = document.createElement("span");
+      st.className = "chip " + (e.status === "approved" ? "approved" : "pending");
+      st.textContent = e.status === "approved" ? "Approved" : "Pending";
+      tags.appendChild(per);
+      tags.appendChild(st);
       if (e.status === "approved" && e.approvedBy) {
         var who = document.createElement("span");
         who.className = "approver";
         who.textContent = "by " + e.approvedBy + " · " + new Date(e.approvedAt).toLocaleDateString(undefined, { month: "short", day: "numeric" });
-        sc.appendChild(who);
+        tags.appendChild(who);
       }
-      tr.appendChild(sc);
 
-      tr.appendChild(cell(e.skills));
-
-      var ac = document.createElement("td");
-      var wrap = document.createElement("div");
-      wrap.className = "row-actions";
+      var actions = document.createElement("div");
+      actions.className = "row-actions";
       if (e.status === "pending") {
-        if (parentMode) {
-          wrap.appendChild(actionBtn("Approve", "good", function () { approveEntry(e.id); }, "Approve session on " + formatDate(e.date)));
-        }
-        wrap.appendChild(actionBtn("Delete", "danger", function () { deleteEntry(e.id); }, "Delete session on " + formatDate(e.date)));
+        if (parentMode) actions.appendChild(actionBtn("Approve", "good", function () { approveEntry(e.id); }, "Approve session on " + formatDate(e.date)));
+        actions.appendChild(actionBtn("Delete", "danger", function () { deleteEntry(e.id); }, "Delete session on " + formatDate(e.date)));
       } else if (parentMode) {
-        wrap.appendChild(actionBtn("Unapprove", "ghost", function () { unapproveEntry(e.id); }, "Unapprove session on " + formatDate(e.date)));
-        wrap.appendChild(actionBtn("Delete", "danger", function () { deleteEntry(e.id); }, "Delete approved session on " + formatDate(e.date)));
+        actions.appendChild(actionBtn("Unapprove", "ghost", function () { unapproveEntry(e.id); }, "Unapprove session on " + formatDate(e.date)));
+        actions.appendChild(actionBtn("Delete", "danger", function () { deleteEntry(e.id); }, "Delete approved session on " + formatDate(e.date)));
       } else {
         var lock = document.createElement("span");
         lock.className = "chip locked";
         lock.textContent = "Locked";
-        wrap.appendChild(lock);
+        actions.appendChild(lock);
       }
-      ac.appendChild(wrap);
-      tr.appendChild(ac);
 
-      body.appendChild(tr);
+      foot.appendChild(tags);
+      foot.appendChild(actions);
+
+      card.appendChild(left);
+      card.appendChild(right);
+      card.appendChild(skills);
+      card.appendChild(foot);
+      list.appendChild(card);
     });
   }
 
@@ -1180,8 +1441,7 @@
   });
 
   $("clear-log").addEventListener("click", function () {
-    if (!parentMode) return;
-    if (!state.entries.length) return;
+    if (!parentMode || !state.entries.length) return;
     if (!confirm("Delete ALL logged sessions? This cannot be undone.")) return;
     state.entries = [];
     save();
@@ -1189,10 +1449,21 @@
     toast("Log cleared.", "warn");
   });
 
+  // ---------- Cap banner (log tab) ----------
+  function renderCapBanner() {
+    var t = computeTotals();
+    var banner = $("cap-banner");
+    if (t.over.length) {
+      banner.hidden = false;
+      banner.textContent = "Only 2 hours are recorded per day. Extra time is not counted on: " + t.over.map(shortDate).join(", ") + ".";
+    } else {
+      banner.hidden = true;
+    }
+  }
+
   // ---------- Export ----------
   function csvCell(v) {
-    var s = String(v == null ? "" : v);
-    return '"' + s.replace(/"/g, '""') + '"';
+    return '"' + esc(v).replace(/"/g, '""') + '"';
   }
   $("export-csv").addEventListener("click", function () {
     var rows = [["Date", "Supervisor", "Day/Night", "Logged hours", "Counted hours", "Status", "Approved by", "Approved at", "Skills"]];
@@ -1204,7 +1475,7 @@
     var url = URL.createObjectURL(blob);
     var a = document.createElement("a");
     a.href = url;
-    a.download = "driving-log-" + todayISO() + ".csv";
+    a.download = "owl-driver-log-" + todayISO() + ".csv";
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -1257,8 +1528,10 @@
     return { date: date, supervisor: sup, period: $("f-period").value, duration: dur, skills: skills };
   }
 
-  ["f-date", "f-duration", "f-period"].forEach(function (id) { $(id).addEventListener("input", updatePreview); });
-  ["f-date", "f-duration", "f-period"].forEach(function (id) { $(id).addEventListener("change", updatePreview); });
+  ["f-date", "f-duration", "f-period"].forEach(function (id) {
+    $(id).addEventListener("input", updatePreview);
+    $(id).addEventListener("change", updatePreview);
+  });
 
   $("log-form").addEventListener("submit", function (ev) {
     ev.preventDefault();
@@ -1300,9 +1573,10 @@
 
   // ---------- Render all ----------
   function renderAll() {
+    renderDashboard();
     renderChecklist();
     renderLog();
-    renderTotals();
+    renderCapBanner();
     updatePreview();
   }
 
@@ -1312,6 +1586,7 @@
   state = loadState();
   document.querySelectorAll(".parent-only").forEach(function (el) { el.hidden = true; });
   renderAll();
+  showTab(location.hash.slice(1) || "dashboard");
 
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {

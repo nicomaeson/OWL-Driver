@@ -1,6 +1,6 @@
 // Service worker: makes the app load offline after the first visit.
 // Bump CACHE_NAME whenever index.html changes so phones pick up the new version.
-const CACHE_NAME = "aceable-driving-log-v2";
+const CACHE_NAME = "owl-driver-v3";
 const ASSETS = [
   "./",
   "./index.html",
