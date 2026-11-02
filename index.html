@@ -739,6 +739,99 @@
   }
   .step-link:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
   ol.checklist li.done .step-link { text-decoration: none; opacity: 0.6; }
+
+  /* ---------- v10: resource cards with key facts ---------- */
+  .res-group { margin: 22px 2px 10px; font-size: 0.72rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); }
+  .res-list { display: grid; gap: 10px; }
+  details.res {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 0;
+    transition: border-color 0.4s, box-shadow 0.4s var(--ease); overflow: hidden;
+  }
+  details.res[open] { border-color: var(--text); box-shadow: var(--shadow); }
+  details.res summary {
+    list-style: none; display: flex; gap: 14px; align-items: center; padding: 14px 16px; cursor: pointer;
+  }
+  details.res summary::-webkit-details-marker { display: none; }
+  details.res summary::after {
+    content: "+"; margin-left: auto; font-size: 1.3rem; font-weight: 300; color: var(--muted);
+    transition: transform 0.4s var(--ease);
+  }
+  details.res[open] summary::after { transform: rotate(45deg); color: var(--text); }
+  details.res .r-ico { font-size: 1.5rem; filter: grayscale(1); }
+  .res-head { display: flex; flex-direction: column; gap: 2px; }
+  .res-head .r-title { font-weight: 600; }
+  .res-tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted); }
+  .res-facts { margin: 0; padding: 0 18px 4px 46px; display: grid; gap: 8px; font-size: 0.92rem; animation: reveal 0.5s var(--ease) both; }
+  .res-facts li::marker { color: var(--muted); }
+  .res-go {
+    display: inline-flex; margin: 12px 16px 16px 46px; padding: 10px 16px; border-radius: 999px;
+    background: var(--text); color: var(--bg); text-decoration: none; font-weight: 600; font-size: 0.88rem;
+    transition: transform 0.2s var(--ease), box-shadow 0.3s;
+  }
+  .res-go:hover { box-shadow: 0 8px 22px color-mix(in srgb, var(--text) 25%, transparent); }
+  .res-go:active { transform: scale(0.96); }
+
+  /* ---------- v10: video lessons, quizzes, learning progress ---------- */
+  .learn-card { border-color: var(--text); }
+  .learn-person { padding: 10px 0; border-top: 1px solid var(--line); }
+  .learn-person:first-child { border-top: 0; padding-top: 0; }
+  .learn-top { display: flex; justify-content: space-between; gap: 10px; font-size: 0.92rem; }
+  .learn-top span { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .learn-person .mini-bar { margin: 8px 0 6px; }
+  .learn-recent { margin: 6px 0 0; padding-left: 18px; display: grid; gap: 4px; font-size: 0.85rem; }
+
+  .video-group { margin-bottom: 16px; }
+  .video-lesson { font-size: 0.78rem; font-weight: 600; margin: 0 2px 8px; color: var(--muted); }
+  .video-row { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x mandatory; scrollbar-width: thin; }
+  .video-card {
+    flex: 0 0 210px; scroll-snap-align: start; text-align: left; font: inherit; color: var(--text);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 0 0 12px; cursor: pointer; overflow: hidden;
+    transition: transform 0.4s var(--ease), border-color 0.4s, box-shadow 0.4s var(--ease);
+  }
+  .video-card:hover { transform: translateY(-3px); border-color: var(--text); box-shadow: var(--shadow); }
+  .video-card .thumb {
+    position: relative; display: block; aspect-ratio: 16 / 9; background: #111 center / cover no-repeat;
+    filter: grayscale(1) contrast(1.05); transition: filter 0.5s var(--ease);
+  }
+  .video-card:hover .thumb { filter: grayscale(0); }
+  .video-card .play {
+    position: absolute; inset: 0; margin: auto; width: 46px; height: 46px; border-radius: 50%;
+    display: grid; place-items: center; background: rgba(0,0,0,0.65); color: #fff; font-size: 1rem;
+    border: 1px solid rgba(255,255,255,0.6); transition: transform 0.4s var(--ease);
+  }
+  .video-card:hover .play { transform: scale(1.12); }
+  .done-badge {
+    position: absolute; left: 8px; top: 8px; background: #fff; color: #000; font-size: 0.68rem; font-weight: 800;
+    letter-spacing: 0.4px; text-transform: uppercase; padding: 3px 8px; border-radius: 999px;
+  }
+  .video-card.done { border-color: var(--text); }
+  .v-title { display: block; padding: 10px 12px 0; font-weight: 600; font-size: 0.9rem; line-height: 1.3; }
+  .v-src { display: block; padding: 4px 12px 0; font-size: 0.72rem; color: var(--muted); }
+
+  .video-dialog { width: min(760px, calc(100vw - 20px)); padding: 16px; }
+  .vid-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+  .vid-head h2 { text-transform: none; letter-spacing: 0; font-size: 1.05rem; }
+  .vid-head p { margin: 2px 0 10px; font-size: 0.8rem; }
+  .vid-x { background: var(--surface-2) !important; color: var(--text) !important; border-color: var(--line) !important; flex: 0 0 40px; }
+  .vid-frame { aspect-ratio: 16 / 9; background: #000; border-radius: 12px; overflow: hidden; }
+  .vid-frame iframe, .vid-frame > div { width: 100%; height: 100%; display: block; }
+  .vid-progress .mini-bar { margin: 12px 0 6px; height: 6px; }
+  .vid-progress .mini-bar > div { transition: width 0.4s linear; }
+  .vid-meta { display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 600; }
+  .vid-meta a { color: var(--muted); }
+  #vid-status { margin: 6px 0 0; font-size: 0.85rem; text-align: left; }
+
+  .quiz-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 12px 16px 0 46px; }
+  .quiz-status { font-size: 0.78rem; font-weight: 600; color: var(--muted); }
+  .quiz-status.passed { color: var(--text); }
+  #quiz-dialog { width: min(520px, calc(100vw - 24px)); max-height: 88vh; overflow-y: auto; }
+  .quiz-q { border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; margin: 12px 0 0; }
+  .quiz-q legend { font-weight: 600; padding: 0 4px; font-size: 0.92rem; }
+  .quiz-opt { display: flex; gap: 10px; align-items: flex-start; padding: 8px 4px; cursor: pointer; font-size: 0.9rem; }
+  .quiz-opt input { width: 18px; height: 18px; min-height: 0; margin-top: 2px; flex: 0 0 18px; accent-color: var(--text); }
+  .quiz-result { margin-top: 12px; font-weight: 600; font-size: 0.9rem; min-height: 1.2em; }
+  .quiz-result.good { color: var(--text); }
+  .quiz-result.bad { color: var(--muted); }
 </style>
 </head>
 <body>
@@ -1025,25 +1118,165 @@
   <!-- ============ RESOURCES ============ -->
   <section class="tab-panel" id="tab-resources" role="tabpanel" hidden>
     <h2 class="page-title">Links &amp; resources</h2>
-    <p class="page-sub">Trusted sources for teen drivers and the parents who support them.</p>
+    <p class="page-sub">Direct links to the exact course, form, or rule, not just a home page. Tap a card to see the key facts.</p>
 
-    <div class="link-grid">
-      <a class="resource" href="https://www.impactteendrivers.org/" target="_blank" rel="noopener noreferrer">
-        <span class="r-ico">🚙</span>
-        <span><span class="r-title">Impact Teen Drivers</span><br><span class="r-desc">Teen safety programs and research on common teen driving risks.</span></span>
-      </a>
-      <a class="resource" href="https://www.nhtsa.gov/risky-driving/distracted-driving" target="_blank" rel="noopener noreferrer">
-        <span class="r-ico">📵</span>
-        <span><span class="r-title">NHTSA Distracted Driving</span><br><span class="r-desc">Federal facts and guidance on distraction behind the wheel.</span></span>
-      </a>
-      <a class="resource" href="https://madd.org/" target="_blank" rel="noopener noreferrer">
-        <span class="r-ico">🎗️</span>
-        <span><span class="r-title">MADD Teen &amp; Young Adult</span><br><span class="r-desc">Mothers Against Drunk Driving materials for teens and families.</span></span>
-      </a>
-      <a class="resource" href="https://www.txdot.gov/" target="_blank" rel="noopener noreferrer">
-        <span class="r-ico">🛣️</span>
-        <span><span class="r-title">TxDOT Impaired Driving Laws</span><br><span class="r-desc">Texas laws and penalties for impaired driving.</span></span>
-      </a>
+    <div class="card learn-card">
+      <div class="group-head">
+        <div class="group-title"><span class="g-ico">🎯</span> Learning progress</div>
+      </div>
+      <p class="intro">Videos count only when actually watched (skipping ahead doesn't count). Other resources count when the quiz is passed.</p>
+      <div id="learn-summary"></div>
+    </div>
+
+    <h3 class="res-group">Video lessons · matched to the 30-hour log</h3>
+    <div id="video-list"></div>
+
+    <h3 class="res-group">Required steps</h3>
+    <div class="res-list">
+      <details class="res">
+        <summary>
+          <span class="r-ico">🎓</span>
+          <span class="res-head"><span class="r-title">Impact Texas Teen Drivers (ITTD)</span><span class="res-tag">Free DPS video course · required</span></span>
+        </summary>
+        <ul class="res-facts">
+          <li>Required before the road test for teens who took driver education, including parent-taught.</li>
+          <li>Take it <strong>after</strong> finishing the behind-the-wheel hours.</li>
+          <li>The completion certificate must be dated within <strong>90 days</strong> of the road test.</li>
+          <li>It's an 8-part video course. Print the certificate and bring it to DPS.</li>
+        </ul>
+        <div class="quiz-row"><button type="button" class="btn small ghost" data-quiz="quiz-ittd">Take the 2-question quiz</button><span class="quiz-status" data-quiz-status="quiz-ittd"></span></div>
+        <a class="res-go" href="https://impacttexasdrivers.dps.texas.gov/ITTD/CourseOverview.aspx" target="_blank" rel="noopener noreferrer">Open the ITTD course ↗</a>
+      </details>
+
+      <details class="res">
+        <summary>
+          <span class="r-ico">📝</span>
+          <span class="res-head"><span class="r-title">TDLR form DES150N: 30-hour log</span><span class="res-tag">Official PDF</span></span>
+        </summary>
+        <ul class="res-facts">
+          <li>The official 30-hour behind-the-wheel log. Bring it to DPS with the DE-964 certificate.</li>
+          <li>At least <strong>10 of the 30 hours</strong> must be at night.</li>
+          <li>Only <strong>2 hours per day</strong> count toward the 30 hours.</li>
+          <li>Owl Driver's <em>Export for Texas DPS</em> (Log tab) fills in the same columns.</li>
+        </ul>
+        <div class="quiz-row"><button type="button" class="btn small ghost" data-quiz="quiz-log">Take the 4-question quiz</button><span class="quiz-status" data-quiz-status="quiz-log"></span></div>
+        <a class="res-go" href="https://license.state.tx.us/driver/files/DES150N-Texas-30-Hour-Behind-the-Wheel-Log.pdf" target="_blank" rel="noopener noreferrer">Download the official form (PDF) ↗</a>
+      </details>
+
+      <details class="res">
+        <summary>
+          <span class="r-ico">🪪</span>
+          <span class="res-head"><span class="r-title">TDLR parent instructor designation</span><span class="res-tag">$20 application · parent</span></span>
+        </summary>
+        <ul class="res-facts">
+          <li>The parent instructor applies online. Paper applications aren't accepted.</li>
+          <li>The fee is <strong>$20</strong> and non-refundable.</li>
+          <li>After applying, download the program guide from TDLR's Parent Instructor Portal.</li>
+          <li>Parents with a "B" restriction on their license can't be the instructor.</li>
+        </ul>
+        <a class="res-go" href="https://www.tdlr.texas.gov/driver/parenttaughtreqs.htm" target="_blank" rel="noopener noreferrer">Open the TDLR application page ↗</a>
+      </details>
+
+      <details class="res">
+        <summary>
+          <span class="r-ico">📅</span>
+          <span class="res-head"><span class="r-title">Texas DPS appointment scheduler</span><span class="res-tag">Learner license &amp; road test</span></span>
+        </summary>
+        <ul class="res-facts">
+          <li>Book the learner license visit after the first 6 hours and the permit exam.</li>
+          <li>Book the road test after holding the permit for <strong>6 months</strong> and finishing ITTD.</li>
+          <li>Appointments can fill up weeks out, so book early.</li>
+        </ul>
+        <a class="res-go" href="https://public.txdpsscheduler.com/" target="_blank" rel="noopener noreferrer">Book a DPS appointment ↗</a>
+      </details>
+    </div>
+
+    <h3 class="res-group">Study</h3>
+    <div class="res-list">
+      <details class="res">
+        <summary>
+          <span class="r-ico">📘</span>
+          <span class="res-head"><span class="r-title">Texas Driver Handbook (DL-7)</span><span class="res-tag">Official DPS PDF</span></span>
+        </summary>
+        <ul class="res-facts">
+          <li>The official rules-of-the-road book the permit and road tests are based on.</li>
+          <li>Good for reviewing signs, right-of-way, and parking rules before a drive.</li>
+        </ul>
+        <a class="res-go" href="https://www.dps.texas.gov/Internetforms/Forms/DL-7.pdf" target="_blank" rel="noopener noreferrer">Open the handbook (PDF) ↗</a>
+      </details>
+
+      <details class="res">
+        <summary>
+          <span class="r-ico">🗂️</span>
+          <span class="res-head"><span class="r-title">How to fill out the parent-taught packet</span><span class="res-tag">Aceable guide</span></span>
+        </summary>
+        <ul class="res-facts">
+          <li>Walks through forms DL-90A, DL-91A, and DL-14A.</li>
+          <li>Don't sign those forms at home. They must be signed in front of a DPS employee.</li>
+        </ul>
+        <a class="res-go" href="https://aceable.com/dmv/texas/parent-taught-drivers-ed-packet" target="_blank" rel="noopener noreferrer">Open the packet guide ↗</a>
+      </details>
+    </div>
+
+    <h3 class="res-group">Laws to know</h3>
+    <div class="res-list">
+      <details class="res">
+        <summary>
+          <span class="r-ico">🚦</span>
+          <span class="res-head"><span class="r-title">Graduated Driver License rules (under 18)</span><span class="res-tag">Texas DPS</span></span>
+        </summary>
+        <ul class="res-facts">
+          <li><strong>Learner license:</strong> must be held at least 6 months, always with a licensed adult.</li>
+          <li><strong>Provisional:</strong> no more than one passenger under 21 who isn't family.</li>
+          <li><strong>Curfew:</strong> no driving midnight to 5:00 AM, except for work, school, or emergencies.</li>
+          <li><strong>Phones:</strong> no wireless device use while driving, including hands-free.</li>
+          <li>A suspension during the learner phase adds that time to the 6 months.</li>
+        </ul>
+        <div class="quiz-row"><button type="button" class="btn small ghost" data-quiz="quiz-gdl">Take the 4-question quiz</button><span class="quiz-status" data-quiz-status="quiz-gdl"></span></div>
+        <a class="res-go" href="https://www.dps.texas.gov/section/driver-license/graduated-driver-license-gdl-program" target="_blank" rel="noopener noreferrer">Read the DPS GDL rules ↗</a>
+      </details>
+
+      <details class="res">
+        <summary>
+          <span class="r-ico">🚫</span>
+          <span class="res-head"><span class="r-title">Zero tolerance: alcohol under 21</span><span class="res-tag">Texas law · TABC</span></span>
+        </summary>
+        <ul class="res-facts">
+          <li>Under 21, driving with <strong>any detectable amount</strong> of alcohol is illegal.</li>
+          <li><strong>1st offense:</strong> up to $500 fine, alcohol awareness class, 20–40 hours of community service, 60-day license suspension.</li>
+          <li><strong>2nd offense:</strong> up to $500 fine, 40–60 hours of community service, 120-day suspension.</li>
+          <li><strong>3rd offense:</strong> 180-day suspension. Age 17+ faces $500–$2,000 and/or up to 180 days in jail.</li>
+        </ul>
+        <div class="quiz-row"><button type="button" class="btn small ghost" data-quiz="quiz-zero">Take the 3-question quiz</button><span class="quiz-status" data-quiz-status="quiz-zero"></span></div>
+        <a class="res-go" href="https://tabc.texas.gov/public-information/underage-drinking/" target="_blank" rel="noopener noreferrer">Read the TABC underage drinking laws ↗</a>
+      </details>
+    </div>
+
+    <h3 class="res-group">Talk with your teen</h3>
+    <div class="res-list">
+      <details class="res">
+        <summary>
+          <span class="r-ico">🤝</span>
+          <span class="res-head"><span class="r-title">Parent-teen driving agreement</span><span class="res-tag">Printable PDF · AAA</span></span>
+        </summary>
+        <ul class="res-facts">
+          <li>A fill-in agreement covering passengers, curfew, phones, and consequences.</li>
+          <li>Sign it together before he drives alone on a provisional license.</li>
+        </ul>
+        <a class="res-go" href="https://www.ace.aaa.com/content/dam/ace/pdf/Parent-Teen-Driving-Agreement-TW.pdf" target="_blank" rel="noopener noreferrer">Download the agreement (PDF) ↗</a>
+      </details>
+
+      <details class="res">
+        <summary>
+          <span class="r-ico">🎗️</span>
+          <span class="res-head"><span class="r-title">MADD Power of Parents handbook</span><span class="res-tag">PDF guide for parents</span></span>
+        </summary>
+        <ul class="res-facts">
+          <li>MADD's handbook for talking with high-schoolers about alcohol and impaired driving.</li>
+          <li>Includes conversation starters and ways to set clear family rules.</li>
+        </ul>
+        <a class="res-go" href="https://www.abc.virginia.gov/library/education/pdfs/madd-power-of-parents-high-school-handbook.pdf" target="_blank" rel="noopener noreferrer">Download the handbook (PDF) ↗</a>
+      </details>
     </div>
 
     <div class="card" style="margin-top:18px;">
@@ -1059,7 +1292,7 @@
 </main>
 
 <footer class="app-footer">
-  Owl Driver · Version 9 · Synced across your family's phones
+  Owl Driver · Version 10 · Synced across your family's phones
 </footer>
 
 <!-- ============ SIGN-IN GATE ============ -->
@@ -1210,6 +1443,35 @@
     <div class="field" style="margin-top:12px;"><label for="rec-pw">New password (8+ characters)</label><input type="password" id="rec-pw" autocomplete="new-password" minlength="8"></div>
     <div class="field-error" id="rec-error" style="margin-top:8px;"></div>
     <div class="btn-row"><button type="submit" class="btn">Save password</button></div>
+  </form>
+</dialog>
+
+<dialog id="video-dialog" class="video-dialog" aria-labelledby="vid-title">
+  <div class="vid-head">
+    <div>
+      <h2 id="vid-title"></h2>
+      <p class="muted" id="vid-src"></p>
+    </div>
+    <button type="button" class="chip-btn icon vid-x" id="vid-close" aria-label="Close video">✕</button>
+  </div>
+  <div class="vid-frame" id="vid-frame"></div>
+  <div class="vid-progress">
+    <div class="mini-bar"><div id="vid-bar"></div></div>
+    <div class="vid-meta"><span id="vid-pct">0% watched</span><a id="vid-yt-link" target="_blank" rel="noopener noreferrer">Open on YouTube ↗</a></div>
+    <p class="muted" id="vid-status"></p>
+  </div>
+</dialog>
+
+<dialog id="quiz-dialog" aria-labelledby="quiz-title">
+  <form id="quiz-form" novalidate>
+    <h2 id="quiz-title">Quiz</h2>
+    <p class="muted">Answer every question correctly to mark this resource complete. Answers are checked by the server.</p>
+    <div id="quiz-questions"></div>
+    <div class="quiz-result" id="quiz-result" role="status"></div>
+    <div class="btn-row">
+      <button type="button" class="btn ghost" id="quiz-cancel">Close</button>
+      <button type="submit" class="btn" id="quiz-submit">Submit answers</button>
+    </div>
   </form>
 </dialog>
 
@@ -1421,7 +1683,8 @@
     if (!data.me) return;
     snap = {
       me: data.me, family: data.family || {}, members: data.members || [],
-      checklist: mergeChecklist(data.checklist), entries: (data.entries || []).map(normalizeEntry)
+      checklist: mergeChecklist(data.checklist), entries: (data.entries || []).map(normalizeEntry),
+      progress: data.progress || []
     };
     var ids = {};
     snap.entries.forEach(function (e) { ids[e.id] = true; });
@@ -2275,12 +2538,293 @@
     updatePreview();
   });
 
+  // ---------- Learning: videos + quizzes ----------
+  var VIDEOS = [
+    { id: "VTfG8Rh5JRA", title: "8 steps for your first driving lesson", src: "Smart Drive Test", lesson: 0 },
+    { id: "dJpMKkwEhxI", title: "Driving fundamentals to pass the road test", src: "Smart Drive Test", lesson: 1 },
+    { id: "7pWQMIaSLAo", title: "Finding the blind spots around your vehicle", src: "Smart Drive Test", lesson: 1 },
+    { id: "ADTF-AESA3k", title: "Backing into a parking space", src: "Smart Drive Test", lesson: 2 },
+    { id: "W3E1PqP49CU", title: "Right turn at a traffic light", src: "Utah Driver License Division", lesson: 3 },
+    { id: "dJ1FznnAMFE", title: "Left turn at a traffic light", src: "Utah Driver License Division", lesson: 3 },
+    { id: "9xl49wYgSl8", title: "Stop signs", src: "Utah Driver License Division", lesson: 4 },
+    { id: "sraAyxszjgo", title: "Parallel parking", src: "Utah Driver License Division", lesson: 5 },
+    { id: "mpoatjQJeEQ", title: "Uphill parking", src: "Utah Driver License Division", lesson: 5 },
+    { id: "DzOwzLG0iLo", title: "Downhill parking", src: "Utah Driver License Division", lesson: 5 },
+    { id: "XfrUPuhnroQ", title: "Three-point turn", src: "Utah Driver License Division", lesson: 6 },
+    { id: "NTccG1V5H3s", title: "U-turn on a two-lane road", src: "Utah Driver License Division", lesson: 6 },
+    { id: "dYUxQPrpCsY", title: "How to merge onto a freeway", src: "Smart Drive Test", lesson: 9 }
+  ];
+  var QUIZZES = {
+    "quiz-ittd": { title: "ITTD course", questions: [
+      { q: "When should the ITTD course be completed?", a: ["Before getting the learner license", "After the behind-the-wheel hours, within 90 days of the road test", "Any time after turning 18", "It's optional"] },
+      { q: "What kind of course is ITTD?", a: ["An in-person class at DPS", "A free online video course", "A written essay", "A second road test"] }
+    ] },
+    "quiz-log": { title: "30-hour log (DES150N)", questions: [
+      { q: "How many of the 30 practice hours must be at night?", a: ["5", "10", "15", "20"] },
+      { q: "How many hours per day can count toward the 30 hours?", a: ["1", "2", "3", "4"] },
+      { q: "Who can supervise practice driving?", a: ["Anyone 18+ with a license", "An adult 21+ licensed at least one year", "Only a certified driving instructor", "Any family member"] },
+      { q: "What do you bring to DPS along with the log?", a: ["The DE-964 certificate", "A report card", "The car title", "Nothing else"] }
+    ] },
+    "quiz-gdl": { title: "Graduated license rules", questions: [
+      { q: "On a provisional license, how many passengers under 21 who aren't family are allowed?", a: ["None", "One", "Two", "Three"] },
+      { q: "When is the provisional curfew?", a: ["10 PM to 5 AM", "11 PM to 6 AM", "Midnight to 5 AM", "1 AM to 5 AM"] },
+      { q: "Can a provisional driver use a hands-free phone while driving?", a: ["Yes", "Only for GPS", "No, no wireless device use at all", "Only at red lights"] },
+      { q: "How long must the learner license be held before the provisional?", a: ["3 months", "6 months", "9 months", "1 year"] }
+    ] },
+    "quiz-zero": { title: "Zero tolerance", questions: [
+      { q: "How much alcohol is legal for a driver under 21 in Texas?", a: ["Up to 0.08", "Up to 0.05", "Up to 0.02", "None. Any detectable amount is illegal"] },
+      { q: "First offense: how long is the license suspension?", a: ["30 days", "60 days", "120 days", "1 year"] },
+      { q: "First offense: how many community service hours?", a: ["None", "8 to 10", "20 to 40", "100"] }
+    ] }
+  };
+  var LEARN_ITEMS = VIDEOS.map(function (v) { return "v-" + v.id; }).concat(Object.keys(QUIZZES));
+  function itemTitle(item) {
+    if (QUIZZES[item]) return "Quiz: " + QUIZZES[item].title;
+    var v = VIDEOS.filter(function (x) { return "v-" + x.id === item; })[0];
+    return v ? "Video: " + v.title : item;
+  }
+  function progressFor(userId, item) {
+    return (snap && snap.progress || []).filter(function (p) { return p.userId === userId && p.item === item; })[0] || null;
+  }
+  function isDone(item) { var p = progressFor(myId(), item); return !!(p && p.completedAt); }
+  function learnMissing(e) {
+    return /function|schema cache|PGRST202|does not exist/i.test(e && e.code || "");
+  }
+  function learnError(e) {
+    if (e.offline) return "This needs an internet connection.";
+    if (learnMissing(e)) return "Learning progress isn't set up in the database yet. Run supabase-learning.sql in Supabase.";
+    return errorText(e.code);
+  }
+
+  function renderLearning() {
+    var list = $("video-list");
+    if (!list) return;
+    // Video cards grouped by DES150N lesson
+    list.innerHTML = "";
+    LESSONS.forEach(function (l, li) {
+      var vids = VIDEOS.filter(function (v) { return v.lesson === li; });
+      if (!vids.length) return;
+      var group = document.createElement("div");
+      group.className = "video-group";
+      group.innerHTML = '<div class="video-lesson">' + (li + 1) + ". " + escHtml(l.name) + "</div>";
+      var row = document.createElement("div");
+      row.className = "video-row";
+      vids.forEach(function (v) {
+        var item = "v-" + v.id, done = isDone(item);
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "video-card" + (done ? " done" : "");
+        b.innerHTML = '<span class="thumb" style="background-image:url(https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg)"><span class="play">▶</span>' +
+          (done ? '<span class="done-badge">✓ Watched</span>' : '') + '</span>' +
+          '<span class="v-title">' + escHtml(v.title) + '</span><span class="v-src">' + escHtml(v.src) + '</span>';
+        b.addEventListener("click", function () { openVideo(v); });
+        row.appendChild(b);
+      });
+      group.appendChild(row);
+      list.appendChild(group);
+    });
+
+    // Quiz buttons + status inside resource cards
+    document.querySelectorAll("[data-quiz-status]").forEach(function (el) {
+      var p = progressFor(myId(), el.dataset.quizStatus);
+      el.textContent = p && p.completedAt ? "✓ Passed " + new Date(p.completedAt).toLocaleDateString(undefined, { month: "short", day: "numeric" })
+        : p && p.attempts ? "Not passed yet · " + p.attempts + " tr" + (p.attempts === 1 ? "y" : "ies") : "";
+      el.classList.toggle("passed", !!(p && p.completedAt));
+    });
+
+    // Summary: my progress, and for parents everyone's
+    var sum = $("learn-summary");
+    var me = myId(), total = LEARN_ITEMS.length;
+    var people = isParent() ? (snap && snap.members || []).filter(function (m) { return m.role === "student"; }) : [];
+    var html = "";
+    function line(userId, name) {
+      var done = LEARN_ITEMS.filter(function (it) { var p = progressFor(userId, it); return p && p.completedAt; });
+      var pct = Math.round(done.length / total * 100);
+      var recent = done.map(function (it) { return { it: it, at: progressFor(userId, it).completedAt }; })
+        .sort(function (a, b) { return a.at < b.at ? 1 : -1; }).slice(0, 4);
+      return '<div class="learn-person"><div class="learn-top"><strong>' + escHtml(name) + '</strong><span>' + done.length + ' / ' + total + ' completed</span></div>' +
+        '<div class="mini-bar"><div style="width:' + pct + '%"></div></div>' +
+        (recent.length ? '<ul class="learn-recent">' + recent.map(function (r) {
+          return '<li>' + escHtml(itemTitle(r.it)) + ' <span class="muted">' + new Date(r.at).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }) + '</span></li>';
+        }).join("") + '</ul>' : '<p class="muted" style="margin:6px 0 0;">Nothing completed yet.</p>') + '</div>';
+    }
+    if (snap && snap.me) {
+      people.forEach(function (m) { html += line(m.userId, m.displayName); });
+      if (!isParent()) html += line(me, "Your progress");
+      if (isParent() && !people.length) html += '<p class="muted">When your student joins and watches videos or passes quizzes, their progress shows here.</p>';
+    }
+    sum.innerHTML = html;
+  }
+
+  // ----- Video player with real watch tracking -----
+  var ytLoading = null, player = null, watchTimer = null, curVideo = null, watched = null, lastT = null, startSent = false, completing = false, lastSave = 0;
+  function loadYT() {
+    if (window.YT && window.YT.Player) return Promise.resolve();
+    if (ytLoading) return ytLoading;
+    ytLoading = new Promise(function (resolve, reject) {
+      var prev = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = function () { if (prev) prev(); resolve(); };
+      var s = document.createElement("script");
+      s.src = "https://www.youtube.com/iframe_api";
+      s.onerror = function () { ytLoading = null; reject(new Error("yt")); };
+      document.head.appendChild(s);
+    });
+    return ytLoading;
+  }
+  function watchKey(item) { return "owlDriver.watch." + myId() + "." + item; }
+  function loadWatched(item) {
+    try { return new Set(JSON.parse(lsGet(watchKey(item)) || "[]")); } catch (e) { return new Set(); }
+  }
+  function saveWatched() { if (curVideo && watched) lsSet(watchKey("v-" + curVideo.id), JSON.stringify(Array.from(watched))); }
+
+  function setVideoStatus(text) { $("vid-status").textContent = text; }
+  function updateWatchBar() {
+    if (!player || !player.getDuration) return;
+    var d = Math.floor(player.getDuration() || 0);
+    if (!d) return;
+    var pct = Math.min(100, Math.round(watched.size / d * 100));
+    $("vid-bar").style.width = pct + "%";
+    $("vid-pct").textContent = isDone("v-" + curVideo.id) ? "Completed ✓" : pct + "% watched";
+    if (pct >= 90 && !isDone("v-" + curVideo.id)) tryComplete();
+  }
+  function tryComplete() {
+    if (completing) return;
+    completing = true;
+    var item = "v-" + curVideo.id;
+    call("od_complete_video", { p_item: item }).then(function (d) {
+      applyServer(d);
+      setVideoStatus("Completed. Your parents can see it in Learning progress.");
+      $("vid-pct").textContent = "Completed ✓";
+      toast("Video completed: " + curVideo.title, "good");
+    }, function (e) {
+      if (e.code === "TOO_FAST") setVideoStatus("Keep watching. The server checks that the video actually played in real time.");
+      else if (e.code === "NOT_STARTED") { startSent = false; sendStart(); }
+      else setVideoStatus(learnError(e));
+      setTimeout(function () { completing = false; }, 15000);
+      return;
+    }).then(function () { if (isDone(item)) completing = false; });
+  }
+  function sendStart() {
+    if (startSent || !player) return;
+    startSent = true;
+    var d = Math.round(player.getDuration() || 0);
+    call("od_start_video", { p_item: "v-" + curVideo.id, p_duration: d }).then(applyServer, function (e) {
+      startSent = false;
+      setVideoStatus(learnError(e));
+    });
+  }
+  function tick() {
+    if (!player || !player.getPlayerState) return;
+    var playing = player.getPlayerState() === 1;
+    var t = Math.floor(player.getCurrentTime() || 0);
+    if (playing && lastT !== null && t >= lastT && t - lastT <= 2) {
+      for (var s = lastT; s <= t; s++) watched.add(s);
+    }
+    lastT = playing ? t : null;
+    if (Date.now() - lastSave > 5000) { saveWatched(); lastSave = Date.now(); }
+    updateWatchBar();
+  }
+  function openVideo(v) {
+    curVideo = v;
+    watched = loadWatched("v-" + v.id);
+    lastT = null; startSent = false; completing = false;
+    $("vid-title").textContent = v.title;
+    $("vid-src").textContent = v.src + " · Lesson " + (v.lesson + 1) + ": " + LESSONS[v.lesson].name;
+    $("vid-bar").style.width = "0%";
+    $("vid-pct").textContent = isDone("v-" + v.id) ? "Completed ✓" : "0% watched";
+    $("vid-yt-link").href = "https://www.youtube.com/watch?v=" + v.id;
+    setVideoStatus(isDone("v-" + v.id) ? "Already completed. You can rewatch it any time." : "Watch the whole video. Skipping ahead doesn't count.");
+    $("vid-frame").innerHTML = '<div id="yt-player"></div>';
+    $("video-dialog").showModal();
+    loadYT().then(function () {
+      player = new YT.Player("yt-player", {
+        videoId: v.id, host: "https://www.youtube-nocookie.com", width: "100%", height: "100%",
+        playerVars: { rel: 0, playsinline: 1, modestbranding: 1 },
+        events: {
+          onStateChange: function (ev) {
+            if (ev.data === 1) sendStart();
+            if (ev.data === 0) { saveWatched(); updateWatchBar(); }
+          },
+          onError: function (ev) {
+            setVideoStatus(ev.data === 101 || ev.data === 150
+              ? "This video can't play inside the app. Open it on YouTube instead (it won't count toward progress)."
+              : "The video couldn't load. Check your connection.");
+          }
+        }
+      });
+      clearInterval(watchTimer);
+      watchTimer = setInterval(tick, 500);
+    }, function () { setVideoStatus("YouTube couldn't load. Check your internet connection."); });
+  }
+  function closeVideo() {
+    clearInterval(watchTimer);
+    saveWatched();
+    try { if (player && player.destroy) player.destroy(); } catch (e) {}
+    player = null; curVideo = null;
+    if ($("video-dialog").open) $("video-dialog").close();
+  }
+  $("vid-close").addEventListener("click", closeVideo);
+  $("video-dialog").addEventListener("cancel", function (ev) { ev.preventDefault(); closeVideo(); });
+
+  // ----- Quizzes (graded on the server) -----
+  var curQuiz = null;
+  function openQuiz(id) {
+    var q = QUIZZES[id];
+    if (!q) return;
+    curQuiz = id;
+    $("quiz-title").textContent = "Quiz: " + q.title;
+    $("quiz-result").textContent = "";
+    $("quiz-result").className = "quiz-result";
+    var form = $("quiz-questions");
+    form.innerHTML = "";
+    q.questions.forEach(function (item, qi) {
+      var fs = document.createElement("fieldset");
+      fs.className = "quiz-q";
+      fs.innerHTML = "<legend>" + (qi + 1) + ". " + escHtml(item.q) + "</legend>" + item.a.map(function (opt, ai) {
+        return '<label class="quiz-opt"><input type="radio" name="q' + qi + '" value="' + ai + '"><span>' + escHtml(opt) + "</span></label>";
+      }).join("");
+      form.appendChild(fs);
+    });
+    $("quiz-dialog").showModal();
+  }
+  document.querySelectorAll("[data-quiz]").forEach(function (b) {
+    b.addEventListener("click", function () { openQuiz(b.dataset.quiz); });
+  });
+  $("quiz-cancel").addEventListener("click", function () { $("quiz-dialog").close(); });
+  $("quiz-form").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var q = QUIZZES[curQuiz], answers = [];
+    for (var i = 0; i < q.questions.length; i++) {
+      var sel = document.querySelector('#quiz-questions input[name="q' + i + '"]:checked');
+      if (!sel) { $("quiz-result").textContent = "Answer every question first."; $("quiz-result").className = "quiz-result bad"; shake("quiz-form"); return; }
+      answers.push(Number(sel.value));
+    }
+    $("quiz-submit").disabled = true;
+    call("od_submit_quiz", { p_item: curQuiz, p_answers: answers }).then(function (r) {
+      if (r && r.state) applyServer(r.state);
+      if (r && r.passed) {
+        $("quiz-result").textContent = "Passed! " + r.correct + " of " + r.total + " correct. This resource is marked complete.";
+        $("quiz-result").className = "quiz-result good";
+        toast("Quiz passed: " + q.title, "good");
+        setTimeout(function () { if ($("quiz-dialog").open) $("quiz-dialog").close(); }, 1600);
+      } else if (r) {
+        $("quiz-result").textContent = r.correct + " of " + r.total + " correct. Review the key facts and try again.";
+        $("quiz-result").className = "quiz-result bad";
+        shake("quiz-form");
+      }
+    }, function (e) {
+      $("quiz-result").textContent = learnError(e);
+      $("quiz-result").className = "quiz-result bad";
+    }).then(function () { $("quiz-submit").disabled = false; });
+  });
+
   // ---------- Render ----------
   function renderAll() {
     renderDashboard();
     renderChecklist();
     renderLog();
     renderLessons();
+    renderLearning();
     renderCapBanner();
     updatePreview();
     setSyncStatus();
