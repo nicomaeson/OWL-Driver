@@ -1,13 +1,16 @@
 // Service worker: makes the app load offline after the first visit.
 // Bump CACHE_NAME whenever the app changes so phones drop the old copy.
-const CACHE_NAME = "owl-driver-v5";
+const CACHE_NAME = "owl-driver-v6";
 const ASSETS = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
-  "./icons/apple-touch-icon.png"
+  "./icons/apple-touch-icon.png",
+  "./icons/icon-maskable-512.png",
+  "./icons/logo.png",
+  "./icons/favicon-32.png"
 ];
 
 self.addEventListener("install", (event) => {
