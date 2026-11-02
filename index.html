@@ -586,16 +586,53 @@
   .quick { padding: 12px 10px; text-align: center; }
   .quick .q-title { font-size: 0.82rem; }
   .quick .q-sub { font-size: 0.7rem; }
+
+  /* ---------- v7: frameless logo + ghost watermark ---------- */
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  img.brand-logo {
+    width: 128px; height: auto; flex: 0 0 auto;
+    background: none; border: 0; border-radius: 0; box-shadow: none;
+    filter: drop-shadow(0 0 14px rgba(255,255,255,0.18)) !important;
+    animation: float 5s ease-in-out infinite, markGlow 4s ease-in-out infinite;
+  }
+  img.brand-logo::after { display: none; }
+  @keyframes markGlow {
+    0%,100% { filter: drop-shadow(0 0 8px rgba(255,255,255,0.10)); }
+    50% { filter: drop-shadow(0 0 20px rgba(255,255,255,0.35)); }
+  }
+  .brand { gap: 10px; }
+  .brand p { max-width: 12em; font-size: 0.8rem; }
+  @media (min-width: 820px) { img.brand-logo { width: 170px; } }
+
+  .ghost-logo {
+    position: fixed; z-index: 5; pointer-events: none;
+    width: 130vmin; aspect-ratio: 957 / 878;
+    right: -62vmin; top: 44vh;
+    background-color: var(--text);
+    -webkit-mask: url("icons/logo-mark.png") center / contain no-repeat;
+            mask: url("icons/logo-mark.png") center / contain no-repeat;
+    opacity: 0.05;
+    transform-origin: center;
+    animation: ghostDrift 22s ease-in-out infinite alternate;
+  }
+  [data-theme="light"] .ghost-logo { opacity: 0.06; }
+  @keyframes ghostDrift {
+    from { transform: translateY(0) rotate(-8deg) scale(1); }
+    to   { transform: translateY(-4vh) rotate(-3deg) scale(1.04); }
+  }
+  @media (min-width: 820px) { .ghost-logo { width: 90vmin; right: -30vmin; top: 30vh; } }
+  @media (max-width: 480px) { .brand p { display: none; } img.brand-logo { width: 140px; } }
 </style>
 </head>
 <body>
+<div class="ghost-logo" aria-hidden="true"></div>
 
 <header class="app-header">
   <div class="header-row">
     <div class="brand">
-      <div class="brand-logo" role="img" aria-label="Owl Driver logo"></div>
+      <img class="brand-logo" src="icons/logo-mark-360.png" alt="Owl Driver" width="360" height="330">
       <div>
-        <h1>Owl Driver</h1>
+        <h1 class="sr-only">Owl Driver</h1>
         <p>Texas Aceable parent-taught course</p>
       </div>
     </div>
@@ -847,7 +884,7 @@
 </main>
 
 <footer class="app-footer">
-  Owl Driver · Version 6 · Data is stored only in this browser. Export a CSV backup from the Log tab from time to time.
+  Owl Driver · Version 7 · Data is stored only in this browser. Export a CSV backup from the Log tab from time to time.
 </footer>
 
 <!-- PIN dialog: sets the parent PIN and unlocks parent mode -->
