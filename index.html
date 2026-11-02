@@ -696,6 +696,49 @@
   .lesson-row.done .lesson-hrs { color: var(--text); font-weight: 700; }
   .lesson-row .mini-bar { margin: 6px 0 0; }
   .export-card { border-color: var(--text); }
+
+  /* ---------- v9: TDLR card, tappable Next Up, step links ---------- */
+  .tdlr-card {
+    display: flex; align-items: center; gap: 14px; margin-top: 16px;
+    padding: 16px 18px; border-radius: 18px; text-decoration: none;
+    background: var(--text); color: var(--bg); border: 1px solid var(--text);
+    position: relative; overflow: hidden;
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  }
+  .tdlr-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .tdlr-card::after {
+    content: ""; position: absolute; top: 0; bottom: 0; left: -40%; width: 35%;
+    background: linear-gradient(100deg, transparent, color-mix(in srgb, var(--bg) 25%, transparent), transparent);
+    animation: sweep 4.2s ease-in-out infinite; pointer-events: none;
+  }
+  .tdlr-step {
+    writing-mode: vertical-rl; transform: rotate(180deg);
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; opacity: 0.7;
+  }
+  .tdlr-body { flex: 1; }
+  .tdlr-body .title { font-weight: 700; font-size: 0.98rem; line-height: 1.3; }
+  .tdlr-body .sub { font-size: 0.8rem; opacity: 0.75; margin-top: 4px; }
+  .tdlr-card .go, .next-up .go {
+    width: 38px; height: 38px; flex: 0 0 38px; border-radius: 50%; display: grid; place-items: center;
+    border: 1px solid currentColor; transition: transform 0.4s var(--ease);
+  }
+  .tdlr-card .go svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .tdlr-card:hover .go { transform: rotate(45deg); }
+  .next-up { cursor: pointer; transition: transform 0.4s var(--ease), border-color 0.4s; }
+  .next-up:hover { transform: translateY(-2px); border-color: var(--text); }
+  .next-up:active { transform: scale(0.98); }
+  .next-action {
+    display: inline-block; margin-top: 8px; padding: 5px 12px; border-radius: 999px;
+    background: var(--text); color: var(--bg); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.4px;
+  }
+  .step-link {
+    display: inline-block; margin-top: 8px; padding: 5px 12px; border-radius: 999px;
+    border: 1px solid var(--line); background: transparent; color: var(--text); font: inherit;
+    font-size: 0.75rem; font-weight: 600; text-decoration: none; cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  }
+  .step-link:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+  ol.checklist li.done .step-link { text-decoration: none; opacity: 0.6; }
 </style>
 </head>
 <body>
@@ -774,7 +817,15 @@
         </div>
       </div>
 
-      <div class="next-up" id="next-up"></div>
+      <a class="tdlr-card" href="https://www.tdlr.texas.gov/driver/parenttaughtreqs.htm" target="_blank" rel="noopener noreferrer">
+        <div class="tdlr-step">Step 0 · Parent</div>
+        <div class="tdlr-body">
+          <div class="title">Apply for TDLR parent instructor designation · $20</div>
+          <div class="sub">Required before starting. After you apply, download the Parent-Taught program guide from TDLR's Parent Instructor Portal.</div>
+        </div>
+        <span class="go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
+      </a>
+      <div class="next-up" id="next-up" role="button" tabindex="0"></div>
 
       <div class="quick-actions">
         <button type="button" class="quick" data-go="log"><div class="q-ico">➕</div><div class="q-title">Log a drive</div><div class="q-sub">Submit for sign-off</div></button>
@@ -1008,7 +1059,7 @@
 </main>
 
 <footer class="app-footer">
-  Owl Driver · Version 8 · Synced across your family's phones
+  Owl Driver · Version 9 · Synced across your family's phones
 </footer>
 
 <!-- ============ SIGN-IN GATE ============ -->
@@ -1187,15 +1238,15 @@
   var SUB_ALIASES = { provisional: "provisional", hardship: "hardship" };
 
   var CHECKLIST = [
-    { label: "Enroll in Aceable Parent-Taught course", note: "" },
-    { label: "Complete the first 6 hours online", note: "" },
-    { label: "Take the in-app permit exam", note: "" },
-    { label: "Get Learner License at DPS", note: "" },
-    { label: "Complete remaining 26 hours online", note: "" },
-    { label: "Complete 14 hours in-car", note: "7 observing, 7 driving" },
-    { label: "Complete 30 hours additional practice", note: "Includes 10 at night" },
-    { label: "Hold permit for 6 months", note: "" },
-    { label: "Pass DPS test for Provisional License", note: "" }
+    { label: "Enroll in Aceable Parent-Taught course", note: "", link: "https://aceable.com/drivers-ed/texas-parent-taught", linkLabel: "Sign up at Aceable" },
+    { label: "Complete the first 6 hours online", note: "", link: "https://www.aceable.com/", linkLabel: "Open Aceable" },
+    { label: "Take the in-app permit exam", note: "In the Aceable app", link: "https://www.aceable.com/", linkLabel: "Open Aceable" },
+    { label: "Get Learner License at DPS", note: "", link: "https://public.txdpsscheduler.com/", linkLabel: "Book a DPS appointment" },
+    { label: "Complete remaining 26 hours online", note: "", link: "https://www.aceable.com/", linkLabel: "Open Aceable" },
+    { label: "Complete 14 hours in-car", note: "7 observing, 7 driving", tab: "log", linkLabel: "Log a session" },
+    { label: "Complete 30 hours additional practice", note: "Includes 10 at night", tab: "log", linkLabel: "Log a drive" },
+    { label: "Hold permit for 6 months", note: "", tab: "log", linkLabel: "Keep logging drives" },
+    { label: "Pass DPS test for Provisional License", note: "Bring the DES150N log and DE-964", link: "https://public.txdpsscheduler.com/", linkLabel: "Book the road test" }
   ];
   var GROUPS = [
     { title: "Coursework", icon: "📚", items: [0, 1, 2, 3, 4] },
@@ -1818,7 +1869,16 @@
         label.htmlFor = "step-" + i;
         label.innerHTML = '<span class="step-num">' + String(i + 1).padStart(2, "0") + '</span> ' + escHtml(item.label) +
           (item.note ? '<span class="step-note">' + escHtml(item.note) + '</span>' : "");
-        li.appendChild(cb); li.appendChild(label); ol.appendChild(li);
+        li.appendChild(cb); li.appendChild(label);
+        if (item.linkLabel) {
+          var go = document.createElement(item.link ? "a" : "button");
+          go.className = "step-link";
+          go.textContent = item.linkLabel + (item.link ? " ↗" : " →");
+          if (item.link) { go.href = item.link; go.target = "_blank"; go.rel = "noopener noreferrer"; }
+          else { go.type = "button"; go.addEventListener("click", function () { location.hash = item.tab; }); }
+          label.appendChild(go);
+        }
+        ol.appendChild(li);
       });
       card.appendChild(ol);
       wrap.appendChild(card);
@@ -1869,7 +1929,10 @@
     nextEl.classList.toggle("done", nextIdx < 0);
     nextEl.innerHTML = nextIdx < 0
       ? '<div class="emoji">🏆</div><div><div class="label">Checklist</div><div class="title">Every step is complete</div></div>'
-      : '<div class="emoji">👉</div><div><div class="label">Next up</div><div class="title">' + escHtml(CHECKLIST[nextIdx].label) + '</div></div>';
+      : '<div class="emoji">👉</div><div class="next-body"><div class="label">Next up</div><div class="title">' + escHtml(CHECKLIST[nextIdx].label) + '</div>' +
+        (CHECKLIST[nextIdx].linkLabel ? '<div class="next-action">' + escHtml(CHECKLIST[nextIdx].linkLabel) + (CHECKLIST[nextIdx].link ? ' ↗' : ' →') + '</div>' : '') +
+        '</div>';
+    nextEl.dataset.step = nextIdx < 0 ? "" : String(nextIdx);
 
     $("home-pending-title").textContent = isParent() ? "Needs your sign-off" : "Waiting for sign-off";
     $("home-pending-text").textContent = t.pendingCount
@@ -1882,6 +1945,21 @@
     homeCap.hidden = !t.over.length;
     if (t.over.length) homeCap.textContent = "Only 2 hours are recorded per day. Extra time is not counted on: " + t.over.map(shortDate).join(", ") + ".";
   }
+  function openStep(i) {
+    var item = CHECKLIST[i];
+    if (!item) { location.hash = "checklist"; return; }
+    if (item.link) { window.open(item.link, "_blank", "noopener"); return; }
+    location.hash = item.tab || "checklist";
+  }
+  $("next-up").addEventListener("click", function () {
+    var i = $("next-up").dataset.step;
+    if (i === "" || i == null) { location.hash = "checklist"; return; }
+    openStep(Number(i));
+  });
+  $("next-up").addEventListener("keydown", function (ev) {
+    if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); $("next-up").click(); }
+  });
+
   $("home-pending-btn").addEventListener("click", function () {
     if (isParent()) setFilter("pending");
     location.hash = "log";
